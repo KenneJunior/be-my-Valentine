@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+    <!-- Character Encoding & Viewport -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    
+    <!-- Primary Meta Tags -->
+    <title>Will You Be My Valentine? ❤️ | A Special Question</title>
+    <meta name="description" content="A heartfelt Valentine's Day invitation with love, animations, and interactive elements.">
+    <meta name="theme-color" content="#ff2e63">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Will You Be My Valentine? ❤️">
+    <meta property="og:description" content="A heartfelt Valentine's Day invitation">
+    <meta property="og:image" content="https://example.com/valentine-preview.jpg">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Will You Be My Valentine? ❤️">
+    
+    <!-- Icons -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>❤️</text></svg>">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="styles.css" as="style">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Poppins:wght@400;600;700;800&display=swap" as="style">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Poppins:wght@400;600;700;800&display=swap">
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Preconnect to External Domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Event",
+        "name": "Valentine's Day Invitation",
+        "description": "A special Valentine's Day invitation",
+        "startDate": "2024-02-14",
+        "endDate": "2024-02-14",
+        "eventStatus": "https://schema.org/EventScheduled",
+        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+        "location": {
+            "@type": "Place",
+            "name": "Everywhere"
+        }
+    }
+    </script>
+</head>
+<body>
+    <!-- Skip to Content for Accessibility -->
+    <a href="#main-content" class="sr-only skip-link">Skip to main content</a>
+    
+    <!-- Particle Background -->
+    <div class="particles-container" aria-hidden="true">
+        <canvas id="particles-canvas"></canvas>
+    </div>
+    
+    <!-- Main Content -->
+    <main id="main-content" class="valentine-container">
+        <div class="content-section" role="region" aria-labelledby="main-heading">
+            <!-- Decorative Elements -->
+            <div class="decoration-hearts" aria-hidden="true">
+                <span class="heart">❤️</span>
+                <span class="heart">💖</span>
+                <span class="heart">💝</span>
+            </div>
+            
+            <!-- GIF Section -->
+            <figure class="gif-container" role="img" aria-label="Animated illustration showing cute hearts">
+                <img 
+                    src="img1.gif" 
+                    alt="Cute animated illustration with floating hearts and romantic theme"
+                    width="500"
+                    height="400"
+                    loading="eager"
+                    class="gif-image"
+                >
+                <figcaption class="sr-only">Animated hearts illustration for Valentine's Day</figcaption>
+            </figure>
+            
+            <!-- Main Heading -->
+            <header class="text-content">
+                <h1 id="main-heading" class="main-heading">
+                    <span class="heading-line">Will You Be</span>
+                    <span class="heading-line accent">My Valentine? lulu 🫶💖</span>
+                </h1>
+
+            </header>
+            
+            <!-- Interactive Buttons -->
+            <div class="buttons-container" role="group" aria-label="Response options">
+                <!-- Yes Button -->
+                <button 
+                    type="button" 
+                    class="valentine-button button-yes" 
+                    id="yes-button"
+                    aria-label="Yes, I will be your Valentine"
+                    data-cy="yes-button"
+                >
+                    <span class="button-icon" aria-hidden="true">💖</span>
+                    <span class="button-text">Absolutely Yes!</span>
+                    <span class="button-subtext" aria-hidden="true">❤️</span>
+                </button>
+                
+                <!-- No Button -->
+                <button 
+                    type="button" 
+                    class="valentine-button button-no" 
+                    id="no-button"
+                    aria-label="No, I won't be your Valentine"
+                    data-cy="no-button"
+                    aria-describedby="no-button-hint"
+                >
+                    <span class="button-icon" aria-hidden="true">🤔</span>
+                    <span class="button-text" id="no-button-text">Maybe No?</span>
+                    <span class="button-subtext" aria-hidden="true">😢</span>
+                </button>
+                
+                <!-- Accessibility Hint for No Button -->
+                <p id="no-button-hint" class="sr-only">
+                    This button will change text and make the yes button grow when clicked
+                </p>
+            </div>
+            
+            <!-- Additional Decorative Elements -->
+            <div class="floating-elements" aria-hidden="true">
+                <div class="floating-heart">❤️</div>
+                <div class="floating-heart">💕</div>
+                <div class="floating-heart">💘</div>
+            </div>
+            
+            <!-- Progress Indicator (Hidden by default) -->
+            <div class="progress-container" role="progressbar" aria-valuemin="0" aria-valuemax="100" hidden>
+                <div class="progress-bar"></div>
+            </div>
+        </div>
+        
+    </main>
+    
+    <!-- Footer -->
+    <footer class="page-footer d-none" role="contentinfo">
+            <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+                <span class="theme-icon" aria-hidden="true">🌙</span>
+            </button>
+        </div>
+    </footer>
+    
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loading-overlay" role="alert" aria-live="polite" hidden>
+        <div class="loading-spinner" aria-hidden="true"></div>
+        <p class="loading-text">Preparing something special...</p>
+    </div>
+    
+    <!-- Confetti Container (Hidden by default) -->
+    <div id="confetti-container" class="confetti-container" aria-hidden="true"></div>
+    
+    <!-- JavaScript -->
+    <script>
+        // Remove no-js class if JavaScript is enabled
+        document.documentElement.classList.remove('no-js');
+        document.documentElement.classList.add('js');
+    </script>
+    <script src="script.js" defer></script>
+    <script src="particles.js" defer></script>
+</body>
+</html>
