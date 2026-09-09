@@ -479,6 +479,9 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(cleanup, parseFloat(duration) * 1000 + 400);
     }
 
+    // Backwards-compatible alias for particle spawner
+    const spawnFloatingEmoji = spawnFloatingParticle;
+
     function startEmojiSpawner() {
         if (!floatingInterval) {
             const initialCount = isMobileDevice ? 2 : 4;
@@ -557,9 +560,9 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // Spawn a burst of celebratory emojis around the card on dodge
+        // Spawn a burst of celebratory particles around the card on dodge
         for (let i = 0; i < 3; i++) {
-            setTimeout(spawnFloatingEmoji, i * 80);
+            setTimeout(spawnFloatingParticle, i * 80);
         }
     }
 
