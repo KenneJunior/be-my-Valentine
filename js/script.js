@@ -29,8 +29,8 @@ const SEASONS = {
         heading: 'Happy Birthday!',
         subMessage: 'Wishing you a magical day filled with sweet moments, huge smiles, and unlimited cake! 🎂✨',
         badge: '🎂 Special Day',
-        bearNormal: '/assets/bear-birthday.svg',
-        bearSuccess: '/assets/bear-birthday-success.svg',
+        bearNormal: './assets/bear-birthday.svg',
+        bearSuccess: './assets/bear-birthday-success.svg',
         acceptText: 'Accept',
         acceptEmoji: '🎂',
         denyText: 'Deny',
@@ -54,8 +54,8 @@ const SEASONS = {
         heading: 'Merry Christmas!',
         subMessage: 'Sending you cozy winter vibes, warm cocoa hugs, and holiday cheer! 🎄❄️',
         badge: '🎄 Holiday Magic',
-        bearNormal: '/assets/bear-christmas.svg',
-        bearSuccess: '/assets/bear-christmas-success.svg',
+        bearNormal: './assets/bear-christmas.svg',
+        bearSuccess: './assets/bear-christmas-success.svg',
         acceptText: 'Accept',
         acceptEmoji: '🎁',
         denyText: 'Deny',
@@ -79,8 +79,8 @@ const SEASONS = {
         heading: 'Happy New Year!',
         subMessage: 'Cheers to brand-new adventures, sparkling dreams, and an unforgettable 2026! 🎆🥂',
         badge: '🎆 2026 Celebration',
-        bearNormal: '/assets/bear-newyear.svg',
-        bearSuccess: '/assets/bear-newyear-success.svg',
+        bearNormal: './assets/bear-newyear.svg',
+        bearSuccess: './assets/bear-newyear-success.svg',
         acceptText: 'Accept',
         acceptEmoji: '✨',
         denyText: 'Deny',
@@ -104,8 +104,8 @@ const SEASONS = {
         heading: 'Will you be my Valentine?',
         subMessage: 'My heart has been waiting to ask you this all year long... 💌',
         badge: '💖 Special Question',
-        bearNormal: '/assets/img1.gif',
-        bearSuccess: '/assets/img3.gif',
+        bearNormal: './assets/img1.gif',
+        bearSuccess: './assets/img3.gif',
         acceptText: 'Accept',
         acceptEmoji: '💖',
         denyText: 'Deny',
@@ -238,6 +238,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const questionText = document.getElementById('question-text');
     const subMessage = document.getElementById('sub-message');
     const successContainer = document.getElementById('success-container');
+    const visualContainer = document.getElementById('visual-container');
     const mainGif = document.getElementById('main-gif');
     const cardBadge = document.getElementById('card-badge');
     const badgeText = document.getElementById('badge-text');
@@ -263,6 +264,46 @@ document.addEventListener('DOMContentLoaded', () => {
     let dodgeCount = 0;
     let isAccepted = false;
     let floatingInterval = null;
+
+    // --------------------------------------------------------------------------
+    // Dynamic Aspect-Ratio Calculation for Visual Container
+    // --------------------------------------------------------------------------
+    function updateVisualAspectRatio() {
+        if (!mainGif || !visualContainer) return;
+
+        let naturalW = mainGif.naturalWidth;
+        let naturalH = mainGif.naturalHeight;
+
+        // Fallback to HTML width/height or bounding dimensions if naturalWidth not yet ready
+        if (!naturalW || !naturalH) {
+            naturalW = parseFloat(mainGif.getAttribute('width')) || 240;
+            naturalH = parseFloat(mainGif.getAttribute('height')) || 200;
+        }
+
+        if (naturalW > 0 && naturalH > 0) {
+            const ratio = naturalW / naturalH;
+            visualContainer.style.setProperty('--img-ratio', `${naturalW} / ${naturalH}`);
+            visualContainer.dataset.aspectRatio = ratio.toFixed(2);
+
+            // Dynamically mark wide or tall animations for tailored maximum constraints
+            if (ratio > 1.35) {
+                visualContainer.classList.add('is-wide-visual');
+                visualContainer.classList.remove('is-tall-visual');
+            } else if (ratio < 0.88) {
+                visualContainer.classList.add('is-tall-visual');
+                visualContainer.classList.remove('is-wide-visual');
+            } else {
+                visualContainer.classList.remove('is-wide-visual', 'is-tall-visual');
+            }
+        }
+    }
+
+    if (mainGif) {
+        mainGif.addEventListener('load', updateVisualAspectRatio);
+        if (mainGif.complete) {
+            updateVisualAspectRatio();
+        }
+    }
 
     // --------------------------------------------------------------------------
     // 3. Audio Synthesizer (Zero-dependency Web Audio API)
@@ -370,6 +411,9 @@ document.addEventListener('DOMContentLoaded', () => {
             mainGif.src = isAccepted ? currentSeason.bearSuccess : currentSeason.bearNormal;
             mainGif.alt = `Animated jumping bear for ${currentSeason.name}`;
             mainGif.style.transform = '';
+            if (mainGif.complete) {
+                updateVisualAspectRatio();
+            }
         }
 
         // Update Buttons
@@ -550,13 +594,18 @@ document.addEventListener('DOMContentLoaded', () => {
         const phrase = phrases[dodgeCount % phrases.length];
         if (denyTextSpan) denyTextSpan.textContent = phrase;
 
-        // 4. Simultaneously scale up the 'Accept' button by a factor of 1.2 each time
-        acceptScale = parseFloat((acceptScale * 1.2).toFixed(3));
-        const cappedScale = Math.min(acceptScale, 3.2);
+        // 4. Gradually scale up the 'Accept' button over ~16 gentle steps, with a reduced maximum cap
+        // Increased number of steps (from ~6 steps to ~16 steps) and reduced maximum scale (from 3.2 down to 1.65)
+        const maxScale = 1.65;
+        const scaleStep = 0.04;
+        const currentScale = Math.min(1.0 + (dodgeCount * scaleStep), maxScale);
+        acceptScale = parseFloat(currentScale.toFixed(3));
+
         if (acceptBtn) {
-            acceptBtn.style.transform = `scale(${cappedScale})`;
+            acceptBtn.style.transform = `scale(${acceptScale})`;
             if (dodgeCount >= 2) {
-                acceptBtn.style.boxShadow = `0 18px 36px -4px rgba(255, 46, 99, 0.7), 0 0 25px 5px rgba(255, 117, 140, 0.5)`;
+                const glowIntensity = Math.min(0.35 + (dodgeCount * 0.025), 0.7);
+                acceptBtn.style.boxShadow = `0 14px 28px -4px rgba(255, 46, 99, ${glowIntensity}), 0 0 18px 3px rgba(255, 117, 140, 0.45)`;
             }
         }
 
@@ -722,6 +771,9 @@ document.addEventListener('DOMContentLoaded', () => {
             mainGif.src = currentSeason.bearSuccess;
             mainGif.alt = `Celebratory ${currentSeason.name} animation`;
             mainGif.style.transform = 'scale(1.08)';
+            if (mainGif.complete) {
+                updateVisualAspectRatio();
+            }
         }
 
         // 3. Update Card Badge
@@ -863,14 +915,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     setTimeout(initCardTilt, 1100);
 
-    // Adjust canvas on window resize
-    window.addEventListener('resize', () => {
+    // Adjust canvas and visual container on window resize and orientation change
+    const handleViewportChange = () => {
         if (fallbackCanvas) {
             fallbackCanvas.width = window.innerWidth;
             fallbackCanvas.height = window.innerHeight;
         }
+        updateVisualAspectRatio();
         if (typeof AOS !== 'undefined') {
             AOS.refresh();
         }
+    };
+
+    window.addEventListener('resize', handleViewportChange);
+    window.addEventListener('orientationchange', () => {
+        setTimeout(handleViewportChange, 120);
     });
 });

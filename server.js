@@ -1,5 +1,6 @@
 import express from 'express';
 import path from 'path';
+import fs from 'fs';
 import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -13,6 +14,19 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'ok' });
 });
 
+// Helper functions for flexible file resolution
+const getIndexPath = () => {
+  const rootIndex = path.join(__dirname, 'index.html');
+  if (fs.existsSync(rootIndex)) return rootIndex;
+  return path.join(__dirname, 'pages', 'index.html');
+};
+
+const getYesPagePath = () => {
+  const pagesYes = path.join(__dirname, 'pages', 'yes_page.html');
+  if (fs.existsSync(pagesYes)) return pagesYes;
+  return path.join(__dirname, 'yes_page.html');
+};
+
 // Serve static files from organized directories
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
 app.use('/css', express.static(path.join(__dirname, 'css')));
@@ -21,23 +35,24 @@ app.use('/pages', express.static(path.join(__dirname, 'pages')));
 
 // Direct static mounts for seamless fallback resolution
 app.use(express.static(path.join(__dirname, 'pages'), { extensions: ['html'] }));
+app.use(express.static(__dirname, { extensions: ['html'] }));
 app.use(express.static(path.join(__dirname, 'assets')));
 app.use(express.static(path.join(__dirname, 'css')));
 app.use(express.static(path.join(__dirname, 'js')));
 
 // Route for root
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'pages', 'index.html'));
+  res.sendFile(getIndexPath());
 });
 
 // Route for yes_page
 app.get('/yes_page', (req, res) => {
-  res.sendFile(path.join(__dirname, 'pages', 'yes_page.html'));
+  res.sendFile(getYesPagePath());
 });
 
 // Fallback for any unknown route
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'pages', 'index.html'));
+  res.sendFile(getIndexPath());
 });
 
 app.listen(PORT, '0.0.0.0', () => {

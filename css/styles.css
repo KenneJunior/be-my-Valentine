@@ -353,6 +353,19 @@ body {
     pointer-events: auto;
 }
 
+/* Graceful fallback: ensure elements reveal even if AOS script is blocked or delayed */
+[data-aos]:not(.aos-animate) {
+    animation: aosSafetyFallback 0.1s 1.8s forwards;
+}
+
+@keyframes aosSafetyFallback {
+    to {
+        opacity: 1 !important;
+        transform: none !important;
+        pointer-events: auto !important;
+    }
+}
+
 @media (prefers-reduced-motion: reduce) {
     [data-aos] {
         transition: none !important;
@@ -400,25 +413,46 @@ body {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
 }
 
-/* Card Visual / GIF Section */
+/* Card Visual / GIF Section - Dynamic Aspect-Ratio Container */
 .visual-container {
-    width: 100%;
-    max-width: 200px;
-    height: clamp(115px, 18vh, 155px);
-    margin-bottom: clamp(0.5rem, 1.5vh, 0.95rem);
+    --img-ratio: 240 / 200;
+    width: auto;
+    max-width: min(240px, 80vw);
+    height: auto;
+    max-height: clamp(110px, 20vh, 165px);
+    aspect-ratio: var(--img-ratio);
+    margin: 0 auto clamp(0.45rem, 1.4vh, 0.9rem);
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
+    box-sizing: border-box;
+    transition: aspect-ratio 0.3s var(--ease-liquid),
+                max-width 0.3s var(--ease-liquid),
+                max-height 0.3s var(--ease-liquid);
+}
+
+.visual-container.is-wide-visual {
+    max-width: min(280px, 86vw);
+    max-height: clamp(100px, 18vh, 145px);
+}
+
+.visual-container.is-tall-visual {
+    max-width: min(180px, 60vw);
+    max-height: clamp(120px, 22vh, 180px);
 }
 
 .card-gif {
+    width: 100%;
+    height: 100%;
     max-width: 100%;
     max-height: 100%;
     object-fit: contain;
+    aspect-ratio: var(--img-ratio, auto);
     border-radius: 18px;
     filter: drop-shadow(0 10px 20px rgba(255, 46, 99, 0.22));
     transition: transform 0.35s var(--ease-elastic);
+    will-change: transform;
 }
 
 .card-gif:hover {
@@ -697,17 +731,23 @@ body.theme-valentine {
 }
 
 /* --------------------------------------------------------------------------
-   10. Responsive Breakpoints
+   10. Responsive Breakpoints (Mobile Portrait & Landscape)
    -------------------------------------------------------------------------- */
 @media (max-width: 480px) {
     .glass-card,
     #valentine-card {
-        padding: 1.25rem 1.15rem 1rem;
+        padding: clamp(1rem, 2.8vh, 1.4rem) clamp(1rem, 3.8vw, 1.35rem) clamp(0.75rem, 2vh, 1.15rem);
         border-radius: 20px;
     }
 
+    .visual-container {
+        max-width: min(210px, 72vw);
+        max-height: clamp(100px, 20vh, 145px);
+        margin-bottom: clamp(0.35rem, 1.2vh, 0.75rem);
+    }
+
     .main-question {
-        font-size: 1.45rem;
+        font-size: clamp(1.35rem, 4.2vw, 1.55rem);
     }
 
     .sub-message {
@@ -724,38 +764,108 @@ body.theme-valentine {
     }
 }
 
-/* Landscape / Short Viewport Adjustment */
-@media (max-height: 640px) {
-    .glass-card,
-    #valentine-card {
-        padding: 0.85rem 1.25rem 0.65rem;
+/* Landscape Mobile & Short Viewport Mode */
+@media (orientation: landscape) and (max-height: 580px), (max-height: 600px) {
+    .app-wrapper {
+        padding: 0.5rem;
     }
 
-    .visual-container {
-        height: 95px;
-        margin-bottom: 0.4rem;
+    .glass-card,
+    #valentine-card {
+        max-width: min(520px, 94vw);
+        max-height: calc(100vh - 1rem);
+        padding: 0.55rem 1.25rem 0.5rem;
+        border-radius: 18px;
     }
 
     .card-badge {
-        margin-bottom: 0.35rem;
-        padding: 0.2rem 0.75rem;
+        margin-bottom: 0.25rem;
+        padding: 0.18rem 0.7rem;
+        font-size: 0.72rem;
+    }
+
+    /* Dynamically adapts to image aspect ratio with tight landscape vertical bound */
+    .visual-container {
+        max-height: min(88px, 25vh);
+        max-width: min(200px, 35vw);
+        margin: 0 auto 0.35rem;
+    }
+
+    .visual-container.is-wide-visual {
+        max-width: min(240px, 42vw);
+        max-height: min(78px, 22vh);
+    }
+
+    .visual-container.is-tall-visual {
+        max-width: min(130px, 25vw);
+        max-height: min(95px, 28vh);
     }
 
     .content-header {
-        margin-bottom: 0.5rem;
+        margin-bottom: 0.35rem;
     }
 
     .main-question {
-        font-size: 1.25rem;
-        margin-bottom: 0.2rem;
+        font-size: clamp(1.1rem, 4.2vh, 1.35rem);
+        margin-bottom: 0.15rem;
+        line-height: 1.2;
     }
 
     .sub-message {
-        font-size: 0.775rem;
+        font-size: clamp(0.72rem, 2.6vh, 0.8rem);
+        line-height: 1.25;
+    }
+
+    .button-group {
+        gap: 0.65rem;
+        margin-top: 0.1rem;
+    }
+
+    .btn {
+        padding: 0.45rem 1rem;
+        font-size: 0.875rem;
+        min-height: 38px;
     }
 
     .card-footer {
-        margin-top: 0.4rem;
-        padding-top: 0.4rem;
+        margin-top: 0.3rem;
+        padding-top: 0.3rem;
+    }
+}
+
+/* Ultra-compact landscape screens (e.g., iPhone horizontal <= 420px height) */
+@media (orientation: landscape) and (max-height: 420px) {
+    .glass-card,
+    #valentine-card {
+        padding: 0.4rem 1rem 0.35rem;
+    }
+
+    .card-badge {
+        display: none; /* Hide badge on extremely short landscape screens to prioritize bear & action buttons */
+    }
+
+    .visual-container {
+        max-height: min(68px, 21vh);
+        max-width: min(150px, 28vw);
+        margin-bottom: 0.2rem;
+    }
+
+    .main-question {
+        font-size: 1.05rem;
+        margin-bottom: 0.1rem;
+    }
+
+    .sub-message {
+        font-size: 0.72rem;
+    }
+
+    .button-group {
+        gap: 0.5rem;
+    }
+
+    .btn {
+        padding: 0.35rem 0.85rem;
+        font-size: 0.82rem;
+        min-height: 34px;
     }
 }
