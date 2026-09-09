@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 200" width="240" height="200">
+  <defs>
+    <style>
+      @keyframes victoryJump {
+        0%, 100% { transform: translateY(0px) rotate(0deg); }
+        25% { transform: translateY(-30px) rotate(-4deg); }
+        50% { transform: translateY(4px) rotate(0deg); }
+        75% { transform: translateY(-28px) rotate(4deg); }
+      }
+      @keyframes balloonBob {
+        0%, 100% { transform: translateY(0px) rotate(-3deg); }
+        50% { transform: translateY(-12px) rotate(3deg); }
+      }
+      @keyframes confettiPop {
+        0% { transform: translateY(0) scale(0.6); opacity: 0.8; }
+        50% { transform: translateY(-16px) scale(1.1); opacity: 1; }
+        100% { transform: translateY(0) scale(0.8); opacity: 0.9; }
+      }
+      .bear-victory {
+        animation: victoryJump 0.95s cubic-bezier(0.25, 0.8, 0.35, 1) infinite;
+        transform-origin: 120px 170px;
+      }
+      .balloons { animation: balloonBob 2s ease-in-out infinite; transform-origin: 40px 60px; }
+      .confetti { animation: confettiPop 1.2s ease-in-out infinite; }
+    </style>
+  </defs>
+
+  <!-- Floating Birthday Balloons -->
+  <g class="balloons">
+    <!-- Balloon 1 (Pink) -->
+    <ellipse cx="40" cy="45" rx="15" ry="18" fill="#ff4d6d"/>
+    <polygon points="40,63 37,67 43,67" fill="#ff4d6d"/>
+    <path d="M 40 67 Q 36 90 55 125" fill="none" stroke="#e07a5f" stroke-width="1.2" stroke-dasharray="2,2"/>
+    <!-- Balloon 2 (Yellow) -->
+    <ellipse cx="62" cy="38" rx="14" ry="17" fill="#ffb703"/>
+    <polygon points="62,55 59,59 65,59" fill="#ffb703"/>
+    <path d="M 62 59 Q 50 85 58 125" fill="none" stroke="#e07a5f" stroke-width="1.2" stroke-dasharray="2,2"/>
+  </g>
+
+  <!-- Confetti Elements -->
+  <g class="confetti">
+    <rect x="180" y="35" width="7" height="7" rx="1.5" fill="#06d6a0" transform="rotate(25 180 35)"/>
+    <rect x="200" y="60" width="8" height="5" rx="1" fill="#ff006e" transform="rotate(-30 200 60)"/>
+    <rect x="175" y="80" width="6" height="6" rx="1" fill="#3a86ff" transform="rotate(45 175 80)"/>
+    <circle cx="210" cy="40" r="3.5" fill="#ffd166"/>
+  </g>
+
+  <!-- Victorious Jumping Bear -->
+  <g class="bear-victory">
+    <!-- Feet -->
+    <ellipse cx="100" cy="168" rx="13" ry="10" fill="#ffffff" stroke="#f4ced6" stroke-width="2"/>
+    <circle cx="100" cy="169" r="5" fill="#fec5d4"/>
+    <ellipse cx="140" cy="168" rx="13" ry="10" fill="#ffffff" stroke="#f4ced6" stroke-width="2"/>
+    <circle cx="140" cy="169" r="5" fill="#fec5d4"/>
+
+    <!-- Body -->
+    <ellipse cx="120" cy="140" rx="36" ry="32" fill="#ffffff" stroke="#f4ced6" stroke-width="2.5"/>
+    <ellipse cx="120" cy="144" rx="22" ry="18" fill="#fff0f3"/>
+
+    <!-- Arms UP in Celebration -->
+    <g transform="rotate(-35 88 120)">
+      <ellipse cx="80" cy="115" rx="12" ry="8" fill="#ffffff" stroke="#f4ced6" stroke-width="2"/>
+    </g>
+    <g transform="rotate(35 152 120)">
+      <ellipse cx="160" cy="115" rx="12" ry="8" fill="#ffffff" stroke="#f4ced6" stroke-width="2"/>
+    </g>
+
+    <!-- Ears -->
+    <circle cx="88" cy="74" r="16" fill="#ffffff" stroke="#f4ced6" stroke-width="2.5"/>
+    <circle cx="88" cy="74" r="9" fill="#fec5d4"/>
+    <circle cx="152" cy="74" r="16" fill="#ffffff" stroke="#f4ced6" stroke-width="2.5"/>
+    <circle cx="152" cy="74" r="9" fill="#fec5d4"/>
+
+    <!-- Head -->
+    <circle cx="120" cy="98" r="38" fill="#ffffff" stroke="#f4ced6" stroke-width="2.5"/>
+
+    <!-- Party Hat -->
+    <polygon points="120,42 102,72 138,72" fill="#ffd166"/>
+    <polygon points="120,42 110,58 130,58" fill="#ff477e"/>
+    <circle cx="120" cy="40" r="6" fill="#06d6a0"/>
+
+    <!-- Cheerful Eyes -->
+    <path d="M 103 94 Q 109 88 114 94" fill="none" stroke="#4a2530" stroke-width="3" stroke-linecap="round"/>
+    <path d="M 126 94 Q 131 88 137 94" fill="none" stroke="#4a2530" stroke-width="3" stroke-linecap="round"/>
+
+    <!-- Cheeks & Snout -->
+    <ellipse cx="96" cy="104" rx="7.5" ry="5" fill="#ff99b3" opacity="0.85"/>
+    <ellipse cx="144" cy="104" rx="7.5" ry="5" fill="#ff99b3" opacity="0.85"/>
+    <ellipse cx="120" cy="103" rx="11" ry="8" fill="#fff0f3"/>
+    <ellipse cx="120" cy="100" rx="4.5" ry="3" fill="#662e3d"/>
+    <!-- Big Happy Open Smile -->
+    <path d="M 112 105 Q 120 115 128 105 Z" fill="#ff4d6d" stroke="#662e3d" stroke-width="1.8"/>
+  </g>
+</svg>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    
+    <!-- Title & SEO Meta Tags -->
+    <title>Valentine's Day Ask | Do you want to be my valentine?</title>
+    <meta name="description" content="A responsive Valentine's Day 'Do you want to be my valentine?' web page featuring modern glassmorphism, animated romantic gradient background, playful dodging No button, growing Yes button, floating love emojis, and celebratory confetti.">
+    <meta name="theme-color" content="#ff2e63">
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Valentine's Day Ask">
+    <meta property="og:description" content="A responsive Valentine's Day 'Do you want to be my valentine?' web page with glassmorphism and confetti.">
+    <meta property="og:type" content="website">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💖</text></svg>">
+    
+    <!-- Google Fonts: Outfit & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- External Confetti Library (with graceful vanilla fallback in script.js) -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js" defer></script>
+    <!-- Lightweight 3D Tilt Library -->
+    <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.8.1/dist/vanilla-tilt.min.js" defer></script>
+    
+    <!-- AOS (Animate On Scroll) Library -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js" defer></script>
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <!-- Ambient Animated Background Glow Orbs -->
+    <div class="ambient-glow orb-1" aria-hidden="true"></div>
+    <div class="ambient-glow orb-2" aria-hidden="true"></div>
+    <div class="ambient-glow orb-3" aria-hidden="true"></div>
+
+    <!-- Floating Love Emojis & Hearts Container -->
+    <div id="floating-hearts-container" class="floating-hearts-container" aria-hidden="true"></div>
+
+    <!-- Canvas Confetti Fallback Overlay -->
+    <canvas id="fallback-confetti-canvas" class="confetti-canvas" aria-hidden="true"></canvas>
+
+    <!-- Main Viewport Wrapper -->
+    <main class="app-wrapper" id="main-content">
+        <!-- Frosted Glass Card -->
+        <article 
+            class="glass-card" 
+            id="valentine-card"
+            data-aos="fade-up"
+            data-aos-duration="900"
+            data-aos-easing="ease-out-cubic"
+            data-aos-once="true"
+        >
+            
+            <!-- Top Heart Badge -->
+            <div 
+                class="card-badge" 
+                id="card-badge"
+                data-aos="fade-down"
+                data-aos-delay="250"
+                data-aos-duration="600"
+                data-aos-easing="ease-out-cubic"
+                data-aos-once="true"
+            >
+                <span class="badge-icon">✨</span>
+                <span class="badge-text" id="badge-text">Special Question</span>
+            </div>
+
+            <!-- Interactive Visual / GIF Section -->
+            <div 
+                class="visual-container" 
+                id="visual-container"
+                data-aos="zoom-in"
+                data-aos-delay="400"
+                data-aos-duration="700"
+                data-aos-easing="ease-out-back"
+                data-aos-once="true"
+            >
+                <!-- Using assets/bear-birthday.svg as default with fallback -->
+                <img 
+                    id="main-gif" 
+                    src="/assets/bear-birthday.svg" 
+                    alt="Cute Seasonal animation"
+                    class="card-gif"
+                    width="240"
+                    height="200"
+                    onerror="this.onerror=null; this.src='https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHIzN3F5OGt5dzV2dDJyMjY5ZHFyZTVoZjFmZmZybnE0cTZkZDR6OSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/cLS1cfxvGOPVpf9g3y/giphy.gif';"
+                >
+            </div>
+
+            <!-- Content Area: Question & Subtext -->
+            <div 
+                class="content-header" 
+                id="content-header"
+                data-aos="fade-up"
+                data-aos-delay="550"
+                data-aos-duration="650"
+                data-aos-easing="ease-out-cubic"
+                data-aos-once="true"
+            >
+                <h1 class="main-question" id="question-text">
+                    Happy Birthday!
+                </h1>
+                <p class="sub-message" id="sub-message">
+                    Wishing you a magical day filled with sweet moments and huge smiles! 🎂✨
+                </p>
+            </div>
+
+            <!-- Action Buttons Group -->
+            <div 
+                class="button-group" 
+                id="button-group" 
+                role="group" 
+                aria-label="Response options"
+                data-aos="fade-up"
+                data-aos-delay="700"
+                data-aos-duration="650"
+                data-aos-easing="ease-out-cubic"
+                data-aos-once="true"
+            >
+                <!-- Accept Button -->
+                <button 
+                    type="button" 
+                    id="accept-btn" 
+                    class="btn btn-yes btn-accept" 
+                    aria-label="Accept"
+                >
+                    <span class="btn-liquid-bg" aria-hidden="true"></span>
+                    <span class="btn-content">
+                        <span class="btn-emoji" id="accept-emoji" aria-hidden="true">🎂</span>
+                        <span class="btn-text" id="accept-text">Accept</span>
+                    </span>
+                </button>
+
+                <!-- Deny Button (Dodges cursor on hover / touch) -->
+                <button 
+                    type="button" 
+                    id="deny-btn" 
+                    class="btn btn-no btn-deny" 
+                    aria-label="Deny"
+                >
+                    <span class="btn-liquid-bg" aria-hidden="true"></span>
+                    <span class="btn-content">
+                        <span class="btn-emoji" id="deny-emoji" aria-hidden="true">🙈</span>
+                        <span class="btn-text" id="deny-text">Deny</span>
+                    </span>
+                </button>
+            </div>
+
+            <!-- Celebratory Success State (Initially hidden) -->
+            <div class="success-container" id="success-container" aria-hidden="true" hidden>
+                <div class="celebration-badge" id="celebration-badge">
+                    <span>🎉 BEST DECISION EVER! 🎉</span>
+                </div>
+                <h2 class="success-heading" id="success-heading">
+                    Yaaay! Happy Birthday! 🎂🎉🥳
+                </h2>
+                <p class="success-subtext" id="success-subtext">
+                    May all your birthday wishes come true today and always! Hope your year is full of love and adventures! ✨💖
+                </p>
+                <div class="success-actions">
+                    <button type="button" id="replay-btn" class="btn btn-replay" aria-label="Play again">
+                        <span class="btn-liquid-bg" aria-hidden="true"></span>
+                        <span class="btn-content">
+                            <span>Celebrate Again 🔄</span>
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <!-- JavaScript Application Logic -->
+    <script src="/js/script.js" defer></script>
+</body>
+</html>

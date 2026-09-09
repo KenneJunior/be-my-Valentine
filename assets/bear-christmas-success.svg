@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 200" width="240" height="200">
+  <defs>
+    <style>
+      @keyframes victoryJump {
+        0%, 100% { transform: translateY(0px) rotate(0deg); }
+        25% { transform: translateY(-28px) rotate(-3deg); }
+        50% { transform: translateY(4px) rotate(0deg); }
+        75% { transform: translateY(-26px) rotate(3deg); }
+      }
+      @keyframes starTwinkle {
+        0%, 100% { opacity: 0.5; transform: scale(0.9); }
+        50% { opacity: 1; transform: scale(1.25); }
+      }
+      .bear-victory {
+        animation: victoryJump 0.95s cubic-bezier(0.25, 0.8, 0.35, 1) infinite;
+        transform-origin: 120px 170px;
+      }
+      .star-1 { animation: starTwinkle 1.4s ease infinite; }
+      .star-2 { animation: starTwinkle 1.8s ease infinite 0.5s; }
+    </style>
+  </defs>
+
+  <!-- Twinkling Christmas Lights / Stars -->
+  <polygon points="45,40 48,46 54,47 50,51 51,57 45,54 39,57 40,51 36,47 42,46" fill="#ffd166" class="star-1"/>
+  <polygon points="195,50 197,55 202,56 198,59 199,64 195,61 191,64 192,59 188,56 193,55" fill="#ffb703" class="star-2"/>
+
+  <!-- Christmas Gift Box beside bear -->
+  <g transform="translate(30, 142)">
+    <rect x="0" y="8" width="26" height="22" rx="3" fill="#d90429"/>
+    <rect x="-2" y="4" width="30" height="6" rx="2" fill="#d90429"/>
+    <!-- Ribbon -->
+    <rect x="11" y="4" width="4" height="26" fill="#ffd166"/>
+    <rect x="0" y="16" width="26" height="4" fill="#ffd166"/>
+    <!-- Bow -->
+    <circle cx="10" cy="3" r="3" fill="#ffd166"/>
+    <circle cx="16" cy="3" r="3" fill="#ffd166"/>
+  </g>
+
+  <!-- Jumping Bear -->
+  <g class="bear-victory">
+    <!-- Feet -->
+    <ellipse cx="102" cy="168" rx="14" ry="11" fill="#ffffff" stroke="#e0405b" stroke-width="2"/>
+    <circle cx="102" cy="169" r="6" fill="#ff758c"/>
+    <ellipse cx="138" cy="168" rx="14" ry="11" fill="#ffffff" stroke="#e0405b" stroke-width="2"/>
+    <circle cx="138" cy="169" r="6" fill="#ff758c"/>
+
+    <!-- Body -->
+    <ellipse cx="120" cy="138" rx="38" ry="34" fill="#ffffff" stroke="#e5b4c0" stroke-width="2.5"/>
+    <ellipse cx="120" cy="142" rx="23" ry="20" fill="#fff0f3"/>
+
+    <!-- Arms UP with Joy -->
+    <g transform="rotate(-35 88 120)">
+      <ellipse cx="80" cy="115" rx="12" ry="8" fill="#ffffff" stroke="#e5b4c0" stroke-width="2"/>
+    </g>
+    <g transform="rotate(35 152 120)">
+      <ellipse cx="160" cy="115" rx="12" ry="8" fill="#ffffff" stroke="#e5b4c0" stroke-width="2"/>
+    </g>
+
+    <!-- Ears -->
+    <circle cx="88" cy="76" r="16" fill="#ffffff" stroke="#e5b4c0" stroke-width="2.5"/>
+    <circle cx="88" cy="76" r="9" fill="#fec5d4"/>
+    <circle cx="152" cy="76" r="16" fill="#ffffff" stroke="#e5b4c0" stroke-width="2.5"/>
+    <circle cx="152" cy="76" r="9" fill="#fec5d4"/>
+
+    <!-- Head -->
+    <circle cx="120" cy="100" r="38" fill="#ffffff" stroke="#e5b4c0" stroke-width="2.5"/>
+
+    <!-- Santa Hat -->
+    <path d="M 94 76 Q 120 40 156 50 Q 166 60 172 74 Q 146 64 94 76 Z" fill="#d90429"/>
+    <rect x="90" y="70" width="60" height="12" rx="6" fill="#ffffff" stroke="#f0d5dd" stroke-width="1.5"/>
+    <circle cx="173" cy="75" r="9" fill="#ffffff" stroke="#f0d5dd" stroke-width="1.5"/>
+
+    <!-- Scarf -->
+    <path d="M 98 120 Q 120 128 142 120 Q 142 129 120 137 Q 98 129 98 120 Z" fill="#2b9348"/>
+
+    <!-- Eyes (Happy Arches) -->
+    <path d="M 103 96 Q 109 90 114 96" fill="none" stroke="#3b121f" stroke-width="3" stroke-linecap="round"/>
+    <path d="M 126 96 Q 131 90 137 96" fill="none" stroke="#3b121f" stroke-width="3" stroke-linecap="round"/>
+
+    <!-- Cheeks -->
+    <ellipse cx="96" cy="106" rx="8" ry="5" fill="#ff758f" opacity="0.85"/>
+    <ellipse cx="144" cy="106" rx="8" ry="5" fill="#ff758f" opacity="0.85"/>
+
+    <!-- Snout & Big Open Happy Smile -->
+    <ellipse cx="120" cy="104" rx="11" ry="8" fill="#fff0f3"/>
+    <ellipse cx="120" cy="101" rx="4.5" ry="3" fill="#662e3d"/>
+    <path d="M 112 106 Q 120 117 128 106 Z" fill="#d90429" stroke="#662e3d" stroke-width="1.8"/>
+  </g>
+</svg>

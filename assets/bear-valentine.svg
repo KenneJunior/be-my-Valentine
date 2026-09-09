@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 200" width="240" height="200">
+  <defs>
+    <style>
+      @keyframes jump {
+        0%, 100% { transform: translateY(0px) scale(1, 1); }
+        30% { transform: translateY(-24px) scale(0.96, 1.04); }
+        55% { transform: translateY(4px) scale(1.06, 0.94); }
+        70% { transform: translateY(-8px) scale(0.98, 1.02); }
+      }
+      @keyframes heartBeat {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.2); }
+      }
+      @keyframes heartFloat {
+        0% { transform: translateY(0) scale(0.8); opacity: 0; }
+        50% { opacity: 0.9; }
+        100% { transform: translateY(-35px) scale(1.15); opacity: 0; }
+      }
+      .bear-group {
+        animation: jump 1.1s cubic-bezier(0.28, 0.84, 0.42, 1) infinite;
+        transform-origin: 120px 170px;
+      }
+      .heart-beat {
+        animation: heartBeat 0.9s ease-in-out infinite;
+        transform-origin: 120px 145px;
+      }
+      .heart-float-1 { animation: heartFloat 2.2s ease-out infinite; }
+      .heart-float-2 { animation: heartFloat 2.6s ease-out infinite 0.8s; }
+    </style>
+  </defs>
+
+  <!-- Floating Tiny Hearts -->
+  <g fill="#ff4d6d">
+    <path d="M 45,55 A 4,4 0 0,0 39,60 A 4,4 0 0,0 45,67 Q 45,67 51,60 A 4,4 0 0,0 45,55 Z" class="heart-float-1"/>
+    <path d="M 195,45 A 5,5 0 0,0 187,51 A 5,5 0 0,0 195,60 Q 195,60 203,51 A 5,5 0 0,0 195,45 Z" class="heart-float-2"/>
+  </g>
+
+  <!-- Jumping Valentine Bear -->
+  <g class="bear-group">
+    <ellipse cx="120" cy="174" rx="42" ry="8" fill="#e8708f" opacity="0.3"/>
+
+    <!-- Feet -->
+    <ellipse cx="102" cy="168" rx="14" ry="11" fill="#ffffff" stroke="#f4ced6" stroke-width="2"/>
+    <circle cx="102" cy="169" r="6" fill="#fec5d4"/>
+    <ellipse cx="138" cy="168" rx="14" ry="11" fill="#ffffff" stroke="#f4ced6" stroke-width="2"/>
+    <circle cx="138" cy="169" r="6" fill="#fec5d4"/>
+
+    <!-- Bear Body -->
+    <ellipse cx="120" cy="138" rx="38" ry="34" fill="#ffffff" stroke="#f4ced6" stroke-width="2.5"/>
+    <ellipse cx="120" cy="142" rx="23" ry="20" fill="#fff0f3"/>
+
+    <!-- Ears -->
+    <circle cx="88" cy="74" r="16" fill="#ffffff" stroke="#f4ced6" stroke-width="2.5"/>
+    <circle cx="88" cy="74" r="9" fill="#fec5d4"/>
+    <circle cx="152" cy="74" r="16" fill="#ffffff" stroke="#f4ced6" stroke-width="2.5"/>
+    <circle cx="152" cy="74" r="9" fill="#fec5d4"/>
+
+    <!-- Head -->
+    <circle cx="120" cy="98" r="38" fill="#ffffff" stroke="#f4ced6" stroke-width="2.5"/>
+
+    <!-- Cute Pink Ribbon Bow on Ear -->
+    <g transform="translate(76, 60)">
+      <polygon points="4,4 10,8 4,12" fill="#ff4d6d"/>
+      <polygon points="16,4 10,8 16,12" fill="#ff4d6d"/>
+      <circle cx="10" cy="8" r="2.5" fill="#ff758f"/>
+    </g>
+
+    <!-- Eyes (Loving Happy Arches) -->
+    <path d="M 103 96 Q 109 90 113 96" fill="none" stroke="#4a2530" stroke-width="3" stroke-linecap="round"/>
+    <path d="M 127 96 Q 131 90 137 96" fill="none" stroke="#4a2530" stroke-width="3" stroke-linecap="round"/>
+
+    <!-- Rosy Blushing Cheeks -->
+    <ellipse cx="98" cy="106" rx="8" ry="5" fill="#ff758f" opacity="0.85"/>
+    <ellipse cx="142" cy="106" rx="8" ry="5" fill="#ff758f" opacity="0.85"/>
+
+    <!-- Snout & Nose -->
+    <ellipse cx="120" cy="105" rx="11" ry="8" fill="#fff0f3"/>
+    <ellipse cx="120" cy="102" rx="4.5" ry="3" fill="#662e3d"/>
+    <path d="M 120 105 Q 116 111 112 108" fill="none" stroke="#662e3d" stroke-width="1.8" stroke-linecap="round"/>
+    <path d="M 120 105 Q 124 111 128 108" fill="none" stroke="#662e3d" stroke-width="1.8" stroke-linecap="round"/>
+
+    <!-- Big Glowing Valentine Heart in Hands -->
+    <g class="heart-beat">
+      <path d="M 120,138 C 114,126 98,128 98,144 C 98,157 120,169 120,169 C 120,169 142,157 142,144 C 142,128 126,126 120,138 Z" fill="#ff2a5f"/>
+      <!-- Soft highlight on heart -->
+      <ellipse cx="106" cy="138" rx="4" ry="2.5" fill="#ff85a1" transform="rotate(-30 106 138)"/>
+    </g>
+
+    <!-- Bear Paws hugging the heart -->
+    <ellipse cx="98" cy="144" rx="9" ry="7" fill="#ffffff" stroke="#f4ced6" stroke-width="2"/>
+    <ellipse cx="142" cy="144" rx="9" ry="7" fill="#ffffff" stroke="#f4ced6" stroke-width="2"/>
+  </g>
+</svg>

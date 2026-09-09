@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 200" width="240" height="200">
+  <defs>
+    <style>
+      @keyframes victoryJump {
+        0%, 100% { transform: translateY(0px) rotate(0deg); }
+        25% { transform: translateY(-30px) rotate(-4deg); }
+        50% { transform: translateY(4px) rotate(0deg); }
+        75% { transform: translateY(-28px) rotate(4deg); }
+      }
+      @keyframes starBurst {
+        0% { transform: scale(0.7); opacity: 0.4; }
+        50% { transform: scale(1.3); opacity: 1; }
+        100% { transform: scale(0.7); opacity: 0.4; }
+      }
+      .bear-victory {
+        animation: victoryJump 0.95s cubic-bezier(0.25, 0.8, 0.35, 1) infinite;
+        transform-origin: 120px 170px;
+      }
+      .star-burst { animation: starBurst 1.2s ease-in-out infinite; transform-origin: 120px 30px; }
+    </style>
+  </defs>
+
+  <!-- Big Sparkling Starburst in Center -->
+  <g class="star-burst">
+    <polygon points="120,15 123,26 135,28 126,35 128,47 120,41 112,47 114,35 105,28 117,26" fill="#ffd166"/>
+  </g>
+
+  <!-- Side Fireworks -->
+  <circle cx="35" cy="50" r="4" fill="#00f5d4"/>
+  <circle cx="205" cy="55" r="4" fill="#f72585"/>
+
+  <!-- Jumping Bear -->
+  <g class="bear-victory">
+    <ellipse cx="102" cy="168" rx="14" ry="11" fill="#ffffff" stroke="#c0b0d8" stroke-width="2"/>
+    <circle cx="102" cy="169" r="6" fill="#f0c0db"/>
+    <ellipse cx="138" cy="168" rx="14" ry="11" fill="#ffffff" stroke="#c0b0d8" stroke-width="2"/>
+    <circle cx="138" cy="169" r="6" fill="#f0c0db"/>
+
+    <!-- Body -->
+    <ellipse cx="120" cy="138" rx="38" ry="34" fill="#ffffff" stroke="#c0b0d8" stroke-width="2.5"/>
+    <ellipse cx="120" cy="142" rx="23" ry="20" fill="#fcf6ff"/>
+
+    <!-- Shiny Golden Bowtie -->
+    <polygon points="113,124 113,136 120,130" fill="#ffd166"/>
+    <polygon points="127,124 127,136 120,130" fill="#ffd166"/>
+    <circle cx="120" cy="130" r="3.5" fill="#ffb703"/>
+
+    <!-- Arms UP cheering -->
+    <g transform="rotate(-35 88 120)">
+      <ellipse cx="80" cy="115" rx="12" ry="8" fill="#ffffff" stroke="#c0b0d8" stroke-width="2"/>
+    </g>
+    <g transform="rotate(35 152 120)">
+      <ellipse cx="160" cy="115" rx="12" ry="8" fill="#ffffff" stroke="#c0b0d8" stroke-width="2"/>
+    </g>
+
+    <!-- Ears -->
+    <circle cx="88" cy="74" r="16" fill="#ffffff" stroke="#c0b0d8" stroke-width="2.5"/>
+    <circle cx="88" cy="74" r="9" fill="#fec5d4"/>
+    <circle cx="152" cy="74" r="16" fill="#ffffff" stroke="#c0b0d8" stroke-width="2.5"/>
+    <circle cx="152" cy="74" r="9" fill="#fec5d4"/>
+
+    <!-- Head -->
+    <circle cx="120" cy="98" r="38" fill="#ffffff" stroke="#c0b0d8" stroke-width="2.5"/>
+
+    <!-- 2026 Glitter Party Hat -->
+    <polygon points="120,38 102,70 138,70" fill="#7209b7"/>
+    <polygon points="120,38 112,56 128,56" fill="#ffd166"/>
+    <ellipse cx="120" cy="70" rx="19" ry="4" fill="#ffd166"/>
+    <text x="120" y="65" font-family="'Outfit', sans-serif" font-size="7" font-weight="bold" fill="#ffffff" text-anchor="middle">2026</text>
+
+    <!-- Eyes (Happy arches) -->
+    <path d="M 103 94 Q 109 88 114 94" fill="none" stroke="#2b1842" stroke-width="3" stroke-linecap="round"/>
+    <path d="M 126 94 Q 131 88 137 94" fill="none" stroke="#2b1842" stroke-width="3" stroke-linecap="round"/>
+
+    <!-- Cheeks -->
+    <ellipse cx="96" cy="104" rx="7.5" ry="5" fill="#f72585" opacity="0.85"/>
+    <ellipse cx="144" cy="104" rx="7.5" ry="5" fill="#f72585" opacity="0.85"/>
+
+    <!-- Snout & Big Joyful Smile -->
+    <ellipse cx="120" cy="103" rx="11" ry="8" fill="#fcf6ff"/>
+    <ellipse cx="120" cy="100" rx="4.5" ry="3" fill="#4a2840"/>
+    <path d="M 112 105 Q 120 116 128 105 Z" fill="#f72585" stroke="#4a2840" stroke-width="1.8"/>
+  </g>
+</svg>

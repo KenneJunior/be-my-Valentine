@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 200" width="240" height="200">
+  <defs>
+    <style>
+      @keyframes jump {
+        0%, 100% { transform: translateY(0px) scale(1, 1); }
+        30% { transform: translateY(-22px) scale(0.96, 1.04); }
+        55% { transform: translateY(4px) scale(1.06, 0.94); }
+        70% { transform: translateY(-8px) scale(0.98, 1.02); }
+      }
+      @keyframes snowFloat {
+        0% { transform: translateY(-10px) translateX(0); opacity: 0; }
+        30% { opacity: 0.9; }
+        100% { transform: translateY(180px) translateX(15px); opacity: 0; }
+      }
+      @keyframes bellTinkle {
+        0%, 100% { transform: rotate(-8deg); }
+        50% { transform: rotate(10deg); }
+      }
+      .bear-group {
+        animation: jump 1.15s cubic-bezier(0.28, 0.84, 0.42, 1) infinite;
+        transform-origin: 120px 170px;
+      }
+      .snow-1 { animation: snowFloat 3.2s linear infinite; }
+      .snow-2 { animation: snowFloat 4.1s linear infinite 1.2s; }
+      .snow-3 { animation: snowFloat 2.9s linear infinite 2s; }
+      .bell { animation: bellTinkle 0.8s ease-in-out infinite; transform-origin: 154px 132px; }
+    </style>
+  </defs>
+
+  <!-- Gently Falling Snowflakes -->
+  <g fill="#ffffff" opacity="0.8">
+    <circle cx="35" cy="0" r="3" class="snow-1"/>
+    <circle cx="85" cy="-5" r="2" class="snow-2"/>
+    <circle cx="165" cy="-8" r="3.5" class="snow-3"/>
+    <circle cx="210" cy="-2" r="2.5" class="snow-1"/>
+  </g>
+
+  <!-- Jumping Christmas Bear -->
+  <g class="bear-group">
+    <!-- Shadow -->
+    <ellipse cx="120" cy="174" rx="42" ry="8" fill="#d85a73" opacity="0.3"/>
+
+    <!-- Bear Feet in Warm Mittens/Boots -->
+    <ellipse cx="102" cy="168" rx="14" ry="11" fill="#ffffff" stroke="#e0405b" stroke-width="2"/>
+    <circle cx="102" cy="169" r="6" fill="#ff758c"/>
+    <ellipse cx="138" cy="168" rx="14" ry="11" fill="#ffffff" stroke="#e0405b" stroke-width="2"/>
+    <circle cx="138" cy="169" r="6" fill="#ff758c"/>
+
+    <!-- Bear Body -->
+    <ellipse cx="120" cy="138" rx="38" ry="34" fill="#ffffff" stroke="#e5b4c0" stroke-width="2.5"/>
+    <ellipse cx="120" cy="142" rx="23" ry="20" fill="#fff0f3"/>
+
+    <!-- Ears -->
+    <circle cx="88" cy="76" r="16" fill="#ffffff" stroke="#e5b4c0" stroke-width="2.5"/>
+    <circle cx="88" cy="76" r="9" fill="#fec5d4"/>
+    <circle cx="152" cy="76" r="16" fill="#ffffff" stroke="#e5b4c0" stroke-width="2.5"/>
+    <circle cx="152" cy="76" r="9" fill="#fec5d4"/>
+
+    <!-- Head -->
+    <circle cx="120" cy="100" r="38" fill="#ffffff" stroke="#e5b4c0" stroke-width="2.5"/>
+
+    <!-- Santa Hat -->
+    <g>
+      <!-- Red Hat Body drooping slightly to the right -->
+      <path d="M 94 76 Q 120 40 156 50 Q 166 60 172 74 Q 146 64 94 76 Z" fill="#d90429"/>
+      <!-- Fluffy White Trim -->
+      <rect x="90" y="70" width="60" height="12" rx="6" fill="#ffffff" stroke="#f0d5dd" stroke-width="1.5"/>
+      <!-- Fluffy White Pom-Pom -->
+      <circle cx="173" cy="75" r="9" fill="#ffffff" stroke="#f0d5dd" stroke-width="1.5"/>
+    </g>
+
+    <!-- Warm Striped Holiday Scarf -->
+    <path d="M 98 120 Q 120 128 142 120 Q 142 129 120 137 Q 98 129 98 120 Z" fill="#2b9348"/>
+    <!-- Scarf Tails -->
+    <rect x="130" y="126" width="12" height="24" rx="2" fill="#2b9348" transform="rotate(10 130 126)"/>
+    <rect x="130" y="132" width="12" height="5" fill="#d90429" transform="rotate(10 130 126)"/>
+
+    <!-- Cute Eyes -->
+    <path d="M 103 98 Q 109 92 113 98" fill="none" stroke="#3b121f" stroke-width="3" stroke-linecap="round"/>
+    <path d="M 127 98 Q 131 92 137 98" fill="none" stroke="#3b121f" stroke-width="3" stroke-linecap="round"/>
+
+    <!-- Rosy Winter Blushing Cheeks -->
+    <ellipse cx="98" cy="108" rx="8" ry="5" fill="#ff758f" opacity="0.85"/>
+    <ellipse cx="142" cy="108" rx="8" ry="5" fill="#ff758f" opacity="0.85"/>
+
+    <!-- Nose & Mouth -->
+    <ellipse cx="120" cy="106" rx="11" ry="8" fill="#fff0f3"/>
+    <ellipse cx="120" cy="103" rx="4.5" ry="3" fill="#662e3d"/>
+    <path d="M 120 106 Q 116 112 112 109" fill="none" stroke="#662e3d" stroke-width="1.8" stroke-linecap="round"/>
+    <path d="M 120 106 Q 124 112 128 109" fill="none" stroke="#662e3d" stroke-width="1.8" stroke-linecap="round"/>
+
+    <!-- Left Paw -->
+    <ellipse cx="96" cy="138" rx="10" ry="8" fill="#ffffff" stroke="#e5b4c0" stroke-width="2"/>
+
+    <!-- Right Paw holding Candy Cane & Golden Bell -->
+    <!-- Candy Cane -->
+    <g transform="translate(138, 116) rotate(-15)">
+      <path d="M 6 30 L 6 10 A 6 6 0 0 1 18 10 L 18 15" fill="none" stroke="#d90429" stroke-width="5" stroke-linecap="round"/>
+      <path d="M 6 30 L 6 10 A 6 6 0 0 1 18 10 L 18 15" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-dasharray="3,4"/>
+    </g>
+    <!-- Bell -->
+    <g class="bell">
+      <path d="M 150 130 L 158 130 L 161 138 L 147 138 Z" fill="#ffd166"/>
+      <circle cx="154" cy="139" r="2.5" fill="#e09f3e"/>
+    </g>
+    <ellipse cx="144" cy="138" rx="10" ry="8" fill="#ffffff" stroke="#e5b4c0" stroke-width="2"/>
+  </g>
+</svg>
