@@ -8,6 +8,15 @@ Deployed Live on GitHub Pages: [https://kennejunior.github.io/be-my-Valentine/](
 
 ## ✨ Features
 
+- 💧 **Liquid Glass Droplet Preloader**:
+  - Fullscreen morphing iridescent frosted glass droplet with organic border-radius fluid keyframes.
+  - Concentric liquid ripple waves, specular light reflections, and pulsing glowing icon.
+  - Guaranteed minimum 2.5-second runtime so animations play out smoothly, synchronized with `window.addEventListener('load')`.
+  - Elegant fluid dissolve transition that scales the main glass UI card gracefully into view (`scale(0.92)` -> `scale(1.0)` with blur clearing).
+- 🎶 **Birthday Celebration Soundtrack**:
+  - Plays *Simi ft. Adekunle Gold & Deja - Happy Birthday* upon clicking the celebratory "Accept" birthday button.
+  - Smooth volume fade-in ramp to prevent acoustic shock.
+  - Interactive equalizer pill button in the celebration view allowing users to pause or resume playback anytime.
 - 🐻 **Cute Seasonal Bear Visuals**: Dynamic SVG and animated graphics that automatically adapt to image aspect ratios in both portrait and landscape mobile screens.
 - 🏃 **Playful Dodging "Deny" Button**: Moves away to a random safe coordinate whenever hovered or touched on touchscreen devices, cycling through humorous teasing phrases.
 - 📈 **Gradual "Accept" Button Growth**:

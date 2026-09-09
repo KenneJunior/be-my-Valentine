@@ -355,7 +355,7 @@ body {
 
 /* Graceful fallback: ensure elements reveal even if AOS script is blocked or delayed */
 [data-aos]:not(.aos-animate) {
-    animation: aosSafetyFallback 0.1s 1.8s forwards;
+    animation: aosSafetyFallback 0.1s 3.8s forwards;
 }
 
 @keyframes aosSafetyFallback {
@@ -869,3 +869,378 @@ body.theme-valentine {
         min-height: 34px;
     }
 }
+
+/* --------------------------------------------------------------------------
+   11. Liquid Glass Droplet Preloader & Smooth Entrance Transition
+   -------------------------------------------------------------------------- */
+.preloader-overlay {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at 50% 42%, rgba(255, 245, 248, 0.98) 0%, rgba(255, 222, 233, 0.95) 48%, rgba(255, 185, 205, 0.92) 100%);
+    backdrop-filter: blur(32px) saturate(190%);
+    -webkit-backdrop-filter: blur(32px) saturate(190%);
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.85s cubic-bezier(0.4, 0, 0.2, 1),
+                visibility 0.85s cubic-bezier(0.4, 0, 0.2, 1),
+                backdrop-filter 0.85s ease;
+    user-select: none;
+}
+
+.preloader-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2.5rem 2rem;
+    max-width: 380px;
+    width: 90%;
+}
+
+/* Concentric Liquid Water Ripples */
+.droplet-ripple {
+    position: absolute;
+    top: 36%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    border: 1.5px solid rgba(255, 46, 99, 0.3);
+    pointer-events: none;
+}
+
+.droplet-ripple.ripple-1 {
+    width: 130px;
+    height: 130px;
+    animation: dropletRipple 3.2s cubic-bezier(0.1, 0.8, 0.3, 1) infinite;
+}
+
+.droplet-ripple.ripple-2 {
+    width: 170px;
+    height: 170px;
+    animation: dropletRipple 3.2s cubic-bezier(0.1, 0.8, 0.3, 1) infinite 0.9s;
+}
+
+.droplet-ripple.ripple-3 {
+    width: 215px;
+    height: 215px;
+    animation: dropletRipple 3.2s cubic-bezier(0.1, 0.8, 0.3, 1) infinite 1.8s;
+}
+
+@keyframes dropletRipple {
+    0% {
+        transform: translate(-50%, -50%) scale(0.6);
+        opacity: 0.85;
+        border-color: rgba(255, 46, 99, 0.38);
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1.68);
+        opacity: 0;
+        border-color: rgba(255, 117, 140, 0);
+    }
+}
+
+/* Central Morphing Liquid Glass Droplet */
+.liquid-droplet {
+    width: 115px;
+    height: 115px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.88) 0%, rgba(255, 218, 230, 0.55) 45%, rgba(255, 145, 175, 0.35) 100%);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1.5px solid rgba(255, 255, 255, 0.92);
+    box-shadow: inset 0 2px 10px rgba(255, 255, 255, 0.95),
+                inset 0 -6px 16px rgba(255, 46, 99, 0.28),
+                0 18px 40px -8px rgba(255, 46, 99, 0.32),
+                0 0 32px rgba(255, 182, 193, 0.65);
+    animation: morphDroplet 4.8s ease-in-out infinite,
+               floatDroplet 3.2s ease-in-out infinite alternate;
+    transition: transform 0.85s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 0.75s ease,
+                filter 0.75s ease;
+    will-change: transform, border-radius;
+}
+
+@keyframes morphDroplet {
+    0%, 100% {
+        border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    }
+    33% {
+        border-radius: 40% 60% 70% 30% / 50% 60% 30% 60%;
+    }
+    66% {
+        border-radius: 50% 50% 40% 60% / 40% 40% 60% 60%;
+    }
+}
+
+@keyframes floatDroplet {
+    0% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    100% {
+        transform: translateY(-9px) rotate(3deg);
+    }
+}
+
+/* Droplet Specular Reflection Highlights */
+.droplet-highlight {
+    position: absolute;
+    top: 15%;
+    left: 20%;
+    width: 26px;
+    height: 14px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.95);
+    transform: rotate(-32deg);
+    filter: blur(1px);
+    pointer-events: none;
+}
+
+.droplet-specular {
+    position: absolute;
+    bottom: 18%;
+    right: 22%;
+    width: 13px;
+    height: 7px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.65);
+    transform: rotate(-25deg);
+    filter: blur(1px);
+    pointer-events: none;
+}
+
+.droplet-core {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+
+.droplet-icon {
+    font-size: 2.3rem;
+    filter: drop-shadow(0 4px 12px rgba(255, 46, 99, 0.4));
+    animation: heartPulse 1.4s ease-in-out infinite;
+}
+
+.droplet-glow-ring {
+    position: absolute;
+    inset: -6px;
+    border-radius: inherit;
+    background: radial-gradient(circle, rgba(255, 117, 140, 0.3) 0%, transparent 70%);
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+/* Preloader Typography & Progress Bar */
+.preloader-meta {
+    margin-top: 2.2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.65rem;
+    transition: opacity 0.55s ease, transform 0.55s ease;
+}
+
+.preloader-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 0.28rem 0.85rem;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.78);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #ff2e63;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+}
+
+.preloader-badge .badge-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #ff2e63;
+    animation: pulse 1.4s infinite;
+}
+
+.preloader-title {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #1e1b2e;
+    letter-spacing: -0.015em;
+    margin: 0;
+}
+
+.preloader-bar-track {
+    width: 220px;
+    height: 6px;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.82);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    overflow: hidden;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.06);
+    position: relative;
+}
+
+.preloader-bar-fill {
+    width: 0%;
+    height: 100%;
+    border-radius: 9999px;
+    background: linear-gradient(90deg, #ff758c 0%, #ff2e63 50%, #ff8fa3 100%);
+    box-shadow: 0 0 10px rgba(255, 46, 99, 0.5);
+    transition: width 0.2s linear;
+}
+
+.preloader-status {
+    font-size: 0.84rem;
+    font-weight: 500;
+    color: #6e677c;
+    margin: 0;
+    min-height: 1.25rem;
+    transition: opacity 0.25s ease;
+}
+
+/* Elegant Hiding Exit State for Preloader */
+.preloader-overlay.preloader-hiding {
+    opacity: 0;
+    pointer-events: none;
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+}
+
+.preloader-overlay.preloader-hiding .liquid-droplet {
+    transform: scale(1.22) translateY(-14px);
+    filter: blur(10px);
+    opacity: 0;
+}
+
+.preloader-overlay.preloader-hiding .preloader-meta {
+    opacity: 0;
+    transform: translateY(12px);
+}
+
+.preloader-overlay.preloader-hidden {
+    display: none !important;
+}
+
+/* Fluid Entrance Scaling on Main Glass Card */
+#valentine-card.card-initial-hide {
+    opacity: 0;
+    transform: scale(0.92) translateY(18px);
+    filter: blur(8px);
+    transition: opacity 0.95s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 1.05s cubic-bezier(0.16, 1, 0.3, 1),
+                filter 0.85s ease-out;
+}
+
+#valentine-card.card-revealed {
+    opacity: 1 !important;
+    transform: scale(1) translateY(0px) !important;
+    filter: blur(0px) !important;
+}
+
+/* --------------------------------------------------------------------------
+   12. Birthday Celebration Music Player Pill & Equalizer Animation
+   -------------------------------------------------------------------------- */
+.music-player-pill {
+    margin: 0.5rem 0 0.8rem;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.music-toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.45rem 1.15rem;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.82);
+    border: 1.5px solid rgba(255, 46, 99, 0.35);
+    color: #ff2e63;
+    font-weight: 600;
+    font-size: 0.82rem;
+    cursor: pointer;
+    transition: all 0.28s var(--ease-liquid);
+    box-shadow: 0 4px 14px rgba(255, 46, 99, 0.15);
+    outline: none;
+}
+
+.music-toggle-btn:hover {
+    background: rgba(255, 255, 255, 0.95);
+    transform: translateY(-1.5px);
+    box-shadow: 0 6px 20px rgba(255, 46, 99, 0.24);
+    border-color: rgba(255, 46, 99, 0.6);
+}
+
+.music-toggle-btn:active {
+    transform: scale(0.97);
+}
+
+.music-eq-bars {
+    display: inline-flex;
+    align-items: flex-end;
+    gap: 2.5px;
+    height: 14px;
+    width: 18px;
+}
+
+.music-eq-bars .eq-bar {
+    width: 2.5px;
+    background: #ff2e63;
+    border-radius: 2px;
+    height: 100%;
+    transform-origin: bottom;
+}
+
+.music-eq-bars .bar-1 {
+    animation: eqBounce 0.75s ease-in-out infinite alternate;
+}
+
+.music-eq-bars .bar-2 {
+    animation: eqBounce 0.55s ease-in-out infinite alternate 0.15s;
+}
+
+.music-eq-bars .bar-3 {
+    animation: eqBounce 0.85s ease-in-out infinite alternate 0.3s;
+}
+
+.music-eq-bars .bar-4 {
+    animation: eqBounce 0.65s ease-in-out infinite alternate 0.45s;
+}
+
+@keyframes eqBounce {
+    0% {
+        height: 20%;
+    }
+    100% {
+        height: 100%;
+    }
+}
+
+.music-toggle-btn.is-paused {
+    color: #7b7189;
+    border-color: rgba(123, 113, 137, 0.3);
+    background: rgba(255, 255, 255, 0.65);
+}
+
+.music-toggle-btn.is-paused .eq-bar {
+    background: #9d94a8;
+    animation: none;
+    height: 3px;
+}
+

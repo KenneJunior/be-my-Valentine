@@ -17,10 +17,10 @@
     <!-- Favicon -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💖</text></svg>">
     
-    <!-- Google Fonts: Outfit & Plus Jakarta Sans -->
+    <!-- Google Fonts: Outfit, Plus Jakarta Sans, and Caveat (for handwritten keepsake letter) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- External Confetti Library (with graceful vanilla fallback in script.js) -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js" defer></script>
@@ -35,6 +35,47 @@
     <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
+    <!-- Custom Vanilla JS & CSS Preloader: Liquid Glass Droplet -->
+    <div id="app-preloader" class="preloader-overlay" aria-label="Loading celebration" role="status" aria-live="polite">
+        <div class="preloader-container">
+            <!-- Concentric Liquid Ripples -->
+            <div class="droplet-ripple ripple-1" aria-hidden="true"></div>
+            <div class="droplet-ripple ripple-2" aria-hidden="true"></div>
+            <div class="droplet-ripple ripple-3" aria-hidden="true"></div>
+
+            <!-- Central Morphing Liquid Glass Droplet -->
+            <div class="liquid-droplet" id="liquid-droplet" aria-hidden="true">
+                <div class="droplet-highlight"></div>
+                <div class="droplet-specular"></div>
+                <div class="droplet-core">
+                    <span class="droplet-icon" id="droplet-icon">💖</span>
+                </div>
+                <div class="droplet-glow-ring"></div>
+            </div>
+
+            <!-- Preloader Typography & Liquid Glass Progress Track -->
+            <div class="preloader-meta">
+                <div class="preloader-badge">
+                    <span class="badge-dot"></span>
+                    <span id="preloader-badge-text">Crafting Magic</span>
+                </div>
+                <h2 class="preloader-title">Preparing Your Surprise</h2>
+                <div class="preloader-bar-track" aria-hidden="true">
+                    <div class="preloader-bar-fill" id="preloader-bar-fill"></div>
+                </div>
+                <p class="preloader-status" id="preloader-status">Infusing sweetness...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Birthday Music Audio Element (Preloaded for instant playback on accept) -->
+    <audio 
+        id="birthday-audio" 
+        preload="auto" 
+        src="https://fhavur.vercel.app/Simi_ft_Adekunle_Gold_DeJa_-_Happy_Birthday.mp3"
+        aria-label="Birthday celebration song"
+    ></audio>
+
     <!-- Ambient Animated Background Glow Orbs -->
     <div class="ambient-glow orb-1" aria-hidden="true"></div>
     <div class="ambient-glow orb-2" aria-hidden="true"></div>
@@ -58,6 +99,38 @@
             data-aos-once="true"
         >
             
+            <!-- Floating Top Glass Controls (Personalization & Secret Wish Minigame) -->
+            <div 
+                class="card-controls-row" 
+                id="card-controls-row"
+                data-aos="fade-down"
+                data-aos-delay="180"
+                data-aos-duration="600"
+                data-aos-easing="ease-out-cubic"
+                data-aos-once="true"
+            >
+                <button 
+                    type="button" 
+                    id="personalize-pill-btn" 
+                    class="glass-control-pill" 
+                    aria-label="Personalize recipient name and create share link"
+                >
+                    <span class="pill-icon" aria-hidden="true">💌</span>
+                    <span class="pill-label" id="recipient-pill-text">For: Someone Special</span>
+                    <span class="pill-edit-icon" aria-hidden="true">✏️</span>
+                </button>
+
+                <button 
+                    type="button" 
+                    id="wish-jar-pill-btn" 
+                    class="glass-control-pill pill-sparkle" 
+                    aria-label="Open Secret Wish and Compliment Jar"
+                >
+                    <span class="pill-icon" aria-hidden="true">🎁</span>
+                    <span class="pill-label">Secret Wish</span>
+                </button>
+            </div>
+
             <!-- Top Heart Badge -->
             <div 
                 class="card-badge" 
@@ -72,7 +145,7 @@
                 <span class="badge-text" id="badge-text">Special Question</span>
             </div>
 
-            <!-- Interactive Visual / GIF Section -->
+            <!-- Interactive Visual / GIF Section with Reactive Bear Commentary -->
             <div 
                 class="visual-container" 
                 id="visual-container"
@@ -82,6 +155,12 @@
                 data-aos-easing="ease-out-back"
                 data-aos-once="true"
             >
+                <!-- Reactive Bear Speech Bubble -->
+                <div class="bear-speech-bubble" id="bear-speech-bubble" role="status" aria-live="polite" hidden>
+                    <span class="bubble-text" id="bear-speech-text">Hey there! 🐻✨</span>
+                    <span class="bubble-tail" aria-hidden="true"></span>
+                </div>
+
                 <!-- Using assets/bear-birthday.svg as default with fallback -->
                 <img 
                     id="main-gif" 
@@ -164,7 +243,42 @@
                 <p class="success-subtext" id="success-subtext">
                     May all your birthday wishes come true today and always! Hope your year is full of love and adventures! ✨💖
                 </p>
+
+                <!-- Birthday Celebration Music Player Pill -->
+                <div class="music-player-pill" id="music-player-pill">
+                    <button type="button" id="music-toggle-btn" class="music-toggle-btn" aria-label="Pause or play birthday song">
+                        <span class="music-eq-bars" aria-hidden="true">
+                            <span class="eq-bar bar-1"></span>
+                            <span class="eq-bar bar-2"></span>
+                            <span class="eq-bar bar-3"></span>
+                            <span class="eq-bar bar-4"></span>
+                        </span>
+                        <span class="music-label" id="music-label">Birthday Music: Playing 🎶</span>
+                    </button>
+                </div>
+
+                <!-- Personal Keepsake Parchment Note -->
+                <div class="keepsake-letter-container" id="keepsake-letter-container">
+                    <div class="keepsake-envelope-header">
+                        <span class="envelope-stamp">💌</span>
+                        <span class="envelope-title" id="keepsake-envelope-title">A Special Note For You</span>
+                    </div>
+                    <div class="keepsake-letter-paper" id="keepsake-letter-paper">
+                        <p class="keepsake-greeting" id="keepsake-greeting">Dearest One,</p>
+                        <p class="keepsake-body" id="keepsake-body">
+                            May your days be filled with light, laughter, and an abundance of joy. Thank you for bringing so much happiness and magic into my life. Every moment with you is a gift!
+                        </p>
+                        <p class="keepsake-signature" id="keepsake-signature">With all my love & heart ❤️</p>
+                    </div>
+                </div>
+
                 <div class="success-actions">
+                    <button type="button" id="share-link-btn" class="btn btn-secondary btn-share" aria-label="Share this celebration">
+                        <span class="btn-liquid-bg" aria-hidden="true"></span>
+                        <span class="btn-content">
+                            <span>Share Celebration 🔗</span>
+                        </span>
+                    </button>
                     <button type="button" id="replay-btn" class="btn btn-replay" aria-label="Play again">
                         <span class="btn-liquid-bg" aria-hidden="true"></span>
                         <span class="btn-content">
@@ -175,6 +289,79 @@
             </div>
         </article>
     </main>
+
+    <!-- Modal: Personalize Name & Custom Link -->
+    <div class="modal-backdrop" id="personalize-modal" aria-hidden="true" role="dialog" aria-labelledby="personalize-title" hidden>
+        <div class="modal-card">
+            <button type="button" class="modal-close-btn" id="close-personalize-btn" aria-label="Close modal">✕</button>
+            <div class="modal-header">
+                <span class="modal-icon">💌</span>
+                <h3 class="modal-title" id="personalize-title">Personalize This Card</h3>
+                <p class="modal-desc">Enter your special person's name to tailor the entire experience and generate a personalized share link!</p>
+            </div>
+            <form id="personalize-form" class="modal-form" onsubmit="return false;">
+                <div class="form-group">
+                    <label for="recipient-name-input">Recipient's Name or Nickname</label>
+                    <input 
+                        type="text" 
+                        id="recipient-name-input" 
+                        class="modal-input" 
+                        placeholder="e.g. Lux Mea, Lulu, Sweetheart" 
+                        maxlength="36" 
+                        autocomplete="off"
+                    >
+                </div>
+                <div class="form-group">
+                    <label for="custom-note-input">Personal Sweet Note (Optional)</label>
+                    <textarea 
+                        id="custom-note-input" 
+                        class="modal-textarea" 
+                        placeholder="Add a heartfelt memory or private wish..."
+                        maxlength="240"
+                        rows="3"
+                    ></textarea>
+                </div>
+                <div class="modal-btn-row">
+                    <button type="button" id="save-personalize-btn" class="btn-modal-primary">
+                        <span>Save & Apply 💖</span>
+                    </button>
+                    <button type="button" id="copy-custom-link-btn" class="btn-modal-secondary">
+                        <span>Copy Link 🔗</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal: Secret Wish & Compliment Generator Minigame -->
+    <div class="modal-backdrop" id="wish-jar-modal" aria-hidden="true" role="dialog" aria-labelledby="wish-jar-title" hidden>
+        <div class="modal-card wish-jar-card">
+            <button type="button" class="modal-close-btn" id="close-wish-modal-btn" aria-label="Close modal">✕</button>
+            <div class="wish-jar-glow" aria-hidden="true"></div>
+            <div class="modal-header">
+                <div class="wish-jar-icon-wrap">
+                    <span class="wish-jar-icon" id="wish-jar-icon">🎁</span>
+                </div>
+                <h3 class="modal-title" id="wish-jar-title">Secret Wish & Reason Jar</h3>
+                <p class="modal-desc" id="wish-jar-desc">Open a capsule to reveal a sweet thought crafted just for you!</p>
+            </div>
+            <div class="wish-capsule-display" id="wish-capsule-display">
+                <p class="wish-text" id="wish-content-text">"Your laugh is the warmest sound in the entire world, and your happiness makes everything better."</p>
+                <div class="wish-capsule-tag" id="wish-capsule-tag">✨ Sweet Fact #1</div>
+            </div>
+            <div class="modal-btn-row">
+                <button type="button" id="next-wish-btn" class="btn-modal-primary">
+                    <span>Draw Another Wish 🎲✨</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Toast Notification -->
+    <div class="toast-notification" id="toast-notification" role="status" aria-live="polite" hidden>
+        <span class="toast-icon" id="toast-icon">✨</span>
+        <span class="toast-msg" id="toast-msg">Link copied to clipboard!</span>
+    </div>
 
     <!-- JavaScript Application Logic -->
     <script src="./js/script.js" defer></script>

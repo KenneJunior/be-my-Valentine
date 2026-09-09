@@ -26,8 +26,8 @@ const SEASONS = {
         id: 'birthday',
         name: 'Birthday',
         themeClass: 'theme-birthday',
-        heading: 'Happy Birthday!',
-        subMessage: 'Wishing you a magical day filled with sweet moments, huge smiles, and unlimited cake! 🎂✨',
+        heading: 'Happy Birthday',
+        subMessage: 'Today is entirely about celebrating the most incredible person I know. Wishing you a day overflowing with sweet moments, endless laughter, and a love that grows exponentially. You deserve the entire universe and more! 🎂✨💖🥺',
         badge: '🎂 Special Day',
         bearNormal: './assets/bear-birthday.svg',
         bearSuccess: './assets/bear-birthday-success.svg',
@@ -36,12 +36,18 @@ const SEASONS = {
         denyText: 'Deny',
         denyEmoji: '🙈',
         denyPhrases: [
-            "Deny", "Are you sure? 🎂", "No cake for you?", "Think again! 👀",
-            "Too slow! 😜", "Birthday hugs here! 🎈", "Can't catch me! 🛸",
-            "Just click Accept! 🧁", "Unlimited cake awaits! 🎉"
+            "Deny", 
+            "Are you seriously clicking this? 🥺", 
+            "But I made this just for you! 🥺❤️", 
+            "My heart is breaking a little 💔", 
+            "Error: Your finger must have slipped! 🙈", 
+            "Still trying? You're too cute! 🥰", 
+            "The math says you must click Accept! 📈", 
+            "Just surrender to the birthday love! 🎂", 
+            "Click Accept for infinite hugs! 🧸💖"
         ],
-        successHeading: 'Yaaay! Happy Birthday! 🎂🎉🥳',
-        successSubtext: 'May all your birthday wishes come true today and always! Hope your year is full of love and adventures! ✨💖',
+        successHeading: 'Yaaay! Happy Birthday',
+        successSubtext: 'My greatest wish is to see you smiling every single day. May this new chapter bring you closer to all your dreams, and I promise to be right here cheering you on through every beautiful moment. I love you endlessly! ✨💖🦋',
         celebrationBadge: '🎉 BEST BIRTHDAY EVER! 🎂',
         particleType: 'up',
         floatingEmojis: ['🎂', '🎈', '🍰', '🎁', '🎉', '✨', '🧁', '🥳', '💖', '🍭'],
@@ -51,8 +57,8 @@ const SEASONS = {
         id: 'christmas',
         name: 'Christmas',
         themeClass: 'theme-christmas',
-        heading: 'Merry Christmas!',
-        subMessage: 'Sending you cozy winter vibes, warm cocoa hugs, and holiday cheer! 🎄❄️',
+        heading: 'Merry Christmas, my love! 🎄❤️✨',
+        subMessage: 'The holidays are magical, but absolutely nothing compares to the warmth and light you bring into my life every single day. Sending you the coziest winter vibes and all my love! 🎄❄️🥰☕',
         badge: '🎄 Holiday Magic',
         bearNormal: './assets/bear-christmas.svg',
         bearSuccess: './assets/bear-christmas-success.svg',
@@ -61,23 +67,29 @@ const SEASONS = {
         denyText: 'Deny',
         denyEmoji: '⛄',
         denyPhrases: [
-            "Deny", "Are you sure? 🎄", "Santa is watching! 🎅", "Think again! 👀",
-            "Too slow! ❄️", "Cozy hugs here! ☕", "Can't catch me! 🦌",
-            "Accept your gift! 🎁", "Holiday cheer awaits! ✨"
+            "Deny", 
+            "Wait, are you sure? 🎄🥺", 
+            "Santa is literally watching us 🎅", 
+            "Don't break my heart this Christmas! 💔", 
+            "Too slow for the mistletoe! ❄️💋", 
+            "Cozy hugs are waiting for you over here! 👉", 
+            "Slippery like ice! ⛸️", 
+            "Just take my gift! 🎁", 
+            "Holiday kisses await! ✨🥰"
         ],
-        successHeading: 'Merry Christmas & Happy Holidays! 🎄🎅✨',
-        successSubtext: 'May your holidays be wrapped with warmth, love, cozy memories, and festive joy! 🎁🍪',
+        successHeading: 'Merry Christmas, my beautiful angel! 🎄🎅✨❤️',
+        successSubtext: 'You are the absolute best gift I could ever ask for. May our holiday season be wrapped in warmth, sweet kisses, and cozy memories that we will cherish forever. Let\'s make this unforgettable! 🎁🍪💏',
         celebrationBadge: '🎄 MERRY & BRIGHT! 🎅',
         particleType: 'snow',
-        floatingEmojis: ['❄️', '❅', '❆', '✻', '✨'],
+        floatingEmojis: ['❄️', '❅', '❆', '✻', '✨', '❤️', '🎁'],
         confettiColors: ['#d90429', '#2b9348', '#ffd166', '#ffffff', '#ef233c', '#55a630']
     },
     newyear: {
         id: 'newyear',
         name: 'New Year',
         themeClass: 'theme-newyear',
-        heading: 'Happy New Year!',
-        subMessage: 'Cheers to brand-new adventures, sparkling dreams, and an unforgettable 2026! 🎆🥂',
+        heading: 'Happy New Yea',
+        subMessage: 'As the year comes to a close, I am incredibly grateful that I get to walk into this brand-new chapter holding your hand. Cheers to our beautiful future together! 🎆🥂✨🥺',
         badge: '🎆 2026 Celebration',
         bearNormal: './assets/bear-newyear.svg',
         bearSuccess: './assets/bear-newyear-success.svg',
@@ -86,23 +98,29 @@ const SEASONS = {
         denyText: 'Deny',
         denyEmoji: '🎇',
         denyPhrases: [
-            "Deny", "Are you sure? 🎆", "Count down to yes! ⏳", "Think again! 👀",
-            "Too slow! ⚡", "Midnight toast! 🥂", "Can't catch me! 🛸",
-            "Say yes to 2026! 🌟", "New Year magic awaits! 💫"
+            "Deny", 
+            "Are you sure? 🎆🥺", 
+            "Don't ruin our midnight countdown! ⏳❤️", 
+            "Think again, my love! 👀", 
+            "Too slow! ⚡", 
+            "Midnight toast over here! 👉🥂", 
+            "We are going into 2026 together! 🛸", 
+            "Say yes to us! 🌟", 
+            "Our magic awaits! 💫🥰"
         ],
-        successHeading: 'Cheers to a Happy New Year! 🎆🥂✨',
-        successSubtext: 'Here is to 365 new chances to shine, laugh, and create beautiful memories together! 🥳🌟',
-        celebrationBadge: '🎆 CHEERS TO 2026! 🥂',
+        successHeading: 'Cheers to us and an amazing 2026! 🎆🥂✨🥰',
+        successSubtext: 'Here is to 365 new chances to shine, laugh, and write the next beautiful pages of our love story. There is no one else I would rather build a future with. I love you more than words can say! 🥳🌟💖🥂',
+        celebrationBadge: '🎆 CHEERS TO US! 🥂',
         particleType: 'spark',
-        floatingEmojis: ['✨', '🌟', '💫', '⭐', '🎇', '🥂'],
+        floatingEmojis: ['✨', '🌟', '💫', '⭐', '🎇', '🥂', '💖', '🥰'],
         confettiColors: ['#ffd166', '#00f5d4', '#f72585', '#7209b7', '#ffffff', '#4cc9f0']
     },
     valentine: {
         id: 'valentine',
         name: 'Valentine',
         themeClass: 'theme-valentine',
-        heading: 'Will you be my Valentine?',
-        subMessage: 'My heart has been waiting to ask you this all year long... 💌',
+        heading: 'will you be my Valentine? 🥺🌹💖',
+        subMessage: 'Every single variable in my life changed for the better the moment I met you. Statistically and undeniably, you are my perfect match. Will you do me the absolute honor? 💌🦋🥺❤️',
         badge: '💖 Special Question',
         bearNormal: './assets/img1.gif',
         bearSuccess: './assets/img3.gif',
@@ -111,15 +129,21 @@ const SEASONS = {
         denyText: 'Deny',
         denyEmoji: '🥺',
         denyPhrases: [
-            "Deny", "Are you sure? 🥺", "Think again! 👀", "Nice try! 🏃‍♂️",
-            "Too slow! 😜", "Look over here! 🙈", "Can't catch me! 🛸",
-            "Look at Accept! 👉", "Just click Accept! 🌹"
+            "Deny", 
+            "Wait, seriously? 🥺", 
+            "Recalculate that! 📊💔", 
+            "Probability of clicking this: 0% 🛑", 
+            "The limit does not exist! 📉", 
+            "Graphing your hesitation... 🤔", 
+            "Coordinate geometry says no! 🛸", 
+            "Just optimize for Accept! 👉", 
+            "Q.E.D. Just click Yes already! 🥰💋"
         ],
-        successHeading: 'Yaaay! You said YES! 💖🌹',
-        successSubtext: 'I knew you could not resist! Happy Valentine Day, my favorite person in the entire universe! ✨🥰',
-        celebrationBadge: '🎉 BEST DECISION EVER! 💖',
+        successHeading: 'Hypothesis Confirmed! You said YES! 💖🌹🥰💍',
+        successSubtext: 'My heart just skipped a beat! You are my absolute favorite person in the entire universe. Happy Valentine\'s Day! Let\'s keep optimizing our love forever and ever! ✨🥰🧸💘',
+        celebrationBadge: '🎉 100% PROBABILITY OF HAPPINESS! 💖',
         particleType: 'up',
-        floatingEmojis: ['💖', '❤️', '💘', '🌹', '💕', '💌', '💝', '🥰', '✨', '🌸'],
+        floatingEmojis: ['💖', '❤️', '💘', '🌹', '💕', '💌', '💝', '🥰', '✨', '🌸', '🦋'],
         confettiColors: ['#ff2e63', '#ff6b8b', '#ff9a9e', '#fbc2eb', '#ffffff', '#ffd166']
     }
 };
@@ -246,6 +270,24 @@ document.addEventListener('DOMContentLoaded', () => {
     const replayBtn = document.getElementById('replay-btn');
     const floatingHeartsContainer = document.getElementById('floating-hearts-container');
     const fallbackCanvas = document.getElementById('fallback-confetti-canvas');
+
+    // Preloader Elements
+    const preloader = document.getElementById('app-preloader');
+    const preloaderBarFill = document.getElementById('preloader-bar-fill');
+    const preloaderStatus = document.getElementById('preloader-status');
+    const preloaderBadgeText = document.getElementById('preloader-badge-text');
+    const dropletIcon = document.getElementById('droplet-icon');
+
+    // Birthday Music Elements
+    const birthdayAudio = document.getElementById('birthday-audio');
+    const musicPlayerPill = document.getElementById('music-player-pill');
+    const musicToggleBtn = document.getElementById('music-toggle-btn');
+    const musicLabel = document.getElementById('music-label');
+
+    // Prime the card for fluid entrance scaling when preloader fades
+    if (valentineCard && preloader) {
+        valentineCard.classList.add('card-initial-hide');
+    }
 
     const acceptTextSpan = document.getElementById('accept-text');
     const acceptEmojiSpan = document.getElementById('accept-emoji');
@@ -807,6 +849,65 @@ document.addEventListener('DOMContentLoaded', () => {
         for (let i = 0; i < burstCount; i++) {
             setTimeout(spawnFloatingParticle, i * 110);
         }
+
+        // 8. Play Birthday Celebration Music (Simi ft. Adekunle Gold & Deja - Happy Birthday)
+        playCelebrationMusic();
+    }
+
+    // --------------------------------------------------------------------------
+    // Birthday Celebration Audio Controller
+    // --------------------------------------------------------------------------
+    function playCelebrationMusic() {
+        if (!birthdayAudio) return;
+        try {
+            birthdayAudio.currentTime = 0;
+            birthdayAudio.volume = 0;
+            const playPromise = birthdayAudio.play();
+            if (playPromise !== undefined) {
+                playPromise.then(() => {
+                    // Smooth volume fade-in from 0 to 0.75 over 1.2s
+                    let vol = 0;
+                    const fadeTimer = setInterval(() => {
+                        vol = Math.min(vol + 0.06, 0.75);
+                        birthdayAudio.volume = parseFloat(vol.toFixed(2));
+                        if (vol >= 0.75) clearInterval(fadeTimer);
+                    }, 80);
+
+                    if (musicToggleBtn) {
+                        musicToggleBtn.classList.remove('is-paused');
+                    }
+                    if (musicLabel) {
+                        musicLabel.textContent = 'Birthday Music: Playing 🎶';
+                    }
+                }).catch((err) => {
+                    console.log('Audio playback waiting for user tap:', err);
+                    if (musicToggleBtn) {
+                        musicToggleBtn.classList.add('is-paused');
+                    }
+                    if (musicLabel) {
+                        musicLabel.textContent = 'Tap to Play Birthday Music 🎶';
+                    }
+                });
+            }
+        } catch (e) {
+            console.error('Audio playback error:', e);
+        }
+    }
+
+    // Music Player Toggle Control (Pause / Resume)
+    if (musicToggleBtn && birthdayAudio) {
+        musicToggleBtn.addEventListener('click', () => {
+            if (birthdayAudio.paused) {
+                birthdayAudio.play().then(() => {
+                    musicToggleBtn.classList.remove('is-paused');
+                    if (musicLabel) musicLabel.textContent = 'Birthday Music: Playing 🎶';
+                }).catch(() => {});
+            } else {
+                birthdayAudio.pause();
+                musicToggleBtn.classList.add('is-paused');
+                if (musicLabel) musicLabel.textContent = 'Birthday Music: Paused ⏸️';
+            }
+        });
     }
 
     if (acceptBtn) {
@@ -816,6 +917,18 @@ document.addEventListener('DOMContentLoaded', () => {
     // Replay / Reset
     if (replayBtn) {
         replayBtn.addEventListener('click', () => {
+            // Stop and reset birthday music if playing
+            if (birthdayAudio) {
+                birthdayAudio.pause();
+                birthdayAudio.currentTime = 0;
+            }
+            if (musicToggleBtn) {
+                musicToggleBtn.classList.remove('is-paused');
+            }
+            if (musicLabel) {
+                musicLabel.textContent = 'Birthday Music: Playing 🎶';
+            }
+
             resetButtonStates();
             applySeason(currentSeasonKey);
             if (typeof AOS !== 'undefined') {
@@ -864,10 +977,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // --------------------------------------------------------------------------
-    // 10. AOS (Animate On Scroll) Entrance Animations
+    // 10. AOS (Animate On Scroll) Initialization Helper
     // --------------------------------------------------------------------------
+    let aosInitialized = false;
     function initAOS() {
+        if (aosInitialized) {
+            if (typeof AOS !== 'undefined') AOS.refresh();
+            return;
+        }
         if (typeof AOS !== 'undefined') {
+            aosInitialized = true;
             AOS.init({
                 duration: 850,
                 easing: 'ease-out-cubic',
@@ -877,12 +996,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 disable: () => window.matchMedia('(prefers-reduced-motion: reduce)').matches
             });
         }
-    }
-
-    if (typeof AOS !== 'undefined') {
-        initAOS();
-    } else {
-        window.addEventListener('load', initAOS, { once: true });
     }
 
     // --------------------------------------------------------------------------
@@ -909,11 +1022,122 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Attach tilt after the AOS entrance animation finishes (~1100ms), or on first hover
+    // --------------------------------------------------------------------------
+    // 12. Liquid Glass Droplet Preloader & Fluid Card Entrance
+    // --------------------------------------------------------------------------
+    const MIN_PRELOADER_TIME = 2500; // Minimum 2.5s duration to let liquid droplet animation play out
+    const preloaderStartTime = performance.now();
+    let isPreloaderDismissed = false;
+    let windowLoadFired = (document.readyState === 'complete');
+
+    // Adapt preloader droplet icon and badge to current season
+    if (dropletIcon && currentSeason) {
+        dropletIcon.textContent = currentSeason.btnAcceptEmoji || '💖';
+    }
+    if (preloaderBadgeText && currentSeason) {
+        preloaderBadgeText.textContent = currentSeason.name === 'Birthday' ? 'Crafting Birthday Joy 🎂' : `Crafting ${currentSeason.name} Magic ✨`;
+    }
+
+    const preloaderPhrases = [
+        "Infusing sweetness... 🍯",
+        "Polishing frosted glass... ✨",
+        "Preparing celebratory magic... 🎁",
+        "Almost ready! 💖"
+    ];
+
+    // Smoothly animate progress bar and cycle status phrases
+    const progressInterval = setInterval(() => {
+        if (isPreloaderDismissed) {
+            clearInterval(progressInterval);
+            return;
+        }
+
+        const elapsed = performance.now() - preloaderStartTime;
+        const ratio = Math.min(elapsed / MIN_PRELOADER_TIME, 0.96);
+        const percent = Math.round(ratio * 100);
+
+        if (preloaderBarFill) {
+            preloaderBarFill.style.width = `${percent}%`;
+        }
+
+        // Phrase cycling based on time progress
+        if (preloaderStatus) {
+            const phraseIdx = Math.min(Math.floor(ratio * preloaderPhrases.length), preloaderPhrases.length - 1);
+            preloaderStatus.textContent = preloaderPhrases[phraseIdx];
+        }
+    }, 60);
+
+    function dismissPreloader() {
+        if (isPreloaderDismissed) return;
+        isPreloaderDismissed = true;
+        clearInterval(progressInterval);
+
+        if (preloaderBarFill) {
+            preloaderBarFill.style.width = '100%';
+        }
+        if (preloaderStatus) {
+            preloaderStatus.textContent = 'Welcome! ✨';
+        }
+
+        // Elegantly fade out the preloader and scale the main glass UI card into view
+        setTimeout(() => {
+            if (preloader) {
+                preloader.classList.add('preloader-hiding');
+            }
+
+            if (valentineCard) {
+                valentineCard.classList.remove('card-initial-hide');
+                valentineCard.classList.add('card-revealed');
+            }
+
+            initAOS();
+
+            // After fadeout completes (850ms), fully remove preloader from view and activate 3D tilt
+            setTimeout(() => {
+                if (preloader) {
+                    preloader.classList.add('preloader-hidden');
+                    preloader.setAttribute('aria-hidden', 'true');
+                }
+                initCardTilt();
+            }, 850);
+        }, 180);
+    }
+
+    function checkReadyToDismiss() {
+        const elapsed = performance.now() - preloaderStartTime;
+        if (elapsed >= MIN_PRELOADER_TIME && windowLoadFired) {
+            dismissPreloader();
+        }
+    }
+
+    window.addEventListener('load', () => {
+        windowLoadFired = true;
+        checkReadyToDismiss();
+    });
+
+    // Ensure preloader plays for at least 2.5 seconds, then dismisses once window load has fired
+    if (preloader) {
+        setTimeout(() => {
+            if (windowLoadFired || document.readyState === 'complete') {
+                dismissPreloader();
+            } else {
+                // If window load is taking extra time (e.g. slow network), wait for it or fallback safely at +1.8s
+                const fallbackSafetyTimer = setTimeout(dismissPreloader, 1800);
+                window.addEventListener('load', () => {
+                    clearTimeout(fallbackSafetyTimer);
+                    dismissPreloader();
+                }, { once: true });
+            }
+        }, MIN_PRELOADER_TIME);
+    } else {
+        // Fallback if preloader element is absent
+        initAOS();
+        initCardTilt();
+    }
+
     if (valentineCard) {
         valentineCard.addEventListener('mouseenter', initCardTilt, { once: true });
     }
-    setTimeout(initCardTilt, 1100);
 
     // Adjust canvas and visual container on window resize and orientation change
     const handleViewportChange = () => {
