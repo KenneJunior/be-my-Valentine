@@ -285,23 +285,34 @@ body {
     position: relative;
     z-index: 10;
     width: 100%;
+    max-width: 100vw;
     min-height: 100vh;
-    padding: clamp(0.75rem, 2vh, 1.5rem);
+    min-height: 100dvh;
+    padding: clamp(0.5rem, 2vh, 1.25rem);
+    padding-top: max(clamp(0.5rem, 2vh, 1.25rem), env(safe-area-inset-top, 0.5rem));
+    padding-bottom: max(clamp(0.5rem, 2vh, 1.25rem), env(safe-area-inset-bottom, 0.5rem));
+    padding-left: max(clamp(0.5rem, 2vw, 1.25rem), env(safe-area-inset-left, 0.5rem));
+    padding-right: max(clamp(0.5rem, 2vw, 1.25rem), env(safe-area-inset-right, 0.5rem));
     display: flex;
     justify-content: center;
     align-items: center;
     box-sizing: border-box;
+    overflow-x: hidden;
 }
 
 .glass-card,
 #valentine-card {
     position: relative;
     width: 100%;
-    max-width: 460px;
-    max-height: calc(100vh - 2rem);
-    padding: clamp(1.25rem, 2.8vh, 1.85rem) clamp(1.25rem, 4vw, 2.25rem) clamp(0.85rem, 2vh, 1.35rem);
+    max-width: 480px;
+    max-height: calc(100vh - 1.5rem);
+    max-height: calc(100dvh - 1.5rem);
+    padding: clamp(1rem, 2.2vh, 1.65rem) clamp(1rem, 3.8vw, 2.2rem) clamp(0.75rem, 1.8vh, 1.25rem);
     box-sizing: border-box;
     overflow-y: auto;
+    overflow-x: hidden;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none; /* IE and Edge */
     
@@ -415,13 +426,13 @@ body {
 
 /* Card Visual / GIF Section - Dynamic Aspect-Ratio Container */
 .visual-container {
-    --img-ratio: 240 / 200;
+    --img-ratio: 280 / 240;
     width: auto;
-    max-width: min(240px, 80vw);
+    max-width: min(360px, 92vw);
     height: auto;
-    max-height: clamp(110px, 20vh, 165px);
+    max-height: clamp(185px, 29vh, 280px);
     aspect-ratio: var(--img-ratio);
-    margin: 0 auto clamp(0.45rem, 1.4vh, 0.9rem);
+    margin: 0 auto clamp(0.5rem, 1.8vh, 1.05rem);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -433,13 +444,13 @@ body {
 }
 
 .visual-container.is-wide-visual {
-    max-width: min(280px, 86vw);
-    max-height: clamp(100px, 18vh, 145px);
+    max-width: min(400px, 94vw);
+    max-height: clamp(165px, 25vh, 250px);
 }
 
 .visual-container.is-tall-visual {
-    max-width: min(180px, 60vw);
-    max-height: clamp(120px, 22vh, 180px);
+    max-width: min(260px, 76vw);
+    max-height: clamp(205px, 33vh, 300px);
 }
 
 .card-gif {
@@ -731,74 +742,434 @@ body.theme-valentine {
 }
 
 /* --------------------------------------------------------------------------
-   10. Responsive Breakpoints (Mobile Portrait & Landscape)
+   10. Responsive Breakpoints (Mobile Portrait, Compact & Landscape)
    -------------------------------------------------------------------------- */
+/* Standard Smartphone Screens (<= 480px width) */
 @media (max-width: 480px) {
     .glass-card,
     #valentine-card {
-        padding: clamp(1rem, 2.8vh, 1.4rem) clamp(1rem, 3.8vw, 1.35rem) clamp(0.75rem, 2vh, 1.15rem);
+        width: 100%;
+        max-width: 100%;
+        padding: clamp(0.75rem, 2vh, 1.15rem) clamp(0.75rem, 3.2vw, 1.15rem) clamp(0.65rem, 1.6vh, 0.95rem);
         border-radius: 20px;
+        margin: auto;
     }
 
+    /* Top Control Pills - single neat row with no awkward wrapping */
+    .card-controls-row {
+        gap: 0.35rem;
+        margin-bottom: 0.35rem;
+        flex-wrap: nowrap;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .glass-control-pill {
+        padding: 0.26rem 0.55rem;
+        font-size: 0.72rem;
+        flex: 1 1 0;
+        min-width: 0;
+        justify-content: center;
+        gap: 0.3rem;
+    }
+
+    .glass-control-pill .pill-label {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 130px;
+    }
+
+    .glass-control-pill .pill-icon {
+        font-size: 0.85rem;
+    }
+
+    .glass-control-pill .pill-edit-icon {
+        font-size: 0.65rem;
+    }
+
+    /* Top Badge */
+    .card-badge {
+        padding: 0.2rem 0.65rem;
+        font-size: 0.7rem;
+        margin-bottom: 0.3rem;
+        gap: 0.25rem;
+    }
+
+    /* Live Countdown Widget - Streamlined for mobile screen budget */
+    .countdown-widget {
+        margin: 0.2rem 0 0.35rem;
+        padding: 0.35rem 0.5rem;
+        border-radius: 12px;
+    }
+
+    .countdown-header-row {
+        gap: 0.3rem;
+        margin-bottom: 0.25rem;
+    }
+
+    .countdown-title {
+        font-size: 0.68rem;
+        letter-spacing: 0.03em;
+    }
+
+    .countdown-pulse-dot {
+        width: 5.5px;
+        height: 5.5px;
+    }
+
+    .countdown-grid {
+        gap: 0.22rem;
+    }
+
+    .countdown-box {
+        min-width: 36px;
+        padding: 0.2rem 0.2rem;
+        border-radius: 8px;
+    }
+
+    .countdown-val {
+        font-size: 0.95rem;
+    }
+
+    .countdown-unit {
+        font-size: 0.52rem;
+        margin-top: 1px;
+    }
+
+    .countdown-sep {
+        font-size: 0.95rem;
+        margin-bottom: 4px;
+    }
+
+    .countdown-today-banner {
+        font-size: 0.72rem;
+        padding: 0.2rem 0.4rem;
+        margin-top: 0.25rem;
+    }
+
+    /* Visual Section - Prominently sized bear */
     .visual-container {
-        max-width: min(210px, 72vw);
-        max-height: clamp(100px, 20vh, 145px);
-        margin-bottom: clamp(0.35rem, 1.2vh, 0.75rem);
+        max-width: min(290px, 80vw);
+        max-height: clamp(160px, 27vh, 230px);
+        margin: 0 auto clamp(0.35rem, 1.4vh, 0.7rem);
+    }
+
+    .visual-container.is-wide-visual {
+        max-width: min(325px, 88vw);
+        max-height: clamp(145px, 24vh, 205px);
+    }
+
+    .visual-container.is-tall-visual {
+        max-width: min(210px, 62vw);
+        max-height: clamp(175px, 30vh, 245px);
+    }
+
+    /* Content Area */
+    .content-header {
+        margin-bottom: clamp(0.4rem, 1.4vh, 0.65rem);
     }
 
     .main-question {
-        font-size: clamp(1.35rem, 4.2vw, 1.55rem);
+        font-size: clamp(1.25rem, 3.6vw, 1.48rem);
+        margin-bottom: 0.15rem;
+        line-height: 1.22;
     }
 
     .sub-message {
-        font-size: 0.825rem;
+        font-size: clamp(0.76rem, 2.1vw, 0.82rem);
+        line-height: 1.35;
+        max-width: 96%;
+    }
+
+    /* Action Buttons (Touch Target >= 44px) */
+    .button-group {
+        min-height: 48px;
+        gap: 0.65rem;
+        margin-bottom: 0.25rem;
     }
 
     .btn {
         padding: 0.6rem 1.25rem;
-        font-size: 0.95rem;
+        font-size: 0.92rem;
+        min-height: 44px;
+        touch-action: manipulation;
     }
 
-    .button-group {
-        gap: 0.75rem;
+    /* Success Container Mobile Enhancements */
+    .celebration-badge {
+        font-size: 0.74rem;
+        padding: 0.22rem 0.7rem;
+        margin-bottom: 0.35rem;
+    }
+
+    .success-heading {
+        font-size: clamp(1.25rem, 3vh, 1.55rem);
+        margin-bottom: 0.2rem;
+    }
+
+    .success-subtext {
+        font-size: 0.8rem;
+        margin-bottom: 0.4rem;
+        line-height: 1.35;
+    }
+
+    .music-player-pill {
+        margin: 0.2rem 0 0.4rem;
+    }
+
+    .music-toggle-btn {
+        padding: 0.35rem 0.8rem;
+        font-size: 0.75rem;
+    }
+
+    /* 3D Flip Card mobile fit */
+    .virtual-card-wrapper {
+        max-width: 320px;
+        margin: 0.4rem auto 0.65rem;
+    }
+
+    .virtual-card-inner {
+        min-height: 220px;
+    }
+
+    .virtual-card-front {
+        padding: 0.95rem 0.85rem;
+    }
+
+    .envelope-badge {
+        font-size: 0.64rem;
+        padding: 0.2rem 0.55rem;
+        margin-bottom: 0.45rem;
+    }
+
+    .wax-seal {
+        width: 52px;
+        height: 52px;
+    }
+
+    .wax-seal-heart {
+        font-size: 1.25rem;
+    }
+
+    .wax-seal-wrap {
+        margin-bottom: 0.4rem;
+    }
+
+    .envelope-recipient {
+        font-size: 1rem;
+        margin: 0.15rem 0;
+    }
+
+    .envelope-prompt {
+        font-size: 0.72rem;
+    }
+
+    .virtual-card-back {
+        padding: 0.8rem 0.9rem;
+        background-size: 100% 24px;
+    }
+
+    .parchment-header {
+        margin-bottom: 0.3rem;
+        padding-bottom: 0.25rem;
+    }
+
+    .parchment-greeting {
+        font-size: 1.18rem;
+        margin-bottom: 0.2rem;
+    }
+
+    .parchment-body {
+        font-size: 1.05rem;
+        line-height: 1.35;
+        margin-bottom: 0.3rem;
+    }
+
+    .parchment-signature {
+        font-size: 1.12rem;
+    }
+
+    .scratchpad-textarea {
+        min-height: 80px;
+        font-size: 1.1rem;
+        padding: 0.4rem 0.5rem;
+    }
+
+    .parchment-toolbar {
+        padding-top: 0.35rem;
+        gap: 0.35rem;
+    }
+
+    .parchment-tool-btn {
+        padding: 0.2rem 0.5rem;
+        font-size: 0.7rem;
+    }
+
+    /* Success Actions */
+    .success-actions {
+        display: flex;
+        gap: 0.45rem;
+        width: 100%;
+        max-width: 320px;
+        margin: 0 auto;
+    }
+
+    .success-actions .btn {
+        flex: 1 1 0;
+        padding: 0.55rem 0.65rem;
+        font-size: 0.8rem;
+        min-height: 44px;
+        justify-content: center;
+        white-space: nowrap;
+    }
+
+    /* Modals on Mobile */
+    .modal-backdrop {
+        padding: 0.75rem;
+    }
+
+    .modal-card {
+        padding: 1.25rem 1rem;
+        border-radius: 18px;
+        max-height: calc(100dvh - 2rem);
+    }
+
+    .modal-input,
+    .modal-textarea {
+        font-size: 16px !important; /* Prevents iOS Safari auto-zooming into input fields */
+        padding: 0.6rem 0.75rem;
+    }
+
+    .modal-icon {
+        font-size: 1.8rem;
+    }
+
+    .modal-title {
+        font-size: 1.18rem;
+    }
+
+    .modal-desc {
+        font-size: 0.8rem;
+    }
+
+    .modal-btn-row {
+        gap: 0.45rem;
+        margin-top: 1rem;
+    }
+
+    .btn-modal-primary,
+    .btn-modal-secondary {
+        padding: 0.6rem 0.85rem;
+        font-size: 0.86rem;
+        min-height: 44px;
+    }
+
+    .wish-capsule-display {
+        padding: 0.9rem 0.8rem;
+        min-height: 75px;
+        margin: 0.75rem 0;
+    }
+
+    .wish-text {
+        font-size: 1.22rem;
+    }
+
+    /* Mobile Toast */
+    .toast-notification {
+        bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+        font-size: 0.8rem;
+        padding: 0.5rem 0.95rem;
+        max-width: 90vw;
     }
 }
 
-/* Landscape Mobile & Short Viewport Mode */
-@media (orientation: landscape) and (max-height: 580px), (max-height: 600px) {
-    .app-wrapper {
-        padding: 0.5rem;
-    }
-
+/* Compact Smartphones (e.g. iPhone SE, screen width <= 375px) */
+@media (max-width: 375px) {
     .glass-card,
     #valentine-card {
-        max-width: min(520px, 94vw);
-        max-height: calc(100vh - 1rem);
-        padding: 0.55rem 1.25rem 0.5rem;
+        padding: 0.65rem 0.7rem 0.6rem;
         border-radius: 18px;
     }
 
     .card-badge {
-        margin-bottom: 0.25rem;
-        padding: 0.18rem 0.7rem;
-        font-size: 0.72rem;
+        display: none; /* Hide badge on tiny screens to preserve precious vertical height */
     }
 
-    /* Dynamically adapts to image aspect ratio with tight landscape vertical bound */
     .visual-container {
-        max-height: min(88px, 25vh);
-        max-width: min(200px, 35vw);
-        margin: 0 auto 0.35rem;
+        max-width: min(240px, 74vw);
+        max-height: clamp(140px, 24vh, 190px);
+        margin-bottom: 0.35rem;
     }
 
-    .visual-container.is-wide-visual {
-        max-width: min(240px, 42vw);
-        max-height: min(78px, 22vh);
+    .main-question {
+        font-size: 1.22rem;
     }
 
-    .visual-container.is-tall-visual {
-        max-width: min(130px, 25vw);
-        max-height: min(95px, 28vh);
+    .sub-message {
+        font-size: 0.76rem;
+    }
+
+    .countdown-widget {
+        padding: 0.3rem 0.35rem;
+    }
+
+    .countdown-box {
+        min-width: 31px;
+        padding: 0.18rem 0.15rem;
+    }
+
+    .countdown-val {
+        font-size: 0.88rem;
+    }
+
+    .countdown-unit {
+        font-size: 0.48rem;
+    }
+
+    .btn {
+        padding: 0.55rem 1rem;
+        font-size: 0.88rem;
+    }
+
+    .virtual-card-wrapper {
+        max-width: 280px;
+    }
+
+    .virtual-card-inner {
+        min-height: 200px;
+    }
+}
+
+/* Short Portrait Viewports (height <= 700px, e.g. phones with browser address bar and bottom bar expanded) */
+@media (max-height: 700px) and (orientation: portrait) {
+    .app-wrapper {
+        padding: 0.4rem;
+    }
+
+    .glass-card,
+    #valentine-card {
+        padding: 0.65rem 0.85rem 0.55rem;
+        max-height: calc(100dvh - 0.8rem);
+    }
+
+    .card-controls-row {
+        margin-bottom: 0.25rem;
+    }
+
+    .card-badge {
+        display: none; /* Conserve space */
+    }
+
+    .countdown-widget {
+        margin: 0.15rem 0 0.3rem;
+        padding: 0.3rem 0.45rem;
+    }
+
+    .visual-container {
+        max-height: clamp(130px, 23vh, 170px);
+        max-width: min(250px, 68vw);
+        margin-bottom: 0.3rem;
     }
 
     .content-header {
@@ -806,30 +1177,131 @@ body.theme-valentine {
     }
 
     .main-question {
-        font-size: clamp(1.1rem, 4.2vh, 1.35rem);
-        margin-bottom: 0.15rem;
+        font-size: 1.22rem;
+        margin-bottom: 0.1rem;
+    }
+
+    .sub-message {
+        font-size: 0.76rem;
+    }
+
+    .button-group {
+        min-height: 44px;
+        margin-bottom: 0.2rem;
+    }
+
+    .btn {
+        padding: 0.5rem 1.15rem;
+        font-size: 0.88rem;
+        min-height: 44px;
+    }
+
+    .virtual-card-wrapper {
+        min-height: 190px;
+        margin: 0.35rem auto 0.5rem;
+    }
+
+    .virtual-card-inner {
+        min-height: 190px;
+    }
+}
+
+/* Landscape Mobile & Short Viewport Mode */
+@media (orientation: landscape) and (max-height: 580px), (max-height: 600px) {
+    .app-wrapper {
+        padding: 0.4rem;
+    }
+
+    .glass-card,
+    #valentine-card {
+        max-width: min(520px, 94vw);
+        max-height: calc(100dvh - 0.8rem);
+        padding: 0.5rem 1.15rem 0.45rem;
+        border-radius: 18px;
+    }
+
+    .card-controls-row {
+        margin-bottom: 0.25rem;
+        gap: 0.35rem;
+    }
+
+    .glass-control-pill {
+        padding: 0.2rem 0.55rem;
+        font-size: 0.7rem;
+    }
+
+    .card-badge {
+        display: none; /* Hide badge in landscape to prioritize interactive elements */
+    }
+
+    .countdown-widget {
+        margin: 0.15rem 0 0.3rem;
+        padding: 0.25rem 0.45rem;
+    }
+
+    .countdown-box {
+        min-width: 32px;
+        padding: 0.15rem 0.15rem;
+    }
+
+    .countdown-val {
+        font-size: 0.85rem;
+    }
+
+    .countdown-unit {
+        font-size: 0.5rem;
+    }
+
+    .visual-container {
+        max-height: min(120px, 32vh);
+        max-width: min(250px, 42vw);
+        margin: 0 auto 0.25rem;
+    }
+
+    .visual-container.is-wide-visual {
+        max-width: min(290px, 48vw);
+        max-height: min(105px, 28vh);
+    }
+
+    .visual-container.is-tall-visual {
+        max-width: min(165px, 28vw);
+        max-height: min(130px, 34vh);
+    }
+
+    .content-header {
+        margin-bottom: 0.25rem;
+    }
+
+    .main-question {
+        font-size: clamp(1.05rem, 3.8vh, 1.25rem);
+        margin-bottom: 0.1rem;
         line-height: 1.2;
     }
 
     .sub-message {
-        font-size: clamp(0.72rem, 2.6vh, 0.8rem);
+        font-size: clamp(0.7rem, 2.4vh, 0.78rem);
         line-height: 1.25;
     }
 
     .button-group {
-        gap: 0.65rem;
+        gap: 0.55rem;
         margin-top: 0.1rem;
+        min-height: 44px;
     }
 
     .btn {
         padding: 0.45rem 1rem;
-        font-size: 0.875rem;
-        min-height: 38px;
+        font-size: 0.86rem;
+        min-height: 44px;
     }
 
-    .card-footer {
-        margin-top: 0.3rem;
-        padding-top: 0.3rem;
+    .virtual-card-wrapper {
+        min-height: 180px;
+        margin: 0.3rem auto 0.45rem;
+    }
+
+    .virtual-card-inner {
+        min-height: 180px;
     }
 }
 
@@ -837,36 +1309,37 @@ body.theme-valentine {
 @media (orientation: landscape) and (max-height: 420px) {
     .glass-card,
     #valentine-card {
-        padding: 0.4rem 1rem 0.35rem;
+        padding: 0.35rem 0.85rem 0.3rem;
     }
 
-    .card-badge {
-        display: none; /* Hide badge on extremely short landscape screens to prioritize bear & action buttons */
+    .card-badge,
+    .bear-emotion-pill {
+        display: none;
     }
 
     .visual-container {
-        max-height: min(68px, 21vh);
-        max-width: min(150px, 28vw);
-        margin-bottom: 0.2rem;
+        max-height: min(95px, 28vh);
+        max-width: min(190px, 32vw);
+        margin-bottom: 0.15rem;
     }
 
     .main-question {
-        font-size: 1.05rem;
-        margin-bottom: 0.1rem;
+        font-size: 1rem;
+        margin-bottom: 0.05rem;
     }
 
     .sub-message {
-        font-size: 0.72rem;
+        font-size: 0.68rem;
     }
 
     .button-group {
-        gap: 0.5rem;
+        gap: 0.45rem;
     }
 
     .btn {
-        padding: 0.35rem 0.85rem;
-        font-size: 0.82rem;
-        min-height: 34px;
+        padding: 0.35rem 0.8rem;
+        font-size: 0.8rem;
+        min-height: 40px;
     }
 }
 
@@ -1243,4 +1716,837 @@ body.theme-valentine {
     animation: none;
     height: 3px;
 }
+
+/* --------------------------------------------------------------------------
+   13. Top Card Control Pills & Personalization Bar
+   -------------------------------------------------------------------------- */
+.card-controls-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.65rem;
+    margin-bottom: 0.75rem;
+    flex-wrap: wrap;
+    z-index: 20;
+    width: 100%;
+}
+
+.glass-control-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.35rem 0.85rem;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    color: #4a2033;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: all 0.25s var(--ease-liquid);
+    outline: none;
+    user-select: none;
+}
+
+.glass-control-pill:hover {
+    background: rgba(255, 255, 255, 0.95);
+    transform: translateY(-1.5px);
+    box-shadow: 0 6px 16px rgba(255, 46, 99, 0.18);
+    border-color: rgba(255, 46, 99, 0.4);
+    color: #ff2e63;
+}
+
+.glass-control-pill:active {
+    transform: scale(0.97);
+}
+
+.pill-sparkle {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.85), rgba(255, 240, 245, 0.9));
+    border-color: rgba(255, 117, 140, 0.5);
+    color: #ff124f;
+    animation: pillGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes pillGlow {
+    0% {
+        box-shadow: 0 4px 12px rgba(255, 46, 99, 0.12);
+    }
+    100% {
+        box-shadow: 0 4px 18px rgba(255, 46, 99, 0.32);
+    }
+}
+
+.pill-icon {
+    font-size: 0.95rem;
+    line-height: 1;
+}
+
+.pill-edit-icon {
+    font-size: 0.75rem;
+    opacity: 0.6;
+    margin-left: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   14. Live Countdown / Count-up Timer Widget
+   -------------------------------------------------------------------------- */
+.countdown-widget {
+    width: 100%;
+    margin: 0.5rem 0 0.85rem;
+    padding: 0.6rem 0.85rem;
+    background: rgba(255, 255, 255, 0.52);
+    border: 1px solid rgba(255, 255, 255, 0.85);
+    border-radius: 16px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04);
+    box-sizing: border-box;
+}
+
+.countdown-header-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    margin-bottom: 0.45rem;
+}
+
+.countdown-pulse-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #ff2e63;
+    animation: pulseDot 1.4s ease-in-out infinite;
+}
+
+@keyframes pulseDot {
+    0% { transform: scale(0.85); opacity: 0.5; }
+    50% { transform: scale(1.3); opacity: 1; box-shadow: 0 0 8px #ff2e63; }
+    100% { transform: scale(0.85); opacity: 0.5; }
+}
+
+.countdown-title {
+    font-size: 0.76rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #5c203a;
+}
+
+.countdown-edit-btn {
+    background: none;
+    border: none;
+    font-size: 0.85rem;
+    cursor: pointer;
+    padding: 0 2px;
+    opacity: 0.75;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.countdown-edit-btn:hover {
+    opacity: 1;
+    transform: scale(1.2);
+}
+
+.countdown-grid {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+}
+
+.countdown-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 46px;
+    padding: 0.3rem 0.25rem;
+    background: rgba(255, 255, 255, 0.88);
+    border: 1px solid rgba(255, 46, 99, 0.2);
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(255, 46, 99, 0.08);
+}
+
+.countdown-val {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #ff124f;
+    line-height: 1;
+}
+
+.countdown-unit {
+    font-size: 0.62rem;
+    font-weight: 700;
+    color: #7b6271;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-top: 2px;
+}
+
+.countdown-sep {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #ff6b8b;
+    margin-bottom: 8px;
+}
+
+.countdown-today-banner {
+    margin-top: 0.35rem;
+    padding: 0.3rem 0.5rem;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #d90429;
+    background: rgba(255, 222, 233, 0.8);
+    border-radius: 8px;
+    animation: bounceBanner 1s ease infinite alternate;
+}
+
+@keyframes bounceBanner {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-2px); }
+}
+
+/* --------------------------------------------------------------------------
+   15. Bear Reaction Emotions & Speech Commentary
+   -------------------------------------------------------------------------- */
+.bear-emotion-pill {
+    display: none !important;
+}
+
+.bear-speech-bubble {
+    display: none !important;
+}
+
+@keyframes popBubble {
+    0% { transform: scale(0.85) translateY(4px); opacity: 0; }
+    100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+.bubble-tail {
+    position: absolute;
+    bottom: -7px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 7px solid rgba(255, 255, 255, 0.95);
+}
+
+/* Animated Bear Emotion Variations */
+.card-gif.bear-neutral {
+    animation: bearFloat 2.8s ease-in-out infinite;
+}
+
+.card-gif.bear-curious {
+    animation: bearCurious 1.8s ease-in-out infinite alternate;
+}
+
+@keyframes bearCurious {
+    0% { transform: rotate(0deg) translateY(0); }
+    50% { transform: rotate(-5deg) translateY(-8px); }
+    100% { transform: rotate(4deg) translateY(-4px); }
+}
+
+.card-gif.bear-surprised {
+    animation: bearSurprised 0.8s ease-in-out infinite alternate;
+}
+
+@keyframes bearSurprised {
+    0% { transform: scale(1) translateY(0); }
+    100% { transform: scale(1.08) translateY(-14px); filter: drop-shadow(0 0 10px rgba(255, 46, 99, 0.3)); }
+}
+
+.card-gif.bear-playful {
+    animation: bearPlayful 0.9s cubic-bezier(0.28, 0.84, 0.42, 1) infinite;
+}
+
+@keyframes bearPlayful {
+    0%, 100% { transform: translateX(0) translateY(0) rotate(0deg); }
+    25% { transform: translateX(-12px) translateY(-10px) rotate(-6deg); }
+    75% { transform: translateX(12px) translateY(-10px) rotate(6deg); }
+}
+
+.card-gif.bear-pleading {
+    animation: bearPleading 1.4s ease-in-out infinite;
+}
+
+@keyframes bearPleading {
+    0%, 100% { transform: scale(1) translateY(0); }
+    50% { transform: scale(0.96, 1.04) translateY(-6px); filter: drop-shadow(0 0 12px rgba(255, 117, 140, 0.45)); }
+}
+
+.card-gif.bear-dizzy {
+    animation: bearDizzy 1.2s ease-in-out infinite;
+}
+
+@keyframes bearDizzy {
+    0%, 100% { transform: rotate(0deg) scale(1); }
+    25% { transform: rotate(-10deg) scale(0.95); }
+    50% { transform: rotate(0deg) scale(1.03); }
+    75% { transform: rotate(10deg) scale(0.95); }
+}
+
+.card-gif.bear-dramatic {
+    animation: bearDramatic 0.8s ease-in-out infinite alternate;
+}
+
+@keyframes bearDramatic {
+    0% { transform: scale(1) translateY(0); filter: drop-shadow(0 0 4px #ff2e63); }
+    100% { transform: scale(1.1) translateY(-12px); filter: drop-shadow(0 0 18px #ff2e63); }
+}
+
+.card-gif.bear-joy {
+    animation: bearJoy 0.85s cubic-bezier(0.28, 0.84, 0.42, 1) infinite;
+}
+
+@keyframes bearJoy {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-26px) scale(1.08, 0.94); filter: drop-shadow(0 12px 20px rgba(255, 46, 99, 0.4)); }
+}
+
+/* --------------------------------------------------------------------------
+   16. 3D Flip-Card Virtual Love Letter Scratchpad
+   -------------------------------------------------------------------------- */
+.virtual-card-wrapper {
+    perspective: 1200px;
+    width: 100%;
+    max-width: 380px;
+    margin: 0.85rem auto 1.25rem;
+    user-select: none;
+}
+
+.virtual-card-inner {
+    position: relative;
+    width: 100%;
+    min-height: 270px;
+    transition: transform 0.85s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transform-style: preserve-3d;
+}
+
+.virtual-card-inner.is-flipped {
+    transform: rotateY(180deg);
+}
+
+.virtual-card-face {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 18px;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Front Face: Sealed Luxury Keepsake Envelope */
+.virtual-card-front {
+    background: linear-gradient(145deg, #fff2f5 0%, #ffd6e0 50%, #fec5d4 100%);
+    border: 2px solid rgba(255, 255, 255, 0.95);
+    box-shadow: 0 12px 28px rgba(255, 46, 99, 0.18),
+                inset 0 1px 2px rgba(255, 255, 255, 0.8);
+    padding: 1.4rem 1.2rem;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    text-align: center;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.virtual-card-front:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 36px rgba(255, 46, 99, 0.28);
+}
+
+.envelope-badge {
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    color: #9c2754;
+    background: rgba(255, 255, 255, 0.7);
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    margin-bottom: 0.85rem;
+}
+
+.wax-seal-wrap {
+    margin-bottom: 0.75rem;
+}
+
+.wax-seal {
+    width: 68px;
+    height: 68px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #ff4d6d, #c9184a 70%, #800f2f 100%);
+    box-shadow: 0 6px 18px rgba(128, 15, 47, 0.4),
+                inset 0 2px 4px rgba(255, 255, 255, 0.4),
+                inset 0 -3px 5px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed rgba(255, 215, 0, 0.45);
+    cursor: pointer;
+    transition: transform 0.25s ease;
+}
+
+.wax-seal:hover {
+    transform: scale(1.12);
+}
+
+.wax-seal-heart {
+    font-size: 1.6rem;
+    line-height: 1;
+    animation: heartBeat 1.2s ease-in-out infinite;
+}
+
+.envelope-recipient {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #4a1228;
+    margin: 0.25rem 0;
+}
+
+.envelope-prompt {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #8c2a50;
+    margin: 0;
+}
+
+/* Back Face: Vintage Handwritten Parchment Note with Live Scratchpad */
+.virtual-card-back {
+    transform: rotateY(180deg);
+    background: #fdfbf7;
+    background-image: 
+        linear-gradient(rgba(224, 212, 196, 0.28) 1px, transparent 1px);
+    background-size: 100% 28px;
+    border: 2px solid #eadecb;
+    box-shadow: 0 14px 32px rgba(90, 60, 40, 0.16),
+                inset 0 0 20px rgba(230, 215, 190, 0.4);
+    padding: 1.15rem 1.25rem;
+    text-align: left;
+    overflow-y: auto;
+}
+
+.parchment-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 0.35rem;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px dashed rgba(160, 130, 110, 0.4);
+}
+
+.parchment-stamp {
+    font-size: 1.1rem;
+}
+
+.parchment-title {
+    font-size: 0.76rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #8a624a;
+}
+
+.parchment-flip-back-btn {
+    background: rgba(160, 130, 110, 0.15);
+    border: 1px solid rgba(160, 130, 110, 0.3);
+    color: #5a3c28;
+    border-radius: 9999px;
+    padding: 0.2rem 0.65rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.parchment-flip-back-btn:hover {
+    background: rgba(160, 130, 110, 0.3);
+    transform: scale(1.05);
+}
+
+.parchment-content-view {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.parchment-greeting {
+    font-family: 'Caveat', cursive, sans-serif;
+    font-size: 1.45rem;
+    font-weight: 700;
+    color: #3b1b24;
+    margin: 0 0 0.4rem 0;
+    line-height: 1.2;
+}
+
+.parchment-body {
+    font-family: 'Caveat', cursive, sans-serif;
+    font-size: 1.28rem;
+    font-weight: 600;
+    color: #4a2530;
+    line-height: 1.45;
+    margin: 0 0 0.5rem 0;
+    flex: 1;
+    white-space: pre-wrap;
+}
+
+.parchment-signature {
+    font-family: 'Caveat', cursive, sans-serif;
+    font-size: 1.32rem;
+    font-weight: 700;
+    color: #c9184a;
+    margin: 0;
+    text-align: right;
+}
+
+/* Scratchpad Editor View */
+.parchment-scratchpad-editor {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0.5rem;
+}
+
+.scratchpad-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #7b5840;
+    margin-bottom: 0.3rem;
+}
+
+.scratchpad-textarea {
+    width: 100%;
+    flex: 1;
+    min-height: 110px;
+    background: rgba(255, 255, 255, 0.7);
+    border: 1.5px dashed #c4a482;
+    border-radius: 8px;
+    padding: 0.5rem 0.65rem;
+    font-family: 'Caveat', cursive, sans-serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #3b1b24;
+    line-height: 1.4;
+    resize: none;
+    box-sizing: border-box;
+    outline: none;
+}
+
+.scratchpad-textarea:focus {
+    border-color: #ff2e63;
+    background: rgba(255, 255, 255, 0.95);
+}
+
+.parchment-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    padding-top: 0.45rem;
+    border-top: 1px dashed rgba(160, 130, 110, 0.3);
+}
+
+.parchment-tool-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.25rem 0.65rem;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba(160, 130, 110, 0.4);
+    color: #4a2818;
+    font-size: 0.75rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.parchment-tool-btn:hover {
+    background: #fff;
+    border-color: #ff2e63;
+    color: #ff2e63;
+    transform: translateY(-1px);
+}
+
+/* --------------------------------------------------------------------------
+   17. Modals: Personalize & Wish Jar
+   -------------------------------------------------------------------------- */
+.modal-backdrop {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(30, 10, 20, 0.6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100000;
+    padding: 1rem;
+    box-sizing: border-box;
+    animation: fadeInModal 0.25s ease;
+}
+
+@keyframes fadeInModal {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+.modal-card {
+    position: relative;
+    width: 100%;
+    max-width: 440px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1.5px solid rgba(255, 255, 255, 0.9);
+    border-radius: 22px;
+    padding: 1.6rem 1.5rem;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2),
+                0 0 30px rgba(255, 46, 99, 0.15);
+    box-sizing: border-box;
+    animation: zoomInModal 0.3s var(--ease-elastic);
+}
+
+@keyframes zoomInModal {
+    0% { transform: scale(0.9); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.modal-close-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.06);
+    border: none;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #555;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.modal-close-btn:hover {
+    background: #ff2e63;
+    color: #fff;
+    transform: rotate(90deg);
+}
+
+.modal-header {
+    text-align: center;
+    margin-bottom: 1.25rem;
+}
+
+.modal-icon {
+    font-size: 2.2rem;
+    display: inline-block;
+    margin-bottom: 0.35rem;
+}
+
+.modal-title {
+    font-family: var(--font-heading);
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: #4a1525;
+    margin: 0 0 0.35rem 0;
+}
+
+.modal-desc {
+    font-size: 0.85rem;
+    color: #7b6271;
+    margin: 0;
+    line-height: 1.4;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #5c2838;
+    margin-bottom: 0.35rem;
+}
+
+.modal-input,
+.modal-textarea {
+    width: 100%;
+    padding: 0.65rem 0.85rem;
+    border-radius: 12px;
+    border: 1.5px solid rgba(255, 46, 99, 0.25);
+    background: rgba(255, 245, 248, 0.7);
+    font-family: var(--font-body);
+    font-size: 0.92rem;
+    color: #333;
+    box-sizing: border-box;
+    transition: all 0.2s ease;
+    outline: none;
+}
+
+.modal-input:focus,
+.modal-textarea:focus {
+    border-color: #ff2e63;
+    background: #fff;
+    box-shadow: 0 0 0 4px rgba(255, 46, 99, 0.15);
+}
+
+.modal-btn-row {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1.25rem;
+}
+
+.btn-modal-primary {
+    flex: 1;
+    padding: 0.7rem 1.25rem;
+    background: linear-gradient(135deg, #ff2e63 0%, #ff6b8b 100%);
+    color: #fff;
+    border: none;
+    border-radius: 9999px;
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(255, 46, 99, 0.35);
+    transition: all 0.25s ease;
+}
+
+.btn-modal-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(255, 46, 99, 0.45);
+}
+
+.btn-modal-secondary {
+    padding: 0.7rem 1.25rem;
+    background: rgba(255, 255, 255, 0.8);
+    border: 1.5px solid rgba(255, 46, 99, 0.3);
+    color: #ff2e63;
+    border-radius: 9999px;
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.btn-modal-secondary:hover {
+    background: #fff;
+    transform: translateY(-2px);
+}
+
+/* Wish Jar Modal Special Styling */
+.wish-jar-card {
+    text-align: center;
+}
+
+.wish-jar-icon-wrap {
+    width: 68px;
+    height: 68px;
+    border-radius: 50%;
+    margin: 0 auto 0.65rem;
+    background: linear-gradient(135deg, #ffd166 0%, #ff758c 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 20px rgba(255, 117, 140, 0.4);
+    animation: jarPulse 2.5s infinite alternate;
+}
+
+@keyframes jarPulse {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.08); box-shadow: 0 10px 26px rgba(255, 46, 99, 0.5); }
+}
+
+.wish-jar-icon {
+    font-size: 2rem;
+}
+
+.wish-capsule-display {
+    padding: 1.25rem 1.15rem;
+    background: linear-gradient(145deg, #fff5f8 0%, #fff 100%);
+    border: 2px solid rgba(255, 117, 140, 0.3);
+    border-radius: 16px;
+    margin: 1rem 0;
+    box-shadow: inset 0 2px 6px rgba(255, 46, 99, 0.05);
+    min-height: 90px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.25s ease;
+}
+
+.wish-text {
+    font-family: 'Caveat', cursive, sans-serif;
+    font-size: 1.45rem;
+    font-weight: 700;
+    color: #4a1525;
+    margin: 0 0 0.5rem 0;
+    line-height: 1.35;
+}
+
+.wish-capsule-tag {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #ff2e63;
+    background: rgba(255, 222, 233, 0.7);
+    padding: 0.2rem 0.65rem;
+    border-radius: 9999px;
+}
+
+/* --------------------------------------------------------------------------
+   18. Toast Notification
+   -------------------------------------------------------------------------- */
+.toast-notification {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: none;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.65rem 1.25rem;
+    background: rgba(30, 15, 25, 0.92);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 9999px;
+    color: #fff;
+    font-size: 0.88rem;
+    font-weight: 600;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    z-index: 200000;
+    pointer-events: none;
+    animation: toastPop 0.3s var(--ease-elastic);
+}
+
+.toast-notification[hidden],
+[hidden] {
+    display: none !important;
+}
+
+@keyframes toastPop {
+    0% { transform: translate(-50%, 15px) scale(0.85); opacity: 0; }
+    100% { transform: translate(-50%, 0) scale(1); opacity: 1; }
+}
+
 

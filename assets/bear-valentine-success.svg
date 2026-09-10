@@ -2,8 +2,8 @@
   <defs>
     <linearGradient id="furGrad" x1="0%" y1="0%" x2="0%" y2="100%">
       <stop offset="0%" stop-color="#ffffff"/>
-      <stop offset="55%" stop-color="#fdf6f7"/>
-      <stop offset="100%" stop-color="#fce2e8"/>
+      <stop offset="55%" stop-color="#fff5f8"/>
+      <stop offset="100%" stop-color="#fee5ed"/>
     </linearGradient>
 
     <radialGradient id="bellyGrad" cx="50%" cy="38%" r="58%">
@@ -18,31 +18,25 @@
     </linearGradient>
 
     <radialGradient id="blushGrad" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#ff3b68" stop-opacity="0.85"/>
-      <stop offset="50%" stop-color="#ff6b8b" stop-opacity="0.45"/>
+      <stop offset="0%" stop-color="#ff2e63" stop-opacity="0.85"/>
+      <stop offset="50%" stop-color="#ff5c8a" stop-opacity="0.45"/>
       <stop offset="100%" stop-color="#ffccd5" stop-opacity="0"/>
     </radialGradient>
 
-    <linearGradient id="santaRed" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#ff2a4b"/>
-      <stop offset="60%" stop-color="#d90429"/>
-      <stop offset="100%" stop-color="#9d0208"/>
+    <linearGradient id="rubyHeart" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff477e"/>
+      <stop offset="40%" stop-color="#ff0a54"/>
+      <stop offset="100%" stop-color="#a4133c"/>
     </linearGradient>
 
-    <linearGradient id="goldRibbon" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#fff3b0"/>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffe478"/>
       <stop offset="50%" stop-color="#ffd166"/>
-      <stop offset="100%" stop-color="#e09f3e"/>
-    </linearGradient>
-
-    <linearGradient id="scarfGreen" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#38b000"/>
-      <stop offset="60%" stop-color="#1b7a2b"/>
-      <stop offset="100%" stop-color="#0d4d1a"/>
+      <stop offset="100%" stop-color="#ffaa00"/>
     </linearGradient>
 
     <filter id="premiumGlow" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#d90429" flood-opacity="0.22"/>
+      <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#ff2e63" flood-opacity="0.25"/>
     </filter>
 
     <style>
@@ -59,9 +53,16 @@
         50% { transform: scale(1.22, 1.15); opacity: 0.48; }
       }
 
-      @keyframes starTwinkle {
-        0%, 100% { transform: scale(0.8) rotate(0deg); opacity: 0.4; }
-        50% { transform: scale(1.25) rotate(90deg); opacity: 1; }
+      @keyframes heartTwinkle {
+        0%, 100% { transform: scale(0.9) rotate(-6deg); }
+        50% { transform: scale(1.2) rotate(8deg); }
+      }
+
+      @keyframes petalDrift {
+        0% { transform: translateY(-10px) translateX(0) rotate(0deg); opacity: 0; }
+        30% { opacity: 0.9; }
+        80% { opacity: 0.85; }
+        100% { transform: translateY(210px) translateX(-18px) rotate(180deg); opacity: 0; }
       }
 
       @keyframes armWaveLeft {
@@ -82,6 +83,12 @@
         animation: groundShadow 1.05s cubic-bezier(0.28, 0.84, 0.38, 1) infinite;
         transform-origin: 140px 218px;
       }
+      .top-heart-anim {
+        animation: heartTwinkle 1.4s ease-in-out infinite;
+        transform-origin: 140px 32px;
+      }
+      .petal-1 { animation: petalDrift 3.4s linear infinite; }
+      .petal-2 { animation: petalDrift 4.2s linear infinite 1.4s; }
       .arm-left {
         animation: armWaveLeft 1.05s ease-in-out infinite;
         transform-origin: 104px 145px;
@@ -90,23 +97,25 @@
         animation: armWaveRight 1.05s ease-in-out infinite;
         transform-origin: 176px 145px;
       }
-      .star-1 { animation: starTwinkle 1.6s ease-in-out infinite; transform-origin: 48px 45px; }
-      .star-2 { animation: starTwinkle 2s ease-in-out infinite 0.6s; transform-origin: 232px 50px; }
     </style>
   </defs>
 
-  <!-- Twinkling Festive Holiday Stars -->
-  <g class="star-1">
-    <polygon points="48,36 51,43 58,44 53,49 54,56 48,52 42,56 43,49 38,44 45,43" fill="url(#goldRibbon)"/>
-    <circle cx="48" cy="46" r="2.5" fill="#ffffff"/>
-  </g>
-  <g class="star-2">
-    <polygon points="232,41 235,48 242,49 237,54 238,61 232,57 226,61 227,54 222,49 229,48" fill="url(#goldRibbon)"/>
-    <circle cx="232" cy="51" r="2.5" fill="#ffffff"/>
+  <!-- Drifting Rose Petals in Background -->
+  <g fill="#ff4d6d">
+    <path d="M 46,-5 C 40,-1 36,8 46,14 C 54,8 50,-1 46,-5 Z" class="petal-1"/>
+    <path d="M 234,-8 C 228,-4 224,5 234,11 C 242,5 238,-4 234,-8 Z" class="petal-2"/>
   </g>
 
+  <!-- Big Glowing Double Heart on Top -->
+  <g class="top-heart-anim">
+    <path d="M 140,24 C 134,10 114,14 114,30 C 114,46 140,58 140,58 C 140,58 166,46 166,30 C 166,14 146,10 140,24 Z" fill="url(#rubyHeart)"/>
+    <ellipse cx="124" cy="24" rx="4.5" ry="2.5" fill="#ffffff" opacity="0.6" transform="rotate(-30 124 24)"/>
+  </g>
+  <polygon points="45,40 47,44 51,45 48,48 49,52 45,50 41,52 42,48 39,45 43,44" fill="url(#goldGrad)"/>
+  <polygon points="235,46 237,50 241,51 238,54 239,58 235,56 231,58 232,54 229,51 233,50" fill="url(#goldGrad)"/>
+
   <!-- Ground Shadow -->
-  <ellipse cx="140" cy="218" rx="55" ry="11" fill="#c43d56" class="ground-shadow-anim"/>
+  <ellipse cx="140" cy="218" rx="55" ry="11" fill="#e86b8b" class="ground-shadow-anim"/>
 
   <!-- Main Jumping Victory Bear -->
   <g class="bear-victory-rig" filter="url(#premiumGlow)">
@@ -153,28 +162,22 @@
     <circle cx="140" cy="116" r="48" fill="url(#furGrad)" stroke="#f2bdca" stroke-width="2.5"/>
     <ellipse cx="140" cy="95" rx="28" ry="14" fill="#ffffff" opacity="0.45"/>
 
-    <!-- Santa Hat -->
-    <path d="M 108 86 Q 140 40 184 54 Q 198 68 206 86 Q 172 74 108 86 Z" fill="url(#santaRed)"/>
-    <rect x="104" y="80" width="74" height="15" rx="7.5" fill="#ffffff" stroke="#f0d5dd" stroke-width="1.8"/>
-    <circle cx="206" cy="88" r="11" fill="#ffffff" stroke="#f0d5dd" stroke-width="1.8"/>
-
-    <!-- Scarf -->
-    <path d="M 112 140 Q 140 152 168 140 Q 168 152 140 162 Q 112 152 112 140 Z" fill="url(#scarfGreen)"/>
-
-    <!-- Happy Eyes -->
+    <!-- Joyful Eyes -->
     <path d="M 116 112 Q 124 104 132 112" fill="none" stroke="#2d131b" stroke-width="3.5" stroke-linecap="round"/>
     <path d="M 148 112 Q 156 104 164 112" fill="none" stroke="#2d131b" stroke-width="3.5" stroke-linecap="round"/>
 
     <!-- Cheeks -->
     <circle cx="110" cy="122" r="14" fill="url(#blushGrad)"/>
     <circle cx="170" cy="122" r="14" fill="url(#blushGrad)"/>
+    <circle cx="108" cy="119" r="2.5" fill="#ffffff" opacity="0.75"/>
+    <circle cx="172" cy="119" r="2.5" fill="#ffffff" opacity="0.75"/>
 
     <!-- Snout & Nose -->
     <ellipse cx="140" cy="122" rx="14" ry="10" fill="#ffffff" stroke="#fce4ec" stroke-width="1.5"/>
     <ellipse cx="140" cy="118" rx="5.5" ry="3.8" fill="#441a28"/>
 
-    <!-- Big Open Smile -->
-    <path d="M 130 124 Q 140 138 150 124 Z" fill="#d90429" stroke="#441a28" stroke-width="2"/>
+    <!-- Ecstatic Open Valentine Smile -->
+    <path d="M 130 124 Q 140 138 150 124 Z" fill="#ff0a54" stroke="#441a28" stroke-width="2"/>
     <path d="M 134 130 Q 140 138 146 130 Z" fill="#ff758f"/>
 
   </g>

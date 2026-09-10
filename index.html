@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     
     <!-- Title & SEO Meta Tags -->
-    <title>Valentine's Day Ask | Do you want to be my valentine?</title>
-    <meta name="description" content="A responsive Valentine's Day 'Do you want to be my valentine?' web page featuring modern glassmorphism, animated romantic gradient background, playful dodging No button, growing Yes button, floating love emojis, and celebratory confetti.">
+    <title>Remix be-my-Valentine | Interactive Celebration Card</title>
+    <meta name="description" content="A responsive interactive celebration card with 3D flip parchment scratchpad, live countdown timer, dynamic URL personalization, reasons generator, and reactive emotional bear animations.">
     <meta name="theme-color" content="#ff2e63">
     
     <!-- Open Graph Tags -->
-    <meta property="og:title" content="Valentine's Day Ask">
-    <meta property="og:description" content="A responsive Valentine's Day 'Do you want to be my valentine?' web page with glassmorphism and confetti.">
+    <meta property="og:title" content="Remix be-my-Valentine | Interactive Celebration Card">
+    <meta property="og:description" content="A responsive interactive celebration card with 3D flip parchment scratchpad, live countdown timer, and reactive emotional bear animations.">
     <meta property="og:type" content="website">
     
     <!-- Favicon -->
@@ -127,25 +127,68 @@
                     aria-label="Open Secret Wish and Compliment Jar"
                 >
                     <span class="pill-icon" aria-hidden="true">🎁</span>
-                    <span class="pill-label">Secret Wish</span>
+                    <span class="pill-label" id="wish-jar-pill-text">Tap for a wish 💌</span>
                 </button>
             </div>
 
-            <!-- Top Heart Badge -->
+            <!-- Top Heart Badge & Live Countdown Widget -->
             <div 
                 class="card-badge" 
                 id="card-badge"
                 data-aos="fade-down"
-                data-aos-delay="250"
+                data-aos-delay="220"
                 data-aos-duration="600"
                 data-aos-easing="ease-out-cubic"
                 data-aos-once="true"
             >
-                <span class="badge-icon">✨</span>
-                <span class="badge-text" id="badge-text">Special Question</span>
+                <span class="badge-icon" id="badge-icon">✨</span>
+                <span class="badge-text" id="badge-text">Special Celebration</span>
             </div>
 
-            <!-- Interactive Visual / GIF Section with Reactive Bear Commentary -->
+            <!-- Live Countdown / Count-up Timer Widget -->
+            <div 
+                class="countdown-widget" 
+                id="countdown-widget" 
+                role="timer" 
+                aria-label="Celebration countdown timer"
+                data-aos="fade-down"
+                data-aos-delay="280"
+                data-aos-duration="600"
+                data-aos-easing="ease-out-cubic"
+                data-aos-once="true"
+            >
+                <div class="countdown-header-row">
+                    <span class="countdown-pulse-dot" aria-hidden="true"></span>
+                    <span class="countdown-title" id="countdown-title">Countdown to Celebration</span>
+                    <button type="button" class="countdown-edit-btn" id="countdown-edit-btn" title="Pick celebration date" aria-label="Set custom celebration date">🗓️</button>
+                </div>
+                <div class="countdown-grid" id="countdown-grid">
+                    <div class="countdown-box">
+                        <span class="countdown-val" id="timer-days">00</span>
+                        <span class="countdown-unit">Days</span>
+                    </div>
+                    <span class="countdown-sep" aria-hidden="true">:</span>
+                    <div class="countdown-box">
+                        <span class="countdown-val" id="timer-hours">00</span>
+                        <span class="countdown-unit">Hours</span>
+                    </div>
+                    <span class="countdown-sep" aria-hidden="true">:</span>
+                    <div class="countdown-box">
+                        <span class="countdown-val" id="timer-minutes">00</span>
+                        <span class="countdown-unit">Mins</span>
+                    </div>
+                    <span class="countdown-sep" aria-hidden="true">:</span>
+                    <div class="countdown-box">
+                        <span class="countdown-val" id="timer-seconds">00</span>
+                        <span class="countdown-unit">Secs</span>
+                    </div>
+                </div>
+                <div class="countdown-today-banner" id="countdown-today-banner" hidden>
+                    🎉 The Celebration is TODAY! Wishing You Infinite Joy! 🎂✨
+                </div>
+            </div>
+
+            <!-- Interactive Visual / GIF Section with Reactive Bear Commentary & Emotion States -->
             <div 
                 class="visual-container" 
                 id="visual-container"
@@ -155,9 +198,15 @@
                 data-aos-easing="ease-out-back"
                 data-aos-once="true"
             >
-                <!-- Reactive Bear Speech Bubble -->
-                <div class="bear-speech-bubble" id="bear-speech-bubble" role="status" aria-live="polite" hidden>
-                    <span class="bubble-text" id="bear-speech-text">Hey there! 🐻✨</span>
+                <!-- Reactive Bear Emotion Badge (Hidden) -->
+                <div class="bear-emotion-pill" id="bear-emotion-pill" role="status" aria-label="Bear emotion mood" hidden style="display: none;">
+                    <span class="emotion-icon" id="bear-emotion-icon">🐻</span>
+                    <span class="emotion-text" id="bear-emotion-text">Mood: Curious</span>
+                </div>
+
+                <!-- Reactive Bear Speech Bubble (Hidden) -->
+                <div class="bear-speech-bubble" id="bear-speech-bubble" role="status" aria-live="polite" hidden style="display: none;">
+                    <span class="bubble-text" id="bear-speech-text">Hey there! Tap Accept! 🐻✨</span>
                     <span class="bubble-tail" aria-hidden="true"></span>
                 </div>
 
@@ -166,9 +215,9 @@
                     id="main-gif" 
                     src="./assets/bear-birthday.svg" 
                     alt="Cute Seasonal animation"
-                    class="card-gif"
-                    width="240"
-                    height="200"
+                    class="card-gif bear-neutral"
+                    width="280"
+                    height="240"
                     onerror="this.onerror=null; this.src='https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHIzN3F5OGt5dzV2dDJyMjY5ZHFyZTVoZjFmZmZybnE0cTZkZDR6OSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/cLS1cfxvGOPVpf9g3y/giphy.gif';"
                 >
             </div>
@@ -257,18 +306,62 @@
                     </button>
                 </div>
 
-                <!-- Personal Keepsake Parchment Note -->
-                <div class="keepsake-letter-container" id="keepsake-letter-container">
-                    <div class="keepsake-envelope-header">
-                        <span class="envelope-stamp">💌</span>
-                        <span class="envelope-title" id="keepsake-envelope-title">A Special Note For You</span>
-                    </div>
-                    <div class="keepsake-letter-paper" id="keepsake-letter-paper">
-                        <p class="keepsake-greeting" id="keepsake-greeting">Dearest One,</p>
-                        <p class="keepsake-body" id="keepsake-body">
-                            May your days be filled with light, laughter, and an abundance of joy. Thank you for bringing so much happiness and magic into my life. Every moment with you is a gift!
-                        </p>
-                        <p class="keepsake-signature" id="keepsake-signature">With all my love & heart ❤️</p>
+                <!-- 3D Flip-Card Virtual Love Letter / Parchment Scratchpad -->
+                <div class="virtual-card-wrapper" id="virtual-card-wrapper">
+                    <div class="virtual-card-inner" id="virtual-card-inner">
+                        <!-- Front Face: Sealed Luxury Keepsake Envelope -->
+                        <div class="virtual-card-face virtual-card-front" id="virtual-card-front" role="button" tabindex="0" aria-label="Click to open and flip handwritten keepsake note">
+                            <div class="envelope-ribbon" aria-hidden="true"></div>
+                            <div class="envelope-badge">SPECIAL KEEPSAKE</div>
+                            <div class="wax-seal-wrap">
+                                <div class="wax-seal" id="wax-seal-btn" title="Click to open letter">
+                                    <span class="wax-seal-heart" aria-hidden="true">❤️</span>
+                                </div>
+                            </div>
+                            <h3 class="envelope-recipient" id="envelope-recipient-text">To: Someone Special</h3>
+                            <p class="envelope-prompt">✨ Click to Flip & Open Handwritten Letter 💌</p>
+                        </div>
+
+                        <!-- Back Face: Vintage Handwritten Parchment Note with Live Scratchpad -->
+                        <div class="virtual-card-face virtual-card-back" id="virtual-card-back">
+                            <div class="parchment-texture-overlay" aria-hidden="true"></div>
+                            <div class="parchment-header">
+                                <span class="parchment-stamp" aria-hidden="true">💌</span>
+                                <span class="parchment-title" id="parchment-title">Personal Keepsake Note</span>
+                                <button type="button" class="parchment-flip-back-btn" id="flip-back-btn" title="Flip envelope back" aria-label="Flip envelope back">🔄 Flip</button>
+                            </div>
+                            
+                            <!-- Display View (Handwritten Note) -->
+                            <div class="parchment-content-view" id="parchment-content-view">
+                                <p class="parchment-greeting" id="keepsake-greeting">Dearest One,</p>
+                                <p class="parchment-body" id="keepsake-body">
+                                    May your days be filled with light, laughter, and an abundance of joy. Thank you for bringing so much happiness and magic into my life. Every moment with you is a gift!
+                                </p>
+                                <p class="parchment-signature" id="keepsake-signature">With all my love & heart ❤️</p>
+                            </div>
+
+                            <!-- Scratchpad Live Editing View (hidden initially) -->
+                            <div class="parchment-scratchpad-editor" id="parchment-scratchpad-editor" hidden>
+                                <label for="scratchpad-textarea" class="scratchpad-label">Custom Scratchpad Message:</label>
+                                <textarea 
+                                    id="scratchpad-textarea" 
+                                    class="scratchpad-textarea" 
+                                    rows="4" 
+                                    maxlength="360" 
+                                    placeholder="Write your heartfelt custom note or memories here..."
+                                ></textarea>
+                            </div>
+
+                            <!-- Scratchpad Toolbar -->
+                            <div class="parchment-toolbar">
+                                <button type="button" id="edit-scratchpad-btn" class="parchment-tool-btn" aria-label="Edit message scratchpad">
+                                    <span id="scratchpad-btn-icon">✍️</span> <span id="scratchpad-btn-text">Edit Note</span>
+                                </button>
+                                <button type="button" id="copy-scratchpad-btn" class="parchment-tool-btn" aria-label="Copy note to clipboard">
+                                    <span>📋</span> <span>Copy Note</span>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -297,7 +390,7 @@
             <div class="modal-header">
                 <span class="modal-icon">💌</span>
                 <h3 class="modal-title" id="personalize-title">Personalize This Card</h3>
-                <p class="modal-desc">Enter your special person's name to tailor the entire experience and generate a personalized share link!</p>
+                <p class="modal-desc">Enter your special person's name or nickname to tailor the entire greeting, countdown, and generate a shareable link!</p>
             </div>
             <form id="personalize-form" class="modal-form" onsubmit="return false;">
                 <div class="form-group">
@@ -312,14 +405,22 @@
                     >
                 </div>
                 <div class="form-group">
-                    <label for="custom-note-input">Personal Sweet Note (Optional)</label>
+                    <label for="custom-note-input">Personal Sweet Note / Scratchpad (Optional)</label>
                     <textarea 
                         id="custom-note-input" 
                         class="modal-textarea" 
-                        placeholder="Add a heartfelt memory or private wish..."
-                        maxlength="240"
+                        placeholder="Add a heartfelt memory or custom love letter..."
+                        maxlength="320"
                         rows="3"
                     ></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="celebration-date-input">Celebration Date (Optional - for Countdown Timer)</label>
+                    <input 
+                        type="date" 
+                        id="celebration-date-input" 
+                        class="modal-input"
+                    >
                 </div>
                 <div class="modal-btn-row">
                     <button type="button" id="save-personalize-btn" class="btn-modal-primary">
@@ -342,25 +443,28 @@
                 <div class="wish-jar-icon-wrap">
                     <span class="wish-jar-icon" id="wish-jar-icon">🎁</span>
                 </div>
-                <h3 class="modal-title" id="wish-jar-title">Secret Wish & Reason Jar</h3>
-                <p class="modal-desc" id="wish-jar-desc">Open a capsule to reveal a sweet thought crafted just for you!</p>
+                <h3 class="modal-title" id="wish-jar-title">Reasons Why I Love You & Wishes</h3>
+                <p class="modal-desc" id="wish-jar-desc">Open a capsule to reveal sweet reasons and compliments crafted just for you!</p>
             </div>
             <div class="wish-capsule-display" id="wish-capsule-display">
                 <p class="wish-text" id="wish-content-text">"Your laugh is the warmest sound in the entire world, and your happiness makes everything better."</p>
-                <div class="wish-capsule-tag" id="wish-capsule-tag">✨ Sweet Fact #1</div>
+                <div class="wish-capsule-tag" id="wish-capsule-tag">✨ Sweet Reason #1</div>
             </div>
             <div class="modal-btn-row">
                 <button type="button" id="next-wish-btn" class="btn-modal-primary">
                     <span>Draw Another Wish 🎲✨</span>
+                </button>
+                <button type="button" id="copy-wish-btn" class="btn-modal-secondary">
+                    <span>Copy Wish 📋</span>
                 </button>
             </div>
         </div>
     </div>
 
     <!-- Floating Toast Notification -->
-    <div class="toast-notification" id="toast-notification" role="status" aria-live="polite" hidden>
+    <div class="toast-notification" id="toast-notification" role="status" aria-live="polite" hidden style="display: none;">
         <span class="toast-icon" id="toast-icon">✨</span>
-        <span class="toast-msg" id="toast-msg">Link copied to clipboard!</span>
+        <span class="toast-msg" id="toast-msg"></span>
     </div>
 
     <!-- JavaScript Application Logic -->

@@ -1,102 +1,196 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 200" width="240" height="200">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 240" width="280" height="240">
   <defs>
+    <linearGradient id="furGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="55%" stop-color="#fdfafd"/>
+      <stop offset="100%" stop-color="#f5ecf8"/>
+    </linearGradient>
+
+    <radialGradient id="bellyGrad" cx="50%" cy="38%" r="58%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="65%" stop-color="#faf2fc"/>
+      <stop offset="100%" stop-color="#ebd8f2"/>
+    </radialGradient>
+
+    <linearGradient id="innerEarGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f7aef8"/>
+      <stop offset="100%" stop-color="#d05ce3"/>
+    </linearGradient>
+
+    <radialGradient id="blushGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#f72585" stop-opacity="0.8"/>
+      <stop offset="50%" stop-color="#b5179e" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#f2c6f0" stop-opacity="0"/>
+    </radialGradient>
+
+    <linearGradient id="hatGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7209b7"/>
+      <stop offset="50%" stop-color="#560bad"/>
+      <stop offset="100%" stop-color="#3a0ca3"/>
+    </linearGradient>
+
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffe478"/>
+      <stop offset="50%" stop-color="#ffd166"/>
+      <stop offset="100%" stop-color="#ffaa00"/>
+    </linearGradient>
+
+    <filter id="premiumGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#7209b7" flood-opacity="0.22"/>
+    </filter>
+
     <style>
-      @keyframes jump {
+      @keyframes bearJump {
         0%, 100% { transform: translateY(0px) scale(1, 1); }
-        30% { transform: translateY(-24px) scale(0.96, 1.04); }
-        55% { transform: translateY(4px) scale(1.06, 0.94); }
-        70% { transform: translateY(-8px) scale(0.98, 1.02); }
+        25% { transform: translateY(-28px) scale(0.97, 1.05); }
+        50% { transform: translateY(-34px) scale(0.96, 1.06) rotate(1.5deg); }
+        75% { transform: translateY(6px) scale(1.08, 0.92) rotate(-0.5deg); }
+        88% { transform: translateY(-6px) scale(0.99, 1.01); }
       }
-      @keyframes firework {
+
+      @keyframes groundShadow {
+        0%, 100% { transform: scale(1, 1); opacity: 0.35; }
+        25%, 50% { transform: scale(0.72, 0.65); opacity: 0.16; }
+        75% { transform: scale(1.2, 1.15); opacity: 0.48; }
+      }
+
+      @keyframes fireworkBurst {
         0% { transform: scale(0.6) rotate(0deg); opacity: 0.3; }
-        50% { transform: scale(1.2) rotate(25deg); opacity: 1; }
-        100% { transform: scale(0.6) rotate(50deg); opacity: 0.3; }
+        50% { transform: scale(1.2) rotate(45deg); opacity: 1; }
+        100% { transform: scale(0.6) rotate(90deg); opacity: 0.3; }
       }
-      .bear-group {
-        animation: jump 1.1s cubic-bezier(0.28, 0.84, 0.42, 1) infinite;
-        transform-origin: 120px 170px;
+
+      @keyframes eyeBlink {
+        0%, 93%, 97%, 100% { transform: scaleY(1); }
+        95% { transform: scaleY(0.08); }
       }
-      .firework-1 { animation: firework 1.8s ease-in-out infinite; transform-origin: 45px 50px; }
-      .firework-2 { animation: firework 2.1s ease-in-out infinite 0.7s; transform-origin: 195px 45px; }
+
+      .bear-jumping-rig {
+        animation: bearJump 1.25s cubic-bezier(0.3, 0.8, 0.4, 1) infinite;
+        transform-origin: 140px 210px;
+      }
+      .ground-shadow-anim {
+        animation: groundShadow 1.25s cubic-bezier(0.3, 0.8, 0.4, 1) infinite;
+        transform-origin: 140px 218px;
+      }
+      .firework-1 { animation: fireworkBurst 2s ease-in-out infinite; transform-origin: 46px 50px; }
+      .firework-2 { animation: fireworkBurst 2.3s ease-in-out infinite 0.7s; transform-origin: 236px 55px; }
+      .eye-blink-anim {
+        animation: eyeBlink 3.7s ease-in-out infinite;
+        transform-origin: 140px 115px;
+      }
     </style>
   </defs>
 
-  <!-- Fireworks Background Sparkles -->
+  <!-- Festive New Year Fireworks in Background -->
   <g class="firework-1">
-    <circle cx="45" cy="50" r="3" fill="#ffd166"/>
-    <line x1="45" y1="40" x2="45" y2="44" stroke="#ffd166" stroke-width="2"/>
-    <line x1="45" y1="56" x2="45" y2="60" stroke="#ffd166" stroke-width="2"/>
-    <line x1="35" y1="50" x2="39" y2="50" stroke="#ffd166" stroke-width="2"/>
-    <line x1="51" y1="50" x2="55" y2="50" stroke="#ffd166" stroke-width="2"/>
+    <circle cx="46" cy="50" r="3.5" fill="url(#goldGrad)"/>
+    <line x1="46" y1="36" x2="46" y2="42" stroke="url(#goldGrad)" stroke-width="2" stroke-linecap="round"/>
+    <line x1="46" y1="58" x2="46" y2="64" stroke="url(#goldGrad)" stroke-width="2" stroke-linecap="round"/>
+    <line x1="32" y1="50" x2="38" y2="50" stroke="url(#goldGrad)" stroke-width="2" stroke-linecap="round"/>
+    <line x1="54" y1="50" x2="60" y2="50" stroke="url(#goldGrad)" stroke-width="2" stroke-linecap="round"/>
   </g>
   <g class="firework-2">
-    <circle cx="195" cy="45" r="3" fill="#00f5d4"/>
-    <line x1="195" y1="36" x2="195" y2="40" stroke="#00f5d4" stroke-width="2"/>
-    <line x1="195" y1="50" x2="195" y2="54" stroke="#00f5d4" stroke-width="2"/>
-    <line x1="186" y1="45" x2="190" y2="45" stroke="#00f5d4" stroke-width="2"/>
-    <line x1="200" y1="45" x2="204" y2="45" stroke="#00f5d4" stroke-width="2"/>
+    <circle cx="236" cy="55" r="3.5" fill="#00f5d4"/>
+    <line x1="236" y1="42" x2="236" y2="47" stroke="#00f5d4" stroke-width="2" stroke-linecap="round"/>
+    <line x1="236" y1="63" x2="236" y2="68" stroke="#00f5d4" stroke-width="2" stroke-linecap="round"/>
+    <line x1="223" y1="55" x2="228" y2="55" stroke="#00f5d4" stroke-width="2" stroke-linecap="round"/>
+    <line x1="244" y1="55" x2="249" y2="55" stroke="#00f5d4" stroke-width="2" stroke-linecap="round"/>
   </g>
 
-  <!-- Jumping New Year Bear -->
-  <g class="bear-group">
-    <ellipse cx="120" cy="174" rx="42" ry="8" fill="#a078b4" opacity="0.3"/>
+  <!-- Ground Shadow -->
+  <ellipse cx="140" cy="218" rx="55" ry="11" fill="#9d68b8" class="ground-shadow-anim"/>
 
-    <!-- Feet -->
-    <ellipse cx="102" cy="168" rx="14" ry="11" fill="#ffffff" stroke="#c0b0d8" stroke-width="2"/>
-    <circle cx="102" cy="169" r="6" fill="#f0c0db"/>
-    <ellipse cx="138" cy="168" rx="14" ry="11" fill="#ffffff" stroke="#c0b0d8" stroke-width="2"/>
-    <circle cx="138" cy="169" r="6" fill="#f0c0db"/>
+  <!-- Jumping Bear Rig -->
+  <g class="bear-jumping-rig" filter="url(#premiumGlow)">
 
-    <!-- Bear Body -->
-    <ellipse cx="120" cy="138" rx="38" ry="34" fill="#ffffff" stroke="#c0b0d8" stroke-width="2.5"/>
-    <ellipse cx="120" cy="142" rx="23" ry="20" fill="#fcf6ff"/>
+    <!-- Feet with Soft Lilac Pads -->
+    <g id="feet">
+      <ellipse cx="114" cy="204" rx="17" ry="13" fill="url(#furGrad)" stroke="#d9c2e6" stroke-width="2"/>
+      <ellipse cx="114" cy="205" rx="8" ry="6" fill="url(#innerEarGrad)"/>
+      <circle cx="109" cy="198" r="2" fill="#d05ce3"/>
+      <circle cx="114" cy="196" r="2" fill="#d05ce3"/>
+      <circle cx="119" cy="198" r="2" fill="#d05ce3"/>
+
+      <ellipse cx="166" cy="204" rx="17" ry="13" fill="url(#furGrad)" stroke="#d9c2e6" stroke-width="2"/>
+      <ellipse cx="166" cy="205" rx="8" ry="6" fill="url(#innerEarGrad)"/>
+      <circle cx="161" cy="198" r="2" fill="#d05ce3"/>
+      <circle cx="166" cy="196" r="2" fill="#d05ce3"/>
+      <circle cx="171" cy="198" r="2" fill="#d05ce3"/>
+    </g>
+
+    <!-- Body -->
+    <ellipse cx="140" cy="166" rx="46" ry="40" fill="url(#furGrad)" stroke="#d9c2e6" stroke-width="2.5"/>
+    <ellipse cx="140" cy="170" rx="30" ry="25" fill="url(#bellyGrad)"/>
 
     <!-- Shiny Golden Bowtie -->
-    <polygon points="113,124 113,136 120,130" fill="#ffd166"/>
-    <polygon points="127,124 127,136 120,130" fill="#ffd166"/>
-    <circle cx="120" cy="130" r="3.5" fill="#ffb703"/>
+    <g transform="translate(140, 152)">
+      <polygon points="-16,-7 -16,7 0,0" fill="url(#goldGrad)"/>
+      <polygon points="16,-7 16,7 0,0" fill="url(#goldGrad)"/>
+      <circle cx="0" cy="0" r="4.5" fill="#ffd166"/>
+      <circle cx="-0.8" cy="-0.8" r="1.5" fill="#ffffff"/>
+    </g>
 
     <!-- Ears -->
-    <circle cx="88" cy="74" r="16" fill="#ffffff" stroke="#c0b0d8" stroke-width="2.5"/>
-    <circle cx="88" cy="74" r="9" fill="#fec5d4"/>
-    <circle cx="152" cy="74" r="16" fill="#ffffff" stroke="#c0b0d8" stroke-width="2.5"/>
-    <circle cx="152" cy="74" r="9" fill="#fec5d4"/>
+    <circle cx="98" cy="84" r="20" fill="url(#furGrad)" stroke="#d9c2e6" stroke-width="2.5"/>
+    <circle cx="98" cy="84" r="11" fill="url(#innerEarGrad)"/>
+    <ellipse cx="96" cy="80" rx="4" ry="2" fill="#ffffff" opacity="0.6"/>
+
+    <circle cx="182" cy="84" r="20" fill="url(#furGrad)" stroke="#d9c2e6" stroke-width="2.5"/>
+    <circle cx="182" cy="84" r="11" fill="url(#innerEarGrad)"/>
+    <ellipse cx="180" cy="80" rx="4" ry="2" fill="#ffffff" opacity="0.6"/>
 
     <!-- Head -->
-    <circle cx="120" cy="98" r="38" fill="#ffffff" stroke="#c0b0d8" stroke-width="2.5"/>
+    <circle cx="140" cy="116" r="48" fill="url(#furGrad)" stroke="#d9c2e6" stroke-width="2.5"/>
+    <ellipse cx="140" cy="95" rx="28" ry="14" fill="#ffffff" opacity="0.45"/>
 
     <!-- 2026 Glitter Party Hat -->
-    <polygon points="120,38 102,70 138,70" fill="#7209b7"/>
-    <polygon points="120,38 112,56 128,56" fill="#ffd166"/>
-    <!-- Gold Trim -->
-    <ellipse cx="120" cy="70" rx="19" ry="4" fill="#ffd166"/>
-    <!-- Star Pom-Pom -->
-    <polygon points="120,32 122,36 126,37 123,40 124,44 120,42 116,44 117,40 114,37 118,36" fill="#ffd166"/>
-    <!-- '2026' Text on Hat -->
-    <text x="120" y="65" font-family="'Outfit', sans-serif" font-size="7" font-weight="bold" fill="#ffffff" text-anchor="middle">2026</text>
+    <polygon points="140,40 116,80 164,80" fill="url(#hatGrad)"/>
+    <polygon points="140,40 128,62 152,62" fill="url(#goldGrad)"/>
+    <ellipse cx="140" cy="80" rx="25" ry="5" fill="url(#goldGrad)"/>
+    <!-- Golden Star Topper -->
+    <polygon points="140,32 142,37 148,38 144,42 145,47 140,44 135,47 136,42 132,38 138,37" fill="url(#goldGrad)"/>
+    <!-- '2026' text -->
+    <text x="140" y="74" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="9" font-weight="900" fill="#ffffff" text-anchor="middle" letter-spacing="1">2026</text>
 
-    <!-- Eyes (Joyful arches) -->
-    <path d="M 103 96 Q 109 90 113 96" fill="none" stroke="#2b1842" stroke-width="3" stroke-linecap="round"/>
-    <path d="M 127 96 Q 131 90 137 96" fill="none" stroke="#2b1842" stroke-width="3" stroke-linecap="round"/>
+    <!-- Eyes (Glossy Anime Style) -->
+    <g class="eye-blink-anim">
+      <g transform="translate(118, 114)">
+        <ellipse cx="0" cy="0" rx="6.5" ry="8.5" fill="#22112d"/>
+        <ellipse cx="-2" cy="-3" rx="2.8" ry="3.5" fill="#ffffff"/>
+        <circle cx="2.2" cy="3" r="1.3" fill="#ffffff"/>
+      </g>
+      <g transform="translate(162, 114)">
+        <ellipse cx="0" cy="0" rx="6.5" ry="8.5" fill="#22112d"/>
+        <ellipse cx="-2" cy="-3" rx="2.8" ry="3.5" fill="#ffffff"/>
+        <circle cx="2.2" cy="3" r="1.3" fill="#ffffff"/>
+      </g>
+    </g>
 
-    <!-- Blushing Cheeks -->
-    <ellipse cx="98" cy="106" rx="7.5" ry="4.5" fill="#f72585" opacity="0.75"/>
-    <ellipse cx="142" cy="106" rx="7.5" ry="4.5" fill="#f72585" opacity="0.75"/>
+    <!-- Rosy Blushing Cheeks -->
+    <circle cx="110" cy="126" r="13" fill="url(#blushGrad)"/>
+    <circle cx="170" cy="126" r="13" fill="url(#blushGrad)"/>
+    <circle cx="108" cy="123" r="2" fill="#ffffff" opacity="0.7"/>
+    <circle cx="172" cy="123" r="2" fill="#ffffff" opacity="0.7"/>
 
     <!-- Snout & Nose -->
-    <ellipse cx="120" cy="105" rx="11" ry="8" fill="#fcf6ff"/>
-    <ellipse cx="120" cy="102" rx="4.5" ry="3" fill="#4a2840"/>
-    <path d="M 120 105 Q 116 111 112 108" fill="none" stroke="#4a2840" stroke-width="1.8" stroke-linecap="round"/>
-    <path d="M 120 105 Q 124 111 128 108" fill="none" stroke="#4a2840" stroke-width="1.8" stroke-linecap="round"/>
+    <ellipse cx="140" cy="126" rx="14" ry="10" fill="#ffffff" stroke="#f0e2f5" stroke-width="1.5"/>
+    <ellipse cx="140" cy="122" rx="5.5" ry="3.8" fill="#381b40"/>
+    <ellipse cx="138.5" cy="120.8" rx="2" ry="1.2" fill="#ffffff" opacity="0.8"/>
+    <path d="M 140 125.5 Q 134 133 129 129" fill="none" stroke="#381b40" stroke-width="2" stroke-linecap="round"/>
+    <path d="M 140 125.5 Q 146 133 151 129" fill="none" stroke="#381b40" stroke-width="2" stroke-linecap="round"/>
 
     <!-- Left Paw -->
-    <ellipse cx="96" cy="136" rx="10" ry="8" fill="#ffffff" stroke="#c0b0d8" stroke-width="2"/>
+    <ellipse cx="112" cy="164" rx="12" ry="10" fill="url(#furGrad)" stroke="#d9c2e6" stroke-width="2"/>
 
-    <!-- Right Paw holding Party Horn with stars -->
-    <polygon points="144,136 166,124 168,132" fill="#ffd166"/>
-    <polygon points="166,124 172,120 174,136 168,132" fill="#f72585"/>
-    <circle cx="178" cy="122" r="2.5" fill="#ffd166"/>
-    <circle cx="184" cy="128" r="2" fill="#00f5d4"/>
-    <ellipse cx="144" cy="136" rx="10" ry="8" fill="#ffffff" stroke="#c0b0d8" stroke-width="2"/>
+    <!-- Right Paw holding Festive Party Horn with Stars -->
+    <g transform="translate(156, 142) rotate(-15)">
+      <polygon points="0,10 26,0 28,12 0,14" fill="url(#goldGrad)"/>
+      <polygon points="26,0 34,-4 36,16 28,12" fill="#f72585"/>
+      <circle cx="42" cy="-2" r="3" fill="url(#goldGrad)"/>
+      <circle cx="48" cy="6" r="2.5" fill="#00f5d4"/>
+    </g>
+    <ellipse cx="168" cy="164" rx="12" ry="10" fill="url(#furGrad)" stroke="#d9c2e6" stroke-width="2"/>
+
   </g>
 </svg>

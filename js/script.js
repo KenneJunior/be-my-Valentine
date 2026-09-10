@@ -122,8 +122,8 @@ const SEASONS = {
         heading: 'will you be my Valentine? 🥺🌹💖',
         subMessage: 'Every single variable in my life changed for the better the moment I met you. Statistically and undeniably, you are my perfect match. Will you do me the absolute honor? 💌🦋🥺❤️',
         badge: '💖 Special Question',
-        bearNormal: './assets/img1.gif',
-        bearSuccess: './assets/img3.gif',
+        bearNormal: './assets/bear-valentine.svg',
+        bearSuccess: './assets/bear-valentine-success.svg',
         acceptText: 'Accept',
         acceptEmoji: '💖',
         denyText: 'Deny',
@@ -145,6 +145,98 @@ const SEASONS = {
         particleType: 'up',
         floatingEmojis: ['💖', '❤️', '💘', '🌹', '💕', '💌', '💝', '🥰', '✨', '🌸', '🦋'],
         confettiColors: ['#ff2e63', '#ff6b8b', '#ff9a9e', '#fbc2eb', '#ffffff', '#ffd166']
+    }
+};
+
+// --------------------------------------------------------------------------
+// 1b. Seasonal Wishes & Reasons Collections
+// --------------------------------------------------------------------------
+const WISH_DATA = {
+    valentine: {
+        title: "Reasons Why I Love You 💖",
+        tagPrefix: "Reason",
+        pillLabel: "Tap for a reason 💌",
+        items: [
+            "The way your eyes crinkle with pure joy when you genuinely laugh.",
+            "How you make even the simplest grocery trip feel like our favorite adventure.",
+            "Your unwavering kindness and empathy toward everyone you meet.",
+            "The warm, calming safety I feel every time you hold my hand.",
+            "The silly songs and inside jokes that only make sense to the two of us.",
+            "How passionate you get whenever you talk about things you love.",
+            "Your sweet good morning texts that brighten my entire day before it even starts.",
+            "The way you remember small details about me that I thought nobody noticed.",
+            "How beautiful you look when you wake up, completely effortless and radiant.",
+            "You are both my best friend and the love of my life all in one.",
+            "Your endless patience, understanding, and generous heart.",
+            "The comfort of sharing silent, cozy moments with you and feeling completely at home.",
+            "The cute little happy dance you do when good food arrives.",
+            "How you inspire me to be a better, gentler, and braver version of myself.",
+            "Your infectious smile that immediately melts away even my most stressful days.",
+            "The way we can communicate an entire story across a crowded room with just one look.",
+            "Your warm hugs that make the rest of the noisy world disappear.",
+            "The way you believe in my dreams even when I struggle to believe in them myself.",
+            "Every single tomorrow feels exciting and full of promise because you're in it.",
+            "Quite simply: you are my favorite human in the entire universe, forever and always."
+        ]
+    },
+    birthday: {
+        title: "Birthday Wishes & Sweet Compliments 🎂",
+        tagPrefix: "Birthday Wish",
+        pillLabel: "Tap for a wish 💌",
+        items: [
+            "May your year ahead be as radiant, joyful, and limitless as your smile!",
+            "Wishing you uncontainable laughter, unexpected miracles, and all your biggest goals coming true!",
+            "You have this rare gift of bringing effortless sunshine into every room you enter.",
+            "May today remind you just how deeply loved, appreciated, and cherished you are!",
+            "Here's to 365 new days of unforgettable memories, delicious food, and thrilling adventures!",
+            "The world became an infinitely sweeter, brighter place the day you were born.",
+            "May every single candle on your cake grant you your truest, deepest heart's desire!",
+            "Wishing you peace of mind, fierce confidence, and boundless opportunities this year!",
+            "You deserve all the cake, all the hugs, and all the happiness this planet has to offer.",
+            "Never stop shining your unique light—you inspire everyone lucky enough to know you.",
+            "May this new chapter overflow with prosperity, genuine health, and soul-deep happiness!",
+            "Happy Birthday to someone who makes life infinitely more fun, colorful, and meaningful!",
+            "May you be surrounded today by the people, food, and music that bring you pure bliss.",
+            "Another year wiser, more wonderful, and even more breathtakingly magnificent!",
+            "May all your hard work pay off in the most spectacular and rewarding ways this year!",
+            "Wishing you sweet surprises, cozy evenings, and love that never wavers!",
+            "May your heart be lighter than air and your smile wider than the sky today!",
+            "Here's to celebrating YOU—the kindest, funniest, and most extraordinary soul I know!"
+        ]
+    },
+    christmas: {
+        title: "Holiday Cheer & Cozy Wishes 🎄",
+        tagPrefix: "Holiday Wish",
+        pillLabel: "Holiday Wish 🎁",
+        items: [
+            "May your holidays be wrapped in warmth, sweet cocoa kisses, and fireside peace.",
+            "Of all the holiday lights twinkling this season, you will always be the brightest one to me.",
+            "Wishing you cozy sweater weather, endless holiday treats, and quiet moments of pure contentment.",
+            "You are the absolute greatest gift I could ever unwrap, year after year.",
+            "May the magic of Christmas fill every corner of your heart and home with joy.",
+            "Wishing you laughter around the table, snow softly falling, and all the comfort in the world.",
+            "Being with you turns any ordinary day into a storybook holiday wonderland.",
+            "May your season be free of stress and abundant in warm memories with those you cherish.",
+            "Here's to warm gingerbread, nostalgic songs, and endless holiday cuddles with you.",
+            "May the gentle peace of Christmas remain with you all through the coming winter months."
+        ]
+    },
+    newyear: {
+        title: "New Year Hopes & Toast Wishes 🎆",
+        tagPrefix: "New Year Toast",
+        pillLabel: "New Year Toast 🥂",
+        items: [
+            "Cheers to 365 fresh chances to laugh louder, dream bolder, and love deeper!",
+            "May 2026 bring you career breakthroughs, breathtaking travels, and continuous peace.",
+            "Stepping into another year with you is the greatest privilege and joy I know.",
+            "May every door you knock on open wide, and every seed you plant blossom gracefully.",
+            "Here's to leaving behind old doubts and stepping boldly into your greatest chapter yet!",
+            "May our midnight dreams turn into our everyday reality all year long.",
+            "Wishing you robust health, unstoppable resilience, and pure serenity every single day.",
+            "To new horizons, late-night conversations, and making every second count together!",
+            "May your courage be stronger than any obstacle and your happiness be contagious.",
+            "Cheers to writing our most beautiful, joyful, and victorious love story yet in 2026!"
+        ]
     }
 };
 
@@ -294,10 +386,85 @@ document.addEventListener('DOMContentLoaded', () => {
     const denyTextSpan = document.getElementById('deny-text');
     const denyEmojiSpan = document.getElementById('deny-emoji');
 
-    // Parse URL parameters for recipient (?to=Lucie or ?name=...) and manual overrides
+    // Parse URL parameters for recipient (?to=Lucie or ?name=...), date, and custom note
     const urlParams = new URLSearchParams(window.location.search);
-    const rawRecipient = urlParams.get('to') || urlParams.get('name') || urlParams.get('recipient') || '';
-    const recipientName = rawRecipient.trim().slice(0, 36);
+    const rawRecipient = urlParams.get('to') || urlParams.get('name') || urlParams.get('recipient') || localStorage.getItem('celebration_recipient') || '';
+    let recipientName = rawRecipient.trim().slice(0, 36);
+
+    const rawCustomMsg = urlParams.get('msg') || urlParams.get('message') || localStorage.getItem('custom_keepsake_msg') || '';
+    let customKeepsakeMsg = rawCustomMsg.trim().slice(0, 500);
+
+    const rawCustomDate = urlParams.get('date') || localStorage.getItem('celebration_custom_date') || '';
+    let customCelebrationDate = rawCustomDate.trim();
+
+    // Top Controls & Personalization Elements
+    const personalizePillBtn = document.getElementById('personalize-pill-btn');
+    const recipientPillText = document.getElementById('recipient-pill-text');
+    const wishJarPillBtn = document.getElementById('wish-jar-pill-btn');
+    const wishJarPillText = document.getElementById('wish-jar-pill-text');
+
+    // Countdown Elements
+    const countdownWidget = document.getElementById('countdown-widget');
+    const countdownTitle = document.getElementById('countdown-title');
+    const countdownEditBtn = document.getElementById('countdown-edit-btn');
+    const timerDays = document.getElementById('timer-days');
+    const timerHours = document.getElementById('timer-hours');
+    const timerMinutes = document.getElementById('timer-minutes');
+    const timerSeconds = document.getElementById('timer-seconds');
+    const countdownTodayBanner = document.getElementById('countdown-today-banner');
+
+    // Bear Emotion Elements
+    const bearEmotionPill = document.getElementById('bear-emotion-pill');
+    const bearEmotionIcon = document.getElementById('bear-emotion-icon');
+    const bearEmotionText = document.getElementById('bear-emotion-text');
+    const bearSpeechBubble = document.getElementById('bear-speech-bubble');
+    const bearSpeechText = document.getElementById('bear-speech-text');
+
+    // 3D Flip-Card Virtual Love Letter / Scratchpad Elements
+    const virtualCardWrapper = document.getElementById('virtual-card-wrapper');
+    const virtualCardInner = document.getElementById('virtual-card-inner');
+    const virtualCardFront = document.getElementById('virtual-card-front');
+    const waxSealBtn = document.getElementById('wax-seal-btn');
+    const envelopeRecipientText = document.getElementById('envelope-recipient-text');
+    const flipBackBtn = document.getElementById('flip-back-btn');
+    const parchmentContentView = document.getElementById('parchment-content-view');
+    const keepsakeGreeting = document.getElementById('keepsake-greeting');
+    const keepsakeBody = document.getElementById('keepsake-body');
+    const keepsakeSignature = document.getElementById('keepsake-signature');
+    const parchmentScratchpadEditor = document.getElementById('parchment-scratchpad-editor');
+    const scratchpadTextarea = document.getElementById('scratchpad-textarea');
+    const editScratchpadBtn = document.getElementById('edit-scratchpad-btn');
+    const scratchpadBtnIcon = document.getElementById('scratchpad-btn-icon');
+    const scratchpadBtnText = document.getElementById('scratchpad-btn-text');
+    const copyScratchpadBtn = document.getElementById('copy-scratchpad-btn');
+    const shareLinkBtn = document.getElementById('share-link-btn');
+
+    // Modals: Personalize & Wish Jar
+    const personalizeModal = document.getElementById('personalize-modal');
+    const closePersonalizeBtn = document.getElementById('close-personalize-btn');
+    const recipientNameInput = document.getElementById('recipient-name-input');
+    const customNoteInput = document.getElementById('custom-note-input');
+    const celebrationDateInput = document.getElementById('celebration-date-input');
+    const savePersonalizeBtn = document.getElementById('save-personalize-btn');
+    const copyCustomLinkBtn = document.getElementById('copy-custom-link-btn');
+
+    const wishJarModal = document.getElementById('wish-jar-modal');
+    const closeWishModalBtn = document.getElementById('close-wish-modal-btn');
+    const wishJarTitle = document.getElementById('wish-jar-title');
+    const wishJarIcon = document.getElementById('wish-jar-icon');
+    const wishContentText = document.getElementById('wish-content-text');
+    const wishCapsuleTag = document.getElementById('wish-capsule-tag');
+    const nextWishBtn = document.getElementById('next-wish-btn');
+    const copyWishBtn = document.getElementById('copy-wish-btn');
+
+    // Toast Notification
+    const toastNotification = document.getElementById('toast-notification');
+    const toastIcon = document.getElementById('toast-icon');
+    const toastMsg = document.getElementById('toast-msg');
+    if (toastNotification) {
+        toastNotification.hidden = true;
+        toastNotification.style.display = 'none';
+    }
 
     // Interactive State Variables
     let currentSeasonKey = 'birthday';
@@ -306,6 +473,10 @@ document.addEventListener('DOMContentLoaded', () => {
     let dodgeCount = 0;
     let isAccepted = false;
     let floatingInterval = null;
+    let countdownTimerInterval = null;
+    let currentWishIndex = 0;
+    let isCardFlipped = false;
+    let isScratchpadEditing = false;
 
     // --------------------------------------------------------------------------
     // Dynamic Aspect-Ratio Calculation for Visual Container
@@ -421,6 +592,515 @@ document.addEventListener('DOMContentLoaded', () => {
     const sound = new SoundEffects();
 
     // --------------------------------------------------------------------------
+    // 3b. Floating Toast Notification Helper
+    // --------------------------------------------------------------------------
+    function showToast(message, icon = '✨', durationMs = 2800) {
+        if (!toastNotification) return;
+        if (toastMsg) toastMsg.textContent = message;
+        if (toastIcon) toastIcon.textContent = icon;
+        toastNotification.hidden = false;
+        toastNotification.style.display = 'inline-flex';
+
+        if (toastNotification._timer) clearTimeout(toastNotification._timer);
+        toastNotification._timer = setTimeout(() => {
+            toastNotification.hidden = true;
+            toastNotification.style.display = 'none';
+        }, durationMs);
+    }
+
+    // --------------------------------------------------------------------------
+    // 3c. Count-up and Countdown Timer Engine
+    // --------------------------------------------------------------------------
+    function getCelebrationTargetDate(seasonKey, customDateStr) {
+        if (customDateStr) {
+            const parsed = new Date(customDateStr);
+            if (!isNaN(parsed.getTime())) {
+                return new Date(parsed.getFullYear(), parsed.getMonth(), parsed.getDate(), 0, 0, 0);
+            }
+        }
+
+        const now = new Date();
+        const currentYear = now.getFullYear();
+
+        if (seasonKey === 'valentine') {
+            let valDate = new Date(currentYear, 1, 14, 0, 0, 0); // Feb 14
+            if (now > valDate && (now - valDate) > 86400000) {
+                valDate = new Date(currentYear + 1, 1, 14, 0, 0, 0);
+            }
+            return valDate;
+        }
+
+        if (seasonKey === 'newyear') {
+            return new Date(currentYear + 1, 0, 1, 0, 0, 0); // Jan 1 midnight
+        }
+
+        if (seasonKey === 'christmas') {
+            let xmasDate = new Date(currentYear, 11, 25, 0, 0, 0); // Dec 25
+            if (now > xmasDate && (now - xmasDate) > 86400000) {
+                xmasDate = new Date(currentYear + 1, 11, 25, 0, 0, 0);
+            }
+            return xmasDate;
+        }
+
+        // Birthday default: custom saved date or upcoming celebration date
+        const savedBday = localStorage.getItem('celebration_custom_date');
+        if (savedBday) {
+            const parsed = new Date(savedBday);
+            if (!isNaN(parsed.getTime())) {
+                let target = new Date(currentYear, parsed.getMonth(), parsed.getDate(), 0, 0, 0);
+                if (now > target && (now - target) > 86400000) {
+                    target = new Date(currentYear + 1, parsed.getMonth(), parsed.getDate(), 0, 0, 0);
+                }
+                return target;
+            }
+        }
+
+        // Default birthday demonstration target (Sep 22 or upcoming)
+        let defaultBday = new Date(currentYear, 8, 22, 0, 0, 0);
+        if (now > defaultBday && (now - defaultBday) > 86400000) {
+            defaultBday = new Date(currentYear + 1, 8, 22, 0, 0, 0);
+        }
+        return defaultBday;
+    }
+
+    function updateCountdownDisplay() {
+        if (!timerDays || !timerHours || !timerMinutes || !timerSeconds) return;
+
+        // Set title based on season
+        if (countdownTitle) {
+            if (currentSeasonKey === 'valentine') {
+                countdownTitle.textContent = "💖 Valentine's Day Countdown";
+            } else if (currentSeasonKey === 'newyear') {
+                countdownTitle.textContent = "🎆 New Year's Midnight Countdown";
+            } else if (currentSeasonKey === 'christmas') {
+                countdownTitle.textContent = "🎄 Christmas Day Countdown";
+            } else {
+                countdownTitle.textContent = recipientName ? `🎂 ${recipientName}'s Birthday Countdown` : "🎂 Birthday Celebration Countdown";
+            }
+        }
+
+        const targetDate = getCelebrationTargetDate(currentSeasonKey, customCelebrationDate);
+        const now = new Date();
+        const diffMs = targetDate.getTime() - now.getTime();
+
+        // If today is the celebration date (within the active day)
+        if (diffMs <= 0 && diffMs > -86400000) {
+            if (countdownTodayBanner) {
+                countdownTodayBanner.hidden = false;
+                countdownTodayBanner.style.display = 'block';
+                countdownTodayBanner.textContent = currentSeasonKey === 'birthday' 
+                    ? `🎉 TODAY IS ${recipientName ? recipientName.toUpperCase() + "'S" : "THE"} CELEBRATION DAY! WISHING YOU INFINITE JOY! 🎂✨`
+                    : `🎉 THE CELEBRATION IS HAPPENING TODAY! ENJOY EVERY SECOND! ✨🥂`;
+            }
+            // Count-up active hours/minutes/seconds of the celebration day
+            const elapsed = Math.abs(diffMs);
+            const hours = Math.floor(elapsed / (1000 * 60 * 60));
+            const mins = Math.floor((elapsed % (1000 * 60 * 60)) / (1000 * 60));
+            const secs = Math.floor((elapsed % (1000 * 60)) / 1000);
+
+            timerDays.textContent = "00";
+            timerHours.textContent = String(hours).padStart(2, '0');
+            timerMinutes.textContent = String(mins).padStart(2, '0');
+            timerSeconds.textContent = String(secs).padStart(2, '0');
+            return;
+        } else {
+            if (countdownTodayBanner) {
+                countdownTodayBanner.hidden = true;
+                countdownTodayBanner.style.display = 'none';
+            }
+        }
+
+        let remaining = Math.max(0, diffMs);
+        const days = Math.floor(remaining / (1000 * 60 * 60 * 24));
+        remaining -= days * (1000 * 60 * 60 * 24);
+        const hours = Math.floor(remaining / (1000 * 60 * 60));
+        remaining -= hours * (1000 * 60 * 60);
+        const minutes = Math.floor(remaining / (1000 * 60));
+        remaining -= minutes * (1000 * 60);
+        const seconds = Math.floor(remaining / 1000);
+
+        timerDays.textContent = String(days).padStart(2, '0');
+        timerHours.textContent = String(hours).padStart(2, '0');
+        timerMinutes.textContent = String(minutes).padStart(2, '0');
+        timerSeconds.textContent = String(seconds).padStart(2, '0');
+    }
+
+    function startCountdownTimer() {
+        if (countdownTimerInterval) clearInterval(countdownTimerInterval);
+        updateCountdownDisplay();
+        countdownTimerInterval = setInterval(updateCountdownDisplay, 1000);
+    }
+
+    // --------------------------------------------------------------------------
+    // 3d. Bear Reaction Emotions State Machine
+    // --------------------------------------------------------------------------
+    const BEAR_EMOTIONS = [
+        {
+            minDodge: 0,
+            maxDodge: 0,
+            icon: '🐻',
+            mood: 'Curious',
+            className: 'bear-neutral',
+            speech: (name) => name ? `Hey ${name}! Tap Accept! 🐻✨` : `Hey there! Tap Accept! 🐻✨`
+        },
+        {
+            minDodge: 1,
+            maxDodge: 2,
+            icon: '😮',
+            mood: 'Surprised',
+            className: 'bear-surprised',
+            speech: () => "Wait... did your finger slip? 🥺"
+        },
+        {
+            minDodge: 3,
+            maxDodge: 4,
+            icon: '😜',
+            mood: 'Playful',
+            className: 'bear-playful',
+            speech: () => "Haha, nice try! You can't catch me! 💨"
+        },
+        {
+            minDodge: 5,
+            maxDodge: 6,
+            icon: '🥺',
+            mood: 'Pleading',
+            className: 'bear-pleading',
+            speech: () => "Look at these puppy bear eyes... how could you say no? 🥺❤️"
+        },
+        {
+            minDodge: 7,
+            maxDodge: 8,
+            icon: '💫',
+            mood: 'Dizzy',
+            className: 'bear-dizzy',
+            speech: () => "Whoa, I'm getting dizzy chasing you! Just click Accept! 💫"
+        },
+        {
+            minDodge: 9,
+            maxDodge: Infinity,
+            icon: '🥰',
+            mood: 'Unstoppable',
+            className: 'bear-dramatic',
+            speech: () => "Accept is huge now! Resistance is futile! 🥰✨"
+        }
+    ];
+
+    function updateBearEmotion(dodgeNum) {
+        if (isAccepted) {
+            setBearEmotionDisplay('🎉', 'Overjoyed', 'bear-joy', 'YAAAY! BEST DECISION EVER! 🥳💖');
+            return;
+        }
+        const emotion = BEAR_EMOTIONS.find(e => dodgeNum >= e.minDodge && dodgeNum <= e.maxDodge) || BEAR_EMOTIONS[0];
+        const speechText = typeof emotion.speech === 'function' ? emotion.speech(recipientName) : emotion.speech;
+        setBearEmotionDisplay(emotion.icon, emotion.mood, emotion.className, speechText);
+    }
+
+    function setBearEmotionDisplay(icon, mood, animClass, speechText) {
+        if (bearEmotionIcon) bearEmotionIcon.textContent = icon;
+        if (bearEmotionText) bearEmotionText.textContent = `Mood: ${mood}`;
+        if (bearSpeechText) bearSpeechText.textContent = speechText;
+
+        if (mainGif) {
+            mainGif.classList.remove('bear-neutral', 'bear-curious', 'bear-surprised', 'bear-playful', 'bear-pleading', 'bear-dizzy', 'bear-dramatic', 'bear-joy');
+            mainGif.classList.add(animClass);
+        }
+    }
+
+    // --------------------------------------------------------------------------
+    // 3e. 3D Flip-Card Keepsake Letter & Scratchpad Editor
+    // --------------------------------------------------------------------------
+    function initKeepsakeCard() {
+        if (envelopeRecipientText) {
+            envelopeRecipientText.textContent = recipientName ? `To: ${recipientName} ❤️` : "To: Someone Special ❤️";
+        }
+        if (keepsakeGreeting) {
+            keepsakeGreeting.textContent = recipientName ? `Dearest ${recipientName},` : "Dearest One,";
+        }
+        if (keepsakeBody) {
+            if (customKeepsakeMsg) {
+                keepsakeBody.textContent = customKeepsakeMsg;
+            } else {
+                keepsakeBody.textContent = currentSeason.successSubtext;
+            }
+        }
+        if (scratchpadTextarea && keepsakeBody) {
+            scratchpadTextarea.value = keepsakeBody.textContent.trim();
+        }
+    }
+
+    function flipCardToBack() {
+        if (!virtualCardInner) return;
+        virtualCardInner.classList.add('is-flipped');
+        isCardFlipped = true;
+        sound.playDodgePop();
+    }
+
+    function flipCardToFront() {
+        if (!virtualCardInner) return;
+        virtualCardInner.classList.remove('is-flipped');
+        isCardFlipped = false;
+        sound.playDodgePop();
+    }
+
+    if (virtualCardFront) {
+        virtualCardFront.addEventListener('click', flipCardToBack);
+        virtualCardFront.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                flipCardToBack();
+            }
+        });
+    }
+
+    if (waxSealBtn) {
+        waxSealBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            flipCardToBack();
+        });
+    }
+
+    if (flipBackBtn) {
+        flipBackBtn.addEventListener('click', flipCardToFront);
+    }
+
+    // Scratchpad editing toggle
+    if (editScratchpadBtn) {
+        editScratchpadBtn.addEventListener('click', () => {
+            if (!isScratchpadEditing) {
+                // Enter edit mode
+                if (parchmentContentView) parchmentContentView.hidden = true;
+                if (parchmentScratchpadEditor) parchmentScratchpadEditor.hidden = false;
+                if (scratchpadTextarea && keepsakeBody) {
+                    scratchpadTextarea.value = keepsakeBody.textContent.trim();
+                    scratchpadTextarea.focus();
+                }
+                if (scratchpadBtnIcon) scratchpadBtnIcon.textContent = '💾';
+                if (scratchpadBtnText) scratchpadBtnText.textContent = 'Save Note';
+                isScratchpadEditing = true;
+            } else {
+                // Save edit mode
+                const newText = scratchpadTextarea ? scratchpadTextarea.value.trim() : '';
+                if (newText) {
+                    if (keepsakeBody) keepsakeBody.textContent = newText;
+                    customKeepsakeMsg = newText;
+                    localStorage.setItem('custom_keepsake_msg', newText);
+                }
+                if (parchmentContentView) parchmentContentView.hidden = false;
+                if (parchmentScratchpadEditor) parchmentScratchpadEditor.hidden = true;
+                if (scratchpadBtnIcon) scratchpadBtnIcon.textContent = '✍️';
+                if (scratchpadBtnText) scratchpadBtnText.textContent = 'Edit Note';
+                isScratchpadEditing = false;
+                showToast("Personal message saved to card! 💌", "💾");
+            }
+        });
+    }
+
+    // Copy note to clipboard
+    if (copyScratchpadBtn) {
+        copyScratchpadBtn.addEventListener('click', () => {
+            const greeting = keepsakeGreeting ? keepsakeGreeting.textContent : 'Dearest One,';
+            const body = keepsakeBody ? keepsakeBody.textContent : '';
+            const sig = keepsakeSignature ? keepsakeSignature.textContent : 'With all my love ❤️';
+            const fullLetter = `${greeting}\n\n${body}\n\n${sig}`;
+
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(fullLetter).then(() => {
+                    showToast("Keepsake note copied to clipboard! 💌", "📋");
+                }).catch(() => {
+                    showToast("Note ready! Press Ctrl+C to copy", "✍️");
+                });
+            } else {
+                showToast("Note ready! Press Ctrl+C to copy", "✍️");
+            }
+        });
+    }
+
+    // --------------------------------------------------------------------------
+    // 3f. Personalization Modal & Dynamic Link Generator
+    // --------------------------------------------------------------------------
+    function openPersonalizeModal() {
+        if (!personalizeModal) return;
+        if (recipientNameInput) recipientNameInput.value = recipientName;
+        if (customNoteInput) customNoteInput.value = customKeepsakeMsg || currentSeason.successSubtext;
+        if (celebrationDateInput) celebrationDateInput.value = customCelebrationDate;
+
+        personalizeModal.hidden = false;
+        personalizeModal.style.display = 'flex';
+        personalizeModal.removeAttribute('aria-hidden');
+    }
+
+    function closePersonalizeModal() {
+        if (!personalizeModal) return;
+        personalizeModal.hidden = true;
+        personalizeModal.style.display = 'none';
+        personalizeModal.setAttribute('aria-hidden', 'true');
+    }
+
+    if (personalizePillBtn) {
+        personalizePillBtn.addEventListener('click', openPersonalizeModal);
+    }
+    if (countdownEditBtn) {
+        countdownEditBtn.addEventListener('click', openPersonalizeModal);
+    }
+    if (closePersonalizeBtn) {
+        closePersonalizeBtn.addEventListener('click', closePersonalizeModal);
+    }
+    if (personalizeModal) {
+        personalizeModal.addEventListener('click', (e) => {
+            if (e.target === personalizeModal) closePersonalizeModal();
+        });
+    }
+
+    function generateShareableLink() {
+        const url = new URL(window.location.origin + window.location.pathname);
+        if (recipientName) url.searchParams.set('to', recipientName);
+        if (currentSeasonKey && currentSeasonKey !== 'birthday') url.searchParams.set('season', currentSeasonKey);
+        if (customCelebrationDate) url.searchParams.set('date', customCelebrationDate);
+        if (customKeepsakeMsg) url.searchParams.set('msg', customKeepsakeMsg);
+        return url.toString();
+    }
+
+    if (savePersonalizeBtn) {
+        savePersonalizeBtn.addEventListener('click', () => {
+            const newName = recipientNameInput ? recipientNameInput.value.trim().slice(0, 36) : '';
+            const newNote = customNoteInput ? customNoteInput.value.trim().slice(0, 500) : '';
+            const newDate = celebrationDateInput ? celebrationDateInput.value.trim() : '';
+
+            recipientName = newName;
+            if (newName) {
+                localStorage.setItem('celebration_recipient', newName);
+            } else {
+                localStorage.removeItem('celebration_recipient');
+            }
+
+            if (newNote) {
+                customKeepsakeMsg = newNote;
+                localStorage.setItem('custom_keepsake_msg', newNote);
+            }
+
+            if (newDate) {
+                customCelebrationDate = newDate;
+                localStorage.setItem('celebration_custom_date', newDate);
+            } else {
+                customCelebrationDate = '';
+                localStorage.removeItem('celebration_custom_date');
+            }
+
+            // Update UI elements in place
+            if (recipientPillText) {
+                recipientPillText.textContent = recipientName ? `For: ${recipientName}` : "For: Someone Special";
+            }
+
+            applySeason(currentSeasonKey);
+            initKeepsakeCard();
+            updateCountdownDisplay();
+            updateBearEmotion(dodgeCount);
+
+            closePersonalizeModal();
+            showToast(recipientName ? `Card personalized for ${recipientName}! 💖` : "Card personalized! 💖", "✨");
+        });
+    }
+
+    if (copyCustomLinkBtn) {
+        copyCustomLinkBtn.addEventListener('click', () => {
+            const link = generateShareableLink();
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(link).then(() => {
+                    showToast("Personalized link copied! Ready to share 🔗✨", "📋");
+                }).catch(() => {
+                    showToast("Link created! Ready to share", "🔗");
+                });
+            } else {
+                showToast("Link created! Ready to share", "🔗");
+            }
+        });
+    }
+
+    if (shareLinkBtn) {
+        shareLinkBtn.addEventListener('click', () => {
+            const link = generateShareableLink();
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(link).then(() => {
+                    showToast("Shareable link copied to clipboard! 🎁✨", "💌");
+                });
+            } else {
+                showToast("Share link ready to send! 💌", "🎁");
+            }
+        });
+    }
+
+    // --------------------------------------------------------------------------
+    // 3g. "Reason Why I Love You" / Wish Generator
+    // --------------------------------------------------------------------------
+    function openWishJarModal() {
+        if (!wishJarModal) return;
+        const seasonData = WISH_DATA[currentSeasonKey] || WISH_DATA.valentine;
+        if (wishJarTitle) wishJarTitle.textContent = seasonData.title;
+
+        // Draw a random wish
+        drawRandomWish();
+
+        wishJarModal.hidden = false;
+        wishJarModal.style.display = 'flex';
+        wishJarModal.removeAttribute('aria-hidden');
+    }
+
+    function closeWishJarModal() {
+        if (!wishJarModal) return;
+        wishJarModal.hidden = true;
+        wishJarModal.style.display = 'none';
+        wishJarModal.setAttribute('aria-hidden', 'true');
+    }
+
+    function drawRandomWish() {
+        const seasonData = WISH_DATA[currentSeasonKey] || WISH_DATA.valentine;
+        const items = seasonData.items;
+        if (!items || items.length === 0) return;
+
+        let nextIdx = Math.floor(Math.random() * items.length);
+        if (items.length > 1 && nextIdx === currentWishIndex) {
+            nextIdx = (nextIdx + 1) % items.length;
+        }
+        currentWishIndex = nextIdx;
+
+        if (wishContentText) {
+            wishContentText.textContent = `"${items[currentWishIndex]}"`;
+        }
+        if (wishCapsuleTag) {
+            wishCapsuleTag.textContent = `✨ ${seasonData.tagPrefix} #${currentWishIndex + 1} of ${items.length}`;
+        }
+
+        sound.playCelebrationChime();
+    }
+
+    if (wishJarPillBtn) {
+        wishJarPillBtn.addEventListener('click', openWishJarModal);
+    }
+    if (closeWishModalBtn) {
+        closeWishModalBtn.addEventListener('click', closeWishJarModal);
+    }
+    if (wishJarModal) {
+        wishJarModal.addEventListener('click', (e) => {
+            if (e.target === wishJarModal) closeWishJarModal();
+        });
+    }
+    if (nextWishBtn) {
+        nextWishBtn.addEventListener('click', drawRandomWish);
+    }
+    if (copyWishBtn) {
+        copyWishBtn.addEventListener('click', () => {
+            const text = wishContentText ? wishContentText.textContent : '';
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).then(() => {
+                    showToast("Wish copied to clipboard! 📋✨", "💌");
+                });
+            } else {
+                showToast("Wish copied! 💌", "📋");
+            }
+        });
+    }
+
+    // --------------------------------------------------------------------------
     // 4. Seasonal Theme Application
     // --------------------------------------------------------------------------
     function applySeason(seasonKey) {
@@ -445,6 +1125,14 @@ document.addEventListener('DOMContentLoaded', () => {
             if (ogTitle) ogTitle.setAttribute('content', personalizedHeading);
         }
 
+        // Update Top Control Pills
+        if (recipientPillText) {
+            recipientPillText.textContent = recipientName ? `For: ${recipientName}` : "For: Someone Special";
+        }
+        if (wishJarPillText && WISH_DATA[currentSeasonKey]) {
+            wishJarPillText.textContent = WISH_DATA[currentSeasonKey].pillLabel || "Tap for a wish 💌";
+        }
+
         // Update Badge
         if (badgeText) badgeText.textContent = currentSeason.badge;
 
@@ -457,6 +1145,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 updateVisualAspectRatio();
             }
         }
+
+        // Update Countdown Timer Widget
+        startCountdownTimer();
+
+        // Update Bear Emotion
+        updateBearEmotion(dodgeCount);
 
         // Update Buttons
         if (acceptTextSpan) acceptTextSpan.textContent = currentSeason.acceptText;
@@ -472,6 +1166,15 @@ document.addEventListener('DOMContentLoaded', () => {
         isAccepted = false;
         acceptScale = 1.0;
         dodgeCount = 0;
+
+        // Reset Bear Emotion back to Initial Stage
+        updateBearEmotion(0);
+
+        // Reset Virtual Flip Card back to Front
+        if (virtualCardInner) {
+            virtualCardInner.classList.remove('is-flipped');
+            isCardFlipped = false;
+        }
 
         if (acceptBtn) {
             acceptBtn.style.transform = 'scale(1)';
@@ -608,15 +1311,16 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // 2. Measure button and viewport client dimensions
-        const btnWidth = denyBtn.offsetWidth || 120;
-        const btnHeight = denyBtn.offsetHeight || 50;
+        const btnWidth = denyBtn.offsetWidth || 110;
+        const btnHeight = denyBtn.offsetHeight || 44;
 
-        // Calculate boundaries relative to the viewport's client dimensions (width and height)
+        // Calculate boundaries relative to the viewport's client dimensions
         const viewportWidth = document.documentElement.clientWidth || window.innerWidth;
         const viewportHeight = document.documentElement.clientHeight || window.innerHeight;
 
-        // Safe margin ensuring the button stays comfortably away from viewport edges
-        const safeMargin = 40;
+        // Adaptive safe margin: 16px on mobile to give maximum play area, 36px on desktop
+        const isMobileScreen = viewportWidth <= 640 || ('ontouchstart' in window);
+        const safeMargin = isMobileScreen ? 16 : 36;
 
         const minX = safeMargin;
         const maxX = Math.max(safeMargin, viewportWidth - btnWidth - safeMargin);
@@ -624,8 +1328,23 @@ document.addEventListener('DOMContentLoaded', () => {
         const maxY = Math.max(safeMargin, viewportHeight - btnHeight - safeMargin);
 
         // Generate random target coordinates strictly within the safe margins
-        const randomX = Math.floor(Math.random() * (maxX - minX + 1)) + minX;
-        const randomY = Math.floor(Math.random() * (maxY - minY + 1)) + minY;
+        let randomX = Math.floor(Math.random() * (maxX - minX + 1)) + minX;
+        let randomY = Math.floor(Math.random() * (maxY - minY + 1)) + minY;
+
+        // If triggered on mobile touch, ensure the button dodges away from the touch point
+        if (event && (event.touches || event.changedTouches)) {
+            const touch = (event.touches && event.touches[0]) || (event.changedTouches && event.changedTouches[0]);
+            if (touch) {
+                const touchX = touch.clientX;
+                const touchY = touch.clientY;
+                if (Math.hypot(randomX - touchX, randomY - touchY) < 85) {
+                    // Reposition away from touch quadrant
+                    randomY = touchY < viewportHeight / 2 
+                        ? Math.min(maxY, Math.max(minY, Math.floor(viewportHeight * 0.65)))
+                        : Math.min(maxY, Math.max(minY, Math.floor(viewportHeight * 0.2)));
+                }
+            }
+        }
 
         // Apply new bounded position across the entire screen
         denyBtn.style.left = `${randomX}px`;
@@ -636,10 +1355,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const phrase = phrases[dodgeCount % phrases.length];
         if (denyTextSpan) denyTextSpan.textContent = phrase;
 
-        // 4. Gradually scale up the 'Accept' button over ~16 gentle steps, with a reduced maximum cap
-        // Increased number of steps (from ~6 steps to ~16 steps) and reduced maximum scale (from 3.2 down to 1.65)
-        const maxScale = 1.65;
-        const scaleStep = 0.04;
+        // 4. Gradually scale up the 'Accept' button over gentle steps, capped proportionally for mobile
+        const maxScale = isMobileScreen ? 1.35 : 1.65;
+        const scaleStep = isMobileScreen ? 0.03 : 0.04;
         const currentScale = Math.min(1.0 + (dodgeCount * scaleStep), maxScale);
         acceptScale = parseFloat(currentScale.toFixed(3));
 
@@ -650,6 +1368,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 acceptBtn.style.boxShadow = `0 14px 28px -4px rgba(255, 46, 99, ${glowIntensity}), 0 0 18px 3px rgba(255, 117, 140, 0.45)`;
             }
         }
+
+        // 5. Update Bear Reaction Emotion based on dodge count
+        updateBearEmotion(dodgeCount);
 
         // Spawn a burst of celebratory particles around the card on dodge
         for (let i = 0; i < 3; i++) {
@@ -834,23 +1555,29 @@ document.addEventListener('DOMContentLoaded', () => {
         if (successSubtext) successSubtext.textContent = currentSeason.successSubtext;
         if (celebrationBadge) celebrationBadge.innerHTML = `<span>${currentSeason.celebrationBadge}</span>`;
 
-        // 5. Reveal celebratory container cleanly
+        // 5. Populate and initialize Virtual Keepsake Flip-Card
+        initKeepsakeCard();
+
+        // 6. Update Bear Reaction Emotion to Overjoyed
+        updateBearEmotion(999);
+
+        // 7. Reveal celebratory container cleanly
         if (successContainer) {
             successContainer.hidden = false;
             successContainer.removeAttribute('aria-hidden');
             successContainer.style.display = 'flex';
         }
 
-        // 6. Fire Confetti
+        // 8. Fire Confetti
         launchCelebrationConfetti();
 
-        // 7. Extra celebratory particles shower (respecting mobile thrust cap)
+        // 9. Extra celebratory particles shower (respecting mobile thrust cap)
         const burstCount = isMobileDevice ? 6 : 14;
         for (let i = 0; i < burstCount; i++) {
             setTimeout(spawnFloatingParticle, i * 110);
         }
 
-        // 8. Play Birthday Celebration Music (Simi ft. Adekunle Gold & Deja - Happy Birthday)
+        // 10. Play Birthday Celebration Music (Simi ft. Adekunle Gold & Deja - Happy Birthday)
         playCelebrationMusic();
     }
 

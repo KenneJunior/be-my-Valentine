@@ -1,94 +1,277 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 200" width="240" height="200">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 240" width="100%" height="100%" style="max-width: 280px;">
   <defs>
+    <!-- Richer, warmer fur gradient -->
+    <linearGradient id="furGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="40%" stop-color="#fff5f8"/>
+      <stop offset="100%" stop-color="#fbdde7"/>
+    </linearGradient>
+
+    <!-- Softer, more blended belly -->
+    <radialGradient id="bellyGrad" cx="50%" cy="38%" r="58%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="60%" stop-color="#fff0f5"/>
+      <stop offset="100%" stop-color="#ffcadd"/>
+    </radialGradient>
+
+    <linearGradient id="innerEarGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ff9eb5"/>
+      <stop offset="100%" stop-color="#ff5c85"/>
+    </linearGradient>
+
+    <radialGradient id="blushGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ff477e" stop-opacity="0.9"/>
+      <stop offset="40%" stop-color="#ff7597" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#ffccd5" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Vibrant Glassy Balloon Gradients -->
+    <linearGradient id="balloonPink" x1="20%" y1="0%" x2="80%" y2="100%">
+      <stop offset="0%" stop-color="#ff9eb5"/>
+      <stop offset="40%" stop-color="#ff4d6d"/>
+      <stop offset="100%" stop-color="#a0133b"/>
+    </linearGradient>
+
+    <linearGradient id="balloonGold" x1="20%" y1="0%" x2="80%" y2="100%">
+      <stop offset="0%" stop-color="#ffeea8"/>
+      <stop offset="40%" stop-color="#ffb703"/>
+      <stop offset="100%" stop-color="#cc6a00"/>
+    </linearGradient>
+
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffe478"/>
+      <stop offset="50%" stop-color="#ffd166"/>
+      <stop offset="100%" stop-color="#ffaa00"/>
+    </linearGradient>
+
+    <!-- Liquid Glass Reflection -->
+    <linearGradient id="glassReflection" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+
+    <!-- Premium Multi-Layered Drop Shadow for Depth -->
+    <filter id="premiumGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#ff4d6d" flood-opacity="0.15"/>
+      <feDropShadow dx="0" dy="12" stdDeviation="15" flood-color="#ff4d6d" flood-opacity="0.25"/>
+    </filter>
+
     <style>
+      /* 1. Spring Physics Easing for organic bounce */
       @keyframes victoryJump {
-        0%, 100% { transform: translateY(0px) rotate(0deg); }
-        25% { transform: translateY(-30px) rotate(-4deg); }
-        50% { transform: translateY(4px) rotate(0deg); }
-        75% { transform: translateY(-28px) rotate(4deg); }
+      0%, 100% { transform: translateY(0px) scale(1, 1); }
+      15% { transform: translateY(8px) scale(1.05, 0.9); } /* Anticipation squash */
+      40% { transform: translateY(-35px) scale(0.95, 1.05); } /* Hang time stretch */
+      60% { transform: translateY(-25px) scale(0.98, 1.02); }
+      85% { transform: translateY(4px) scale(1.02, 0.95); } /* Landing squash */
       }
-      @keyframes balloonBob {
-        0%, 100% { transform: translateY(0px) rotate(-3deg); }
-        50% { transform: translateY(-12px) rotate(3deg); }
+
+      /* 2. Overlapping Action: Head bobs slightly after the body jumps */
+      @keyframes headLag {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      30% { transform: translateY(4px) rotate(-2deg); }
+      50% { transform: translateY(-3px) rotate(3deg); }
+      80% { transform: translateY(2px) rotate(-1deg); }
       }
+
+      /* 3. Overlapping Action: Ears flop dynamically */
+      @keyframes earFlopLeft {
+      0%, 100% { transform: rotate(0deg); }
+      40% { transform: rotate(-12deg); }
+      60% { transform: rotate(8deg); }
+      }
+      @keyframes earFlopRight {
+      0%, 100% { transform: rotate(0deg); }
+      40% { transform: rotate(12deg); }
+      60% { transform: rotate(-8deg); }
+      }
+
+      /* Smooth, multi-layered shadow scaling */
+      @keyframes groundShadowVictory {
+      0%, 100% { transform: scale(1, 1); opacity: 0.4; }
+      15% { transform: scale(1.1, 1.05); opacity: 0.5; }
+      40% { transform: scale(0.6, 0.6); opacity: 0.15; }
+      85% { transform: scale(1.05, 1); opacity: 0.45; }
+      }
+
+      /* Fluid Balloon Sway */
+      @keyframes balloonFloat {
+      0%, 100% { transform: translateY(0) rotate(-2deg); }
+      50% { transform: translateY(-12px) rotate(3deg); }
+      }
+
+      @keyframes balloonFloatAlt {
+      0%, 100% { transform: translateY(0) rotate(2deg); }
+      50% { transform: translateY(-15px) rotate(-3deg); }
+      }
+
+      @keyframes armWaveLeft {
+      0%, 100% { transform: rotate(-35deg); }
+      50% { transform: rotate(-55deg); }
+      }
+
+      @keyframes armWaveRight {
+      0%, 100% { transform: rotate(35deg); }
+      50% { transform: rotate(55deg); }
+      }
+
+      /* Faux-3D Confetti Flip */
       @keyframes confettiPop {
-        0% { transform: translateY(0) scale(0.6); opacity: 0.8; }
-        50% { transform: translateY(-16px) scale(1.1); opacity: 1; }
-        100% { transform: translateY(0) scale(0.8); opacity: 0.9; }
+      0% { transform: translateY(10px) scaleX(1) rotate(0deg); opacity: 0; }
+      20% { opacity: 1; }
+      50% { transform: translateY(-25px) scaleX(0.2) rotate(180deg); }
+      100% { transform: translateY(0) scaleX(1) rotate(360deg); opacity: 0.8; }
       }
-      .bear-victory {
-        animation: victoryJump 0.95s cubic-bezier(0.25, 0.8, 0.35, 1) infinite;
-        transform-origin: 120px 170px;
+
+      /* Application of Animations */
+      .bear-victory-rig {
+      animation: victoryJump 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+      transform-origin: 140px 210px;
       }
-      .balloons { animation: balloonBob 2s ease-in-out infinite; transform-origin: 40px 60px; }
-      .confetti { animation: confettiPop 1.2s ease-in-out infinite; }
+      .head-rig {
+      animation: headLag 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+      transform-origin: 140px 140px;
+      }
+      .ear-left-rig {
+      animation: earFlopLeft 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+      transform-origin: 105px 95px;
+      }
+      .ear-right-rig {
+      animation: earFlopRight 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+      transform-origin: 175px 95px;
+      }
+      .ground-shadow-anim {
+      animation: groundShadowVictory 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+      transform-origin: 140px 218px;
+      }
+      .balloons-anim-1 { animation: balloonFloat 2.5s ease-in-out infinite; transform-origin: 38px 70px; }
+      .balloons-anim-2 { animation: balloonFloatAlt 2.8s ease-in-out infinite; transform-origin: 68px 70px; }
+
+      .arm-left { animation: armWaveLeft 1.2s ease-in-out infinite; transform-origin: 104px 145px; }
+      .arm-right { animation: armWaveRight 1.2s ease-in-out infinite; transform-origin: 176px 145px; }
+
+      /* Staggered Confetti */
+      .confetti-1 { animation: confettiPop 1.6s ease-in-out infinite; transform-origin: center; }
+      .confetti-2 { animation: confettiPop 1.6s ease-in-out infinite 0.2s; transform-origin: center; }
+      .confetti-3 { animation: confettiPop 1.6s ease-in-out infinite 0.4s; transform-origin: center; }
     </style>
   </defs>
 
-  <!-- Floating Birthday Balloons -->
-  <g class="balloons">
-    <!-- Balloon 1 (Pink) -->
-    <ellipse cx="40" cy="45" rx="15" ry="18" fill="#ff4d6d"/>
-    <polygon points="40,63 37,67 43,67" fill="#ff4d6d"/>
-    <path d="M 40 67 Q 36 90 55 125" fill="none" stroke="#e07a5f" stroke-width="1.2" stroke-dasharray="2,2"/>
-    <!-- Balloon 2 (Yellow) -->
-    <ellipse cx="62" cy="38" rx="14" ry="17" fill="#ffb703"/>
-    <polygon points="62,55 59,59 65,59" fill="#ffb703"/>
-    <path d="M 62 59 Q 50 85 58 125" fill="none" stroke="#e07a5f" stroke-width="1.2" stroke-dasharray="2,2"/>
+  <!-- Floating Bobbing Balloons -->
+  <g>
+    <!-- Pink Balloon -->
+    <g class="balloons-anim-1" transform="translate(38, 48)">
+      <ellipse cx="0" cy="0" rx="18" ry="22" fill="url(#balloonPink)"/>
+      <polygon points="0,22 -3,26 3,26" fill="#a0133b"/>
+      <!-- Glass reflection overlay -->
+      <ellipse cx="-4" cy="-8" rx="8" ry="12" fill="url(#glassReflection)" transform="rotate(-30 -4 -8)"/>
+      <path d="M 0 26 Q -6 60 16 100" fill="none" stroke="#d9778e" stroke-width="1.5" stroke-dasharray="2,3" stroke-linecap="round"/>
+    </g>
+    <!-- Gold Balloon -->
+    <g class="balloons-anim-2" transform="translate(68, 38)">
+      <ellipse cx="0" cy="0" rx="16" ry="20" fill="url(#balloonGold)"/>
+      <polygon points="0,20 -3,24 3,24" fill="#cc6a00"/>
+      <ellipse cx="-3" cy="-7" rx="7" ry="10" fill="url(#glassReflection)" transform="rotate(-30 -3 -7)"/>
+      <path d="M 0 24 Q -12 60 -10 110" fill="none" stroke="#d9778e" stroke-width="1.5" stroke-dasharray="2,3" stroke-linecap="round"/>
+    </g>
   </g>
 
-  <!-- Confetti Elements -->
-  <g class="confetti">
-    <rect x="180" y="35" width="7" height="7" rx="1.5" fill="#06d6a0" transform="rotate(25 180 35)"/>
-    <rect x="200" y="60" width="8" height="5" rx="1" fill="#ff006e" transform="rotate(-30 200 60)"/>
-    <rect x="175" y="80" width="6" height="6" rx="1" fill="#3a86ff" transform="rotate(45 175 80)"/>
-    <circle cx="210" cy="40" r="3.5" fill="#ffd166"/>
+  <!-- Staggered Faux-3D Confetti -->
+  <g>
+    <rect class="confetti-1" x="220" y="30" width="8" height="10" rx="2" fill="#06d6a0" transform="rotate(15 220 30)"/>
+    <rect class="confetti-2" x="245" y="60" width="10" height="6" rx="2" fill="#ff006e" transform="rotate(-20 245 60)"/>
+    <rect class="confetti-3" x="210" y="90" width="8" height="8" rx="2" fill="#3a86ff" transform="rotate(45 210 90)"/>
+    <circle class="confetti-1" cx="255" cy="40" r="4.5" fill="url(#goldGrad)"/>
+    <polygon class="confetti-2" points="230,115 233,121 239,122 235,126 236,132 230,129 224,132 225,126 221,122 227,121" fill="url(#goldGrad)"/>
   </g>
 
-  <!-- Victorious Jumping Bear -->
-  <g class="bear-victory">
+  <!-- Premium Diffused Ground Shadow -->
+  <ellipse cx="140" cy="218" rx="52" ry="10" fill="#d85a7b" class="ground-shadow-anim"/>
+
+  <!-- Main Jumping Victory Bear -->
+  <g class="bear-victory-rig" filter="url(#premiumGlow)">
+
     <!-- Feet -->
-    <ellipse cx="100" cy="168" rx="13" ry="10" fill="#ffffff" stroke="#f4ced6" stroke-width="2"/>
-    <circle cx="100" cy="169" r="5" fill="#fec5d4"/>
-    <ellipse cx="140" cy="168" rx="13" ry="10" fill="#ffffff" stroke="#f4ced6" stroke-width="2"/>
-    <circle cx="140" cy="169" r="5" fill="#fec5d4"/>
+    <g id="feet">
+      <ellipse cx="114" cy="204" rx="17" ry="14" fill="url(#furGrad)" stroke="#f2bdca" stroke-width="2"/>
+      <ellipse cx="114" cy="205" rx="8" ry="6.5" fill="url(#innerEarGrad)"/>
+      <circle cx="109" cy="197" r="2.2" fill="#ff5c85"/>
+      <circle cx="114" cy="195" r="2.2" fill="#ff5c85"/>
+      <circle cx="119" cy="197" r="2.2" fill="#ff5c85"/>
 
-    <!-- Body -->
-    <ellipse cx="120" cy="140" rx="36" ry="32" fill="#ffffff" stroke="#f4ced6" stroke-width="2.5"/>
-    <ellipse cx="120" cy="144" rx="22" ry="18" fill="#fff0f3"/>
-
-    <!-- Arms UP in Celebration -->
-    <g transform="rotate(-35 88 120)">
-      <ellipse cx="80" cy="115" rx="12" ry="8" fill="#ffffff" stroke="#f4ced6" stroke-width="2"/>
-    </g>
-    <g transform="rotate(35 152 120)">
-      <ellipse cx="160" cy="115" rx="12" ry="8" fill="#ffffff" stroke="#f4ced6" stroke-width="2"/>
+      <ellipse cx="166" cy="204" rx="17" ry="14" fill="url(#furGrad)" stroke="#f2bdca" stroke-width="2"/>
+      <ellipse cx="166" cy="205" rx="8" ry="6.5" fill="url(#innerEarGrad)"/>
+      <circle cx="161" cy="197" r="2.2" fill="#ff5c85"/>
+      <circle cx="166" cy="195" r="2.2" fill="#ff5c85"/>
+      <circle cx="171" cy="197" r="2.2" fill="#ff5c85"/>
     </g>
 
-    <!-- Ears -->
-    <circle cx="88" cy="74" r="16" fill="#ffffff" stroke="#f4ced6" stroke-width="2.5"/>
-    <circle cx="88" cy="74" r="9" fill="#fec5d4"/>
-    <circle cx="152" cy="74" r="16" fill="#ffffff" stroke="#f4ced6" stroke-width="2.5"/>
-    <circle cx="152" cy="74" r="9" fill="#fec5d4"/>
+    <!-- Bear Body -->
+    <ellipse cx="140" cy="166" rx="48" ry="42" fill="url(#furGrad)" stroke="#ecaab9" stroke-width="2.5"/>
+    <ellipse cx="140" cy="170" rx="32" ry="26" fill="url(#bellyGrad)"/>
 
-    <!-- Head -->
-    <circle cx="120" cy="98" r="38" fill="#ffffff" stroke="#f4ced6" stroke-width="2.5"/>
+    <!-- Left Arm -->
+    <g class="arm-left">
+      <ellipse cx="90" cy="132" rx="15" ry="10" fill="url(#furGrad)" stroke="#ecaab9" stroke-width="2.5"/>
+      <circle cx="86" cy="132" r="5" fill="url(#innerEarGrad)"/>
+    </g>
 
-    <!-- Party Hat -->
-    <polygon points="120,42 102,72 138,72" fill="#ffd166"/>
-    <polygon points="120,42 110,58 130,58" fill="#ff477e"/>
-    <circle cx="120" cy="40" r="6" fill="#06d6a0"/>
+    <!-- Right Arm -->
+    <g class="arm-right">
+      <ellipse cx="190" cy="132" rx="15" ry="10" fill="url(#furGrad)" stroke="#ecaab9" stroke-width="2.5"/>
+      <circle cx="194" cy="132" r="5" fill="url(#innerEarGrad)"/>
+    </g>
 
-    <!-- Cheerful Eyes -->
-    <path d="M 103 94 Q 109 88 114 94" fill="none" stroke="#4a2530" stroke-width="3" stroke-linecap="round"/>
-    <path d="M 126 94 Q 131 88 137 94" fill="none" stroke="#4a2530" stroke-width="3" stroke-linecap="round"/>
+    <!-- HEAD RIG (Secondary overlapping animation) -->
+    <g class="head-rig">
 
-    <!-- Cheeks & Snout -->
-    <ellipse cx="96" cy="104" rx="7.5" ry="5" fill="#ff99b3" opacity="0.85"/>
-    <ellipse cx="144" cy="104" rx="7.5" ry="5" fill="#ff99b3" opacity="0.85"/>
-    <ellipse cx="120" cy="103" rx="11" ry="8" fill="#fff0f3"/>
-    <ellipse cx="120" cy="100" rx="4.5" ry="3" fill="#662e3d"/>
-    <!-- Big Happy Open Smile -->
-    <path d="M 112 105 Q 120 115 128 105 Z" fill="#ff4d6d" stroke="#662e3d" stroke-width="1.8"/>
+      <!-- Ears with independent physics -->
+      <g class="ear-left-rig">
+        <circle cx="98" cy="84" r="20" fill="url(#furGrad)" stroke="#ecaab9" stroke-width="2.5"/>
+        <circle cx="98" cy="84" r="11" fill="url(#innerEarGrad)"/>
+        <ellipse cx="96" cy="80" rx="4" ry="2" fill="#ffffff" opacity="0.7"/>
+      </g>
+
+      <g class="ear-right-rig">
+        <circle cx="182" cy="84" r="20" fill="url(#furGrad)" stroke="#ecaab9" stroke-width="2.5"/>
+        <circle cx="182" cy="84" r="11" fill="url(#innerEarGrad)"/>
+        <ellipse cx="180" cy="80" rx="4" ry="2" fill="#ffffff" opacity="0.7"/>
+      </g>
+
+      <!-- Head Base -->
+      <circle cx="140" cy="116" r="50" fill="url(#furGrad)" stroke="#ecaab9" stroke-width="2.5"/>
+      <!-- Glassy Head Highlight -->
+      <ellipse cx="140" cy="90" rx="30" ry="12" fill="url(#glassReflection)" opacity="0.8"/>
+
+      <!-- Party Hat -->
+      <polygon points="140,42 116,82 164,82" fill="url(#goldGrad)"/>
+      <polygon points="140,42 126,64 154,64" fill="#ff4d6d"/>
+      <!-- Hat Glass Specular -->
+      <polygon points="140,42 136,49 130,82 140,82" fill="#ffffff" opacity="0.3"/>
+
+      <ellipse cx="140" cy="82" rx="26" ry="6" fill="#06d6a0"/>
+      <circle cx="140" cy="40" r="9" fill="#06d6a0"/>
+      <circle cx="138" cy="38" r="4" fill="#ffffff" opacity="0.9"/>
+
+      <!-- Joyful Eyes -->
+      <path d="M 115 110 Q 124 102 133 110" fill="none" stroke="#2d131b" stroke-width="4" stroke-linecap="round"/>
+      <path d="M 147 110 Q 156 102 165 110" fill="none" stroke="#2d131b" stroke-width="4" stroke-linecap="round"/>
+
+      <!-- Blushing Cheeks -->
+      <circle cx="110" cy="122" r="15" fill="url(#blushGrad)"/>
+      <circle cx="170" cy="122" r="15" fill="url(#blushGrad)"/>
+      <circle cx="108" cy="119" r="3" fill="#ffffff" opacity="0.8"/>
+      <circle cx="172" cy="119" r="3" fill="#ffffff" opacity="0.8"/>
+
+      <!-- Snout & Nose -->
+      <ellipse cx="140" cy="122" rx="15" ry="11" fill="#ffffff" stroke="#fce4ec" stroke-width="2"/>
+      <ellipse cx="140" cy="117" rx="6" ry="4" fill="#441a28"/>
+      <ellipse cx="138.5" cy="115.5" rx="2.5" ry="1.5" fill="#ffffff" opacity="0.9"/>
+
+      <!-- Mouth & Tongue -->
+      <path d="M 128 124 Q 140 140 152 124 Z" fill="#a0133b" stroke="#441a28" stroke-width="2.5" stroke-linejoin="round"/>
+      <path d="M 132 130 Q 140 140 148 130 Z" fill="#ff7597"/>
+
+    </g>
   </g>
 </svg>

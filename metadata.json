@@ -1,6 +1,8 @@
 {
-  "name": "Valentine's Day Ask",
-  "description": "An interactive seasonal celebration card featuring automated Date-based headings (Birthday, Christmas, New Year, Valentine), custom jumping bears, frosted glass card, slow-animated gradient, floating emojis, cursor-dodging Deny button, 1.2x scaling Accept button, and confetti.",
+  "name": "Remix be-my-Valentine",
+  "description": "Interactive seasonal celebration card with 3D flip parchment scratchpad, live countdown timer, dynamic URL personalization, compliments/reasons generator, and reactive emotional bear animations.",
   "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
 }

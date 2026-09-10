@@ -1,108 +1,232 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 200" width="240" height="200">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 240" width="280" height="240">
   <defs>
+    <linearGradient id="furGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="55%" stop-color="#fdf6f7"/>
+      <stop offset="100%" stop-color="#fce2e8"/>
+    </linearGradient>
+
+    <radialGradient id="bellyGrad" cx="50%" cy="38%" r="58%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="65%" stop-color="#fff0f5"/>
+      <stop offset="100%" stop-color="#ffdbe6"/>
+    </radialGradient>
+
+    <linearGradient id="innerEarGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffb3c6"/>
+      <stop offset="100%" stop-color="#ff7597"/>
+    </linearGradient>
+
+    <radialGradient id="blushGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ff3b68" stop-opacity="0.85"/>
+      <stop offset="50%" stop-color="#ff6b8b" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#ffccd5" stop-opacity="0"/>
+    </radialGradient>
+
+    <linearGradient id="santaRed" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff2a4b"/>
+      <stop offset="60%" stop-color="#d90429"/>
+      <stop offset="100%" stop-color="#9d0208"/>
+    </linearGradient>
+
+    <linearGradient id="scarfGreen" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38b000"/>
+      <stop offset="60%" stop-color="#1b7a2b"/>
+      <stop offset="100%" stop-color="#0d4d1a"/>
+    </linearGradient>
+
+    <linearGradient id="goldBell" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff3b0"/>
+      <stop offset="50%" stop-color="#ffd166"/>
+      <stop offset="100%" stop-color="#e09f3e"/>
+    </linearGradient>
+
+    <filter id="premiumGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#d90429" flood-opacity="0.2"/>
+    </filter>
+
     <style>
-      @keyframes jump {
+      @keyframes bearJump {
         0%, 100% { transform: translateY(0px) scale(1, 1); }
-        30% { transform: translateY(-22px) scale(0.96, 1.04); }
-        55% { transform: translateY(4px) scale(1.06, 0.94); }
-        70% { transform: translateY(-8px) scale(0.98, 1.02); }
+        25% { transform: translateY(-28px) scale(0.97, 1.05); }
+        50% { transform: translateY(-34px) scale(0.96, 1.06) rotate(1.5deg); }
+        75% { transform: translateY(6px) scale(1.08, 0.92) rotate(-0.5deg); }
+        88% { transform: translateY(-6px) scale(0.99, 1.01); }
       }
-      @keyframes snowFloat {
+
+      @keyframes groundShadow {
+        0%, 100% { transform: scale(1, 1); opacity: 0.35; }
+        25%, 50% { transform: scale(0.72, 0.65); opacity: 0.16; }
+        75% { transform: scale(1.2, 1.15); opacity: 0.48; }
+      }
+
+      @keyframes snowDrift {
         0% { transform: translateY(-10px) translateX(0); opacity: 0; }
-        30% { opacity: 0.9; }
-        100% { transform: translateY(180px) translateX(15px); opacity: 0; }
+        20% { opacity: 0.9; }
+        80% { opacity: 0.85; }
+        100% { transform: translateY(220px) translateX(20px); opacity: 0; }
       }
-      @keyframes bellTinkle {
-        0%, 100% { transform: rotate(-8deg); }
-        50% { transform: rotate(10deg); }
+
+      @keyframes bellRing {
+        0%, 100% { transform: rotate(-10deg); }
+        50% { transform: rotate(12deg); }
       }
-      .bear-group {
-        animation: jump 1.15s cubic-bezier(0.28, 0.84, 0.42, 1) infinite;
-        transform-origin: 120px 170px;
+
+      @keyframes scarfSway {
+        0%, 100% { transform: rotate(8deg); }
+        50% { transform: rotate(18deg); }
       }
-      .snow-1 { animation: snowFloat 3.2s linear infinite; }
-      .snow-2 { animation: snowFloat 4.1s linear infinite 1.2s; }
-      .snow-3 { animation: snowFloat 2.9s linear infinite 2s; }
-      .bell { animation: bellTinkle 0.8s ease-in-out infinite; transform-origin: 154px 132px; }
+
+      @keyframes eyeBlink {
+        0%, 93%, 97%, 100% { transform: scaleY(1); }
+        95% { transform: scaleY(0.08); }
+      }
+
+      .bear-jumping-rig {
+        animation: bearJump 1.25s cubic-bezier(0.3, 0.8, 0.4, 1) infinite;
+        transform-origin: 140px 210px;
+      }
+      .ground-shadow-anim {
+        animation: groundShadow 1.25s cubic-bezier(0.3, 0.8, 0.4, 1) infinite;
+        transform-origin: 140px 218px;
+      }
+      .snow-1 { animation: snowDrift 3.5s linear infinite; }
+      .snow-2 { animation: snowDrift 4.8s linear infinite 1.5s; }
+      .snow-3 { animation: snowDrift 3.1s linear infinite 2.3s; }
+      .bell-anim {
+        animation: bellRing 0.8s ease-in-out infinite;
+        transform-origin: 184px 170px;
+      }
+      .scarf-anim {
+        animation: scarfSway 1.25s ease-in-out infinite;
+        transform-origin: 154px 146px;
+      }
+      .eye-blink-anim {
+        animation: eyeBlink 3.8s ease-in-out infinite;
+        transform-origin: 140px 115px;
+      }
     </style>
   </defs>
 
-  <!-- Gently Falling Snowflakes -->
-  <g fill="#ffffff" opacity="0.8">
-    <circle cx="35" cy="0" r="3" class="snow-1"/>
-    <circle cx="85" cy="-5" r="2" class="snow-2"/>
-    <circle cx="165" cy="-8" r="3.5" class="snow-3"/>
-    <circle cx="210" cy="-2" r="2.5" class="snow-1"/>
+  <!-- Gently Drifting Snowflakes with multi-layer depth -->
+  <g fill="#ffffff" opacity="0.85">
+    <circle cx="45" cy="0" r="3.5" class="snow-1"/>
+    <circle cx="95" cy="-8" r="2.5" class="snow-2"/>
+    <circle cx="185" cy="-5" r="3.8" class="snow-3"/>
+    <circle cx="235" cy="-10" r="2.8" class="snow-1"/>
+    <circle cx="65" cy="-15" r="2" class="snow-3"/>
+    <circle cx="210" cy="-3" r="2" class="snow-2"/>
   </g>
 
-  <!-- Jumping Christmas Bear -->
-  <g class="bear-group">
-    <!-- Shadow -->
-    <ellipse cx="120" cy="174" rx="42" ry="8" fill="#d85a73" opacity="0.3"/>
+  <!-- Dynamic Ground Shadow -->
+  <ellipse cx="140" cy="218" rx="55" ry="11" fill="#c43d56" class="ground-shadow-anim"/>
 
-    <!-- Bear Feet in Warm Mittens/Boots -->
-    <ellipse cx="102" cy="168" rx="14" ry="11" fill="#ffffff" stroke="#e0405b" stroke-width="2"/>
-    <circle cx="102" cy="169" r="6" fill="#ff758c"/>
-    <ellipse cx="138" cy="168" rx="14" ry="11" fill="#ffffff" stroke="#e0405b" stroke-width="2"/>
-    <circle cx="138" cy="169" r="6" fill="#ff758c"/>
+  <!-- Main Jumping Bear Rig -->
+  <g class="bear-jumping-rig" filter="url(#premiumGlow)">
 
-    <!-- Bear Body -->
-    <ellipse cx="120" cy="138" rx="38" ry="34" fill="#ffffff" stroke="#e5b4c0" stroke-width="2.5"/>
-    <ellipse cx="120" cy="142" rx="23" ry="20" fill="#fff0f3"/>
+    <!-- Feet with Pink Warm Pads -->
+    <g id="feet">
+      <ellipse cx="114" cy="204" rx="17" ry="13" fill="url(#furGrad)" stroke="#f5c2ce" stroke-width="2"/>
+      <ellipse cx="114" cy="205" rx="8" ry="6" fill="url(#innerEarGrad)"/>
+      <circle cx="109" cy="198" r="2" fill="#ff7597"/>
+      <circle cx="114" cy="196" r="2" fill="#ff7597"/>
+      <circle cx="119" cy="198" r="2" fill="#ff7597"/>
+
+      <ellipse cx="166" cy="204" rx="17" ry="13" fill="url(#furGrad)" stroke="#f5c2ce" stroke-width="2"/>
+      <ellipse cx="166" cy="205" rx="8" ry="6" fill="url(#innerEarGrad)"/>
+      <circle cx="161" cy="198" r="2" fill="#ff7597"/>
+      <circle cx="166" cy="196" r="2" fill="#ff7597"/>
+      <circle cx="171" cy="198" r="2" fill="#ff7597"/>
+    </g>
+
+    <!-- Body -->
+    <ellipse cx="140" cy="166" rx="46" ry="40" fill="url(#furGrad)" stroke="#f2bdca" stroke-width="2.5"/>
+    <ellipse cx="140" cy="170" rx="30" ry="25" fill="url(#bellyGrad)"/>
 
     <!-- Ears -->
-    <circle cx="88" cy="76" r="16" fill="#ffffff" stroke="#e5b4c0" stroke-width="2.5"/>
-    <circle cx="88" cy="76" r="9" fill="#fec5d4"/>
-    <circle cx="152" cy="76" r="16" fill="#ffffff" stroke="#e5b4c0" stroke-width="2.5"/>
-    <circle cx="152" cy="76" r="9" fill="#fec5d4"/>
+    <circle cx="98" cy="84" r="20" fill="url(#furGrad)" stroke="#f2bdca" stroke-width="2.5"/>
+    <circle cx="98" cy="84" r="11" fill="url(#innerEarGrad)"/>
+    <ellipse cx="96" cy="80" rx="4" ry="2" fill="#ffffff" opacity="0.6"/>
+
+    <circle cx="182" cy="84" r="20" fill="url(#furGrad)" stroke="#f2bdca" stroke-width="2.5"/>
+    <circle cx="182" cy="84" r="11" fill="url(#innerEarGrad)"/>
+    <ellipse cx="180" cy="80" rx="4" ry="2" fill="#ffffff" opacity="0.6"/>
 
     <!-- Head -->
-    <circle cx="120" cy="100" r="38" fill="#ffffff" stroke="#e5b4c0" stroke-width="2.5"/>
+    <circle cx="140" cy="116" r="48" fill="url(#furGrad)" stroke="#f2bdca" stroke-width="2.5"/>
+    <ellipse cx="140" cy="95" rx="28" ry="14" fill="#ffffff" opacity="0.45"/>
 
-    <!-- Santa Hat -->
+    <!-- Santa Hat Drooping Sweetly to the Right -->
     <g>
-      <!-- Red Hat Body drooping slightly to the right -->
-      <path d="M 94 76 Q 120 40 156 50 Q 166 60 172 74 Q 146 64 94 76 Z" fill="#d90429"/>
-      <!-- Fluffy White Trim -->
-      <rect x="90" y="70" width="60" height="12" rx="6" fill="#ffffff" stroke="#f0d5dd" stroke-width="1.5"/>
-      <!-- Fluffy White Pom-Pom -->
-      <circle cx="173" cy="75" r="9" fill="#ffffff" stroke="#f0d5dd" stroke-width="1.5"/>
+      <path d="M 108 86 Q 140 40 184 54 Q 198 68 206 86 Q 172 74 108 86 Z" fill="url(#santaRed)"/>
+      <!-- Fluffy White Fur Trim -->
+      <rect x="104" y="80" width="74" height="15" rx="7.5" fill="#ffffff" stroke="#f0d5dd" stroke-width="1.8"/>
+      <!-- Soft White Pom-Pom -->
+      <circle cx="206" cy="88" r="11" fill="#ffffff" stroke="#f0d5dd" stroke-width="1.8"/>
+      <circle cx="206" cy="88" r="7" fill="#fff5f7"/>
     </g>
 
-    <!-- Warm Striped Holiday Scarf -->
-    <path d="M 98 120 Q 120 128 142 120 Q 142 129 120 137 Q 98 129 98 120 Z" fill="#2b9348"/>
-    <!-- Scarf Tails -->
-    <rect x="130" y="126" width="12" height="24" rx="2" fill="#2b9348" transform="rotate(10 130 126)"/>
-    <rect x="130" y="132" width="12" height="5" fill="#d90429" transform="rotate(10 130 126)"/>
+    <!-- Warm Striped Scarf wrapped around neck -->
+    <path d="M 112 140 Q 140 152 168 140 Q 168 152 140 162 Q 112 152 112 140 Z" fill="url(#scarfGreen)"/>
+    <!-- Scarf Stripes -->
+    <path d="M 124 145 Q 128 154 130 159" stroke="url(#santaRed)" stroke-width="4"/>
+    <path d="M 150 145 Q 152 154 154 159" stroke="url(#santaRed)" stroke-width="4"/>
 
-    <!-- Cute Eyes -->
-    <path d="M 103 98 Q 109 92 113 98" fill="none" stroke="#3b121f" stroke-width="3" stroke-linecap="round"/>
-    <path d="M 127 98 Q 131 92 137 98" fill="none" stroke="#3b121f" stroke-width="3" stroke-linecap="round"/>
+    <!-- Scarf Tail with Fringe (Animated Sway) -->
+    <g class="scarf-anim">
+      <rect x="150" y="148" width="14" height="30" rx="3" fill="url(#scarfGreen)"/>
+      <rect x="150" y="156" width="14" height="6" fill="url(#santaRed)"/>
+      <line x1="152" y1="178" x2="152" y2="182" stroke="url(#goldBell)" stroke-width="1.5"/>
+      <line x1="157" y1="178" x2="157" y2="182" stroke="url(#goldBell)" stroke-width="1.5"/>
+      <line x1="162" y1="178" x2="162" y2="182" stroke="url(#goldBell)" stroke-width="1.5"/>
+    </g>
 
-    <!-- Rosy Winter Blushing Cheeks -->
-    <ellipse cx="98" cy="108" rx="8" ry="5" fill="#ff758f" opacity="0.85"/>
-    <ellipse cx="142" cy="108" rx="8" ry="5" fill="#ff758f" opacity="0.85"/>
+    <!-- Eyes (Anime Glossy with Warm Expression) -->
+    <g class="eye-blink-anim">
+      <g transform="translate(118, 114)">
+        <ellipse cx="0" cy="0" rx="6.5" ry="8.5" fill="#2d131b"/>
+        <ellipse cx="-2" cy="-3" rx="2.8" ry="3.5" fill="#ffffff"/>
+        <circle cx="2.2" cy="3" r="1.3" fill="#ffffff"/>
+      </g>
+      <g transform="translate(162, 114)">
+        <ellipse cx="0" cy="0" rx="6.5" ry="8.5" fill="#2d131b"/>
+        <ellipse cx="-2" cy="-3" rx="2.8" ry="3.5" fill="#ffffff"/>
+        <circle cx="2.2" cy="3" r="1.3" fill="#ffffff"/>
+      </g>
+    </g>
 
-    <!-- Nose & Mouth -->
-    <ellipse cx="120" cy="106" rx="11" ry="8" fill="#fff0f3"/>
-    <ellipse cx="120" cy="103" rx="4.5" ry="3" fill="#662e3d"/>
-    <path d="M 120 106 Q 116 112 112 109" fill="none" stroke="#662e3d" stroke-width="1.8" stroke-linecap="round"/>
-    <path d="M 120 106 Q 124 112 128 109" fill="none" stroke="#662e3d" stroke-width="1.8" stroke-linecap="round"/>
+    <!-- Rosy Winter Cheeks -->
+    <circle cx="110" cy="126" r="13" fill="url(#blushGrad)"/>
+    <circle cx="170" cy="126" r="13" fill="url(#blushGrad)"/>
+    <circle cx="108" cy="123" r="2" fill="#ffffff" opacity="0.7"/>
+    <circle cx="172" cy="123" r="2" fill="#ffffff" opacity="0.7"/>
+
+    <!-- Snout & Nose -->
+    <ellipse cx="140" cy="126" rx="14" ry="10" fill="#ffffff" stroke="#fce4ec" stroke-width="1.5"/>
+    <ellipse cx="140" cy="122" rx="5.5" ry="3.8" fill="#441a28"/>
+    <ellipse cx="138.5" cy="120.8" rx="2" ry="1.2" fill="#ffffff" opacity="0.8"/>
+    <path d="M 140 125.5 Q 134 133 129 129" fill="none" stroke="#441a28" stroke-width="2" stroke-linecap="round"/>
+    <path d="M 140 125.5 Q 146 133 151 129" fill="none" stroke="#441a28" stroke-width="2" stroke-linecap="round"/>
 
     <!-- Left Paw -->
-    <ellipse cx="96" cy="138" rx="10" ry="8" fill="#ffffff" stroke="#e5b4c0" stroke-width="2"/>
+    <ellipse cx="112" cy="166" rx="12" ry="10" fill="url(#furGrad)" stroke="#f2bdca" stroke-width="2"/>
 
-    <!-- Right Paw holding Candy Cane & Golden Bell -->
-    <!-- Candy Cane -->
-    <g transform="translate(138, 116) rotate(-15)">
-      <path d="M 6 30 L 6 10 A 6 6 0 0 1 18 10 L 18 15" fill="none" stroke="#d90429" stroke-width="5" stroke-linecap="round"/>
-      <path d="M 6 30 L 6 10 A 6 6 0 0 1 18 10 L 18 15" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-dasharray="3,4"/>
+    <!-- Glossy Striped Holiday Candy Cane in Hands -->
+    <g transform="translate(162, 136) rotate(-18)">
+      <!-- Candy Cane Base -->
+      <path d="M 6 42 L 6 12 A 8 8 0 0 1 22 12 L 22 18" fill="none" stroke="url(#santaRed)" stroke-width="6.5" stroke-linecap="round"/>
+      <path d="M 6 42 L 6 12 A 8 8 0 0 1 22 12 L 22 18" fill="none" stroke="#ffffff" stroke-width="5" stroke-linecap="round" stroke-dasharray="4,5"/>
     </g>
-    <!-- Bell -->
-    <g class="bell">
-      <path d="M 150 130 L 158 130 L 161 138 L 147 138 Z" fill="#ffd166"/>
-      <circle cx="154" cy="139" r="2.5" fill="#e09f3e"/>
+
+    <!-- Golden Ringing Bell on Candy Cane -->
+    <g class="bell-anim">
+      <ellipse cx="184" cy="170" rx="5" ry="6" fill="url(#goldBell)"/>
+      <circle cx="184" cy="175" r="2" fill="#e09f3e"/>
+      <ellipse cx="182" cy="168" rx="1.5" ry="3" fill="#ffffff" opacity="0.6"/>
     </g>
-    <ellipse cx="144" cy="138" rx="10" ry="8" fill="#ffffff" stroke="#e5b4c0" stroke-width="2"/>
+
+    <!-- Right Paw holding cane -->
+    <ellipse cx="168" cy="166" rx="12" ry="10" fill="url(#furGrad)" stroke="#f2bdca" stroke-width="2"/>
+
   </g>
 </svg>

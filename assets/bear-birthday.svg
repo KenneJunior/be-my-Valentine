@@ -1,140 +1,322 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 200" width="240" height="200">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 240" width="280" height="240">
   <defs>
+    <!-- Premium Shading & Lighting Gradients -->
+    <linearGradient id="furGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="55%" stop-color="#fff5f8"/>
+      <stop offset="100%" stop-color="#fee5ed"/>
+    </linearGradient>
+
+    <radialGradient id="bellyGrad" cx="50%" cy="38%" r="58%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="65%" stop-color="#fff0f5"/>
+      <stop offset="100%" stop-color="#ffdbe6"/>
+    </radialGradient>
+
+    <linearGradient id="innerEarGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffb3c6"/>
+      <stop offset="100%" stop-color="#ff7597"/>
+    </linearGradient>
+
+    <radialGradient id="blushGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ff477e" stop-opacity="0.85"/>
+      <stop offset="50%" stop-color="#ff7597" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#ffccd5" stop-opacity="0"/>
+    </radialGradient>
+
+    <linearGradient id="hatGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff2e63"/>
+      <stop offset="50%" stop-color="#ff5c8a"/>
+      <stop offset="100%" stop-color="#ff85a1"/>
+    </linearGradient>
+
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffe478"/>
+      <stop offset="50%" stop-color="#ffd166"/>
+      <stop offset="100%" stop-color="#ffaa00"/>
+    </linearGradient>
+
+    <linearGradient id="frostingGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="50%" stop-color="#ffc2d1"/>
+      <stop offset="100%" stop-color="#ff85a1"/>
+    </linearGradient>
+
+    <radialGradient id="flameGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fff7a1" stop-opacity="1"/>
+      <stop offset="30%" stop-color="#ffbe0b" stop-opacity="0.9"/>
+      <stop offset="70%" stop-color="#fb5607" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#ff006e" stop-opacity="0"/>
+    </radialGradient>
+
+    <filter id="premiumGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#ff4d6d" flood-opacity="0.22"/>
+    </filter>
+
+    <filter id="softGlowLight" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+
     <style>
-      @keyframes jump {
-        0%, 100% { transform: translateY(0px) scale(1, 1); }
-        30% { transform: translateY(-24px) scale(0.96, 1.04); }
-        55% { transform: translateY(4px) scale(1.06, 0.94); }
-        70% { transform: translateY(-8px) scale(0.98, 1.02); }
+      @keyframes bearJump {
+        0%, 100% {
+          transform: translateY(0px) scale(1, 1);
+        }
+        25% {
+          transform: translateY(-28px) scale(0.97, 1.05);
+        }
+        50% {
+          transform: translateY(-34px) scale(0.96, 1.06) rotate(1.5deg);
+        }
+        75% {
+          transform: translateY(6px) scale(1.08, 0.92) rotate(-0.5deg);
+        }
+        88% {
+          transform: translateY(-6px) scale(0.99, 1.01);
+        }
       }
-      @keyframes flame {
-        0%, 100% { transform: scale(1) rotate(-2deg); }
-        50% { transform: scale(1.18, 0.9) rotate(3deg); }
+
+      @keyframes groundShadow {
+        0%, 100% {
+          transform: scale(1, 1);
+          opacity: 0.35;
+        }
+        25%, 50% {
+          transform: scale(0.72, 0.65);
+          opacity: 0.16;
+        }
+        75% {
+          transform: scale(1.2, 1.15);
+          opacity: 0.48;
+        }
       }
-      @keyframes hatSway {
+
+      @keyframes hatWiggle {
         0%, 100% { transform: rotate(-3deg); }
         50% { transform: rotate(4deg); }
       }
-      @keyframes sparkle {
-        0%, 100% { opacity: 0.3; transform: scale(0.8); }
-        50% { opacity: 1; transform: scale(1.2); }
-      }
-      @keyframes pawWave {
+
+      @keyframes earLeft {
         0%, 100% { transform: rotate(0deg); }
-        50% { transform: rotate(-8deg); }
+        35% { transform: rotate(-6deg); }
+        70% { transform: rotate(3deg); }
       }
-      .jumping-group {
-        animation: jump 1.1s cubic-bezier(0.28, 0.84, 0.42, 1) infinite;
-        transform-origin: 120px 170px;
+
+      @keyframes earRight {
+        0%, 100% { transform: rotate(0deg); }
+        40% { transform: rotate(6deg); }
+        75% { transform: rotate(-3deg); }
       }
-      .flame-anim {
-        animation: flame 0.6s ease-in-out infinite alternate;
-        transform-origin: 158px 115px;
+
+      @keyframes eyeBlink {
+        0%, 93%, 97%, 100% { transform: scaleY(1); }
+        95% { transform: scaleY(0.08); }
+      }
+
+      @keyframes flamePulse {
+        0%, 100% { transform: scale(1) rotate(-3deg); filter: drop-shadow(0 0 5px #ffaa00); }
+        50% { transform: scale(1.22, 1.08) rotate(4deg); filter: drop-shadow(0 0 10px #ff3860); }
+      }
+
+      @keyframes starFloat {
+        0%, 100% { transform: translateY(0px) scale(0.85) rotate(0deg); opacity: 0.4; }
+        50% { transform: translateY(-10px) scale(1.15) rotate(180deg); opacity: 1; }
+      }
+
+      @keyframes sparkleShimmer {
+        0%, 100% { transform: scale(0.7); opacity: 0.3; }
+        50% { transform: scale(1.3) rotate(45deg); opacity: 1; }
+      }
+
+      .bear-jumping-rig {
+        animation: bearJump 1.25s cubic-bezier(0.3, 0.8, 0.4, 1) infinite;
+        transform-origin: 140px 210px;
+      }
+      .ground-shadow-anim {
+        animation: groundShadow 1.25s cubic-bezier(0.3, 0.8, 0.4, 1) infinite;
+        transform-origin: 140px 218px;
       }
       .hat-anim {
-        animation: hatSway 1.1s ease-in-out infinite;
-        transform-origin: 120px 72px;
+        animation: hatWiggle 1.25s ease-in-out infinite;
+        transform-origin: 140px 58px;
       }
-      .sparkle-1 { animation: sparkle 1.3s ease infinite; }
-      .sparkle-2 { animation: sparkle 1.6s ease infinite 0.4s; }
-      .sparkle-3 { animation: sparkle 1.1s ease infinite 0.8s; }
+      .ear-l-anim {
+        animation: earLeft 1.25s ease-in-out infinite;
+        transform-origin: 98px 80px;
+      }
+      .ear-r-anim {
+        animation: earRight 1.25s ease-in-out infinite;
+        transform-origin: 182px 80px;
+      }
+      .eye-blink-anim {
+        animation: eyeBlink 3.6s ease-in-out infinite;
+        transform-origin: 140px 115px;
+      }
+      .flame-anim {
+        animation: flamePulse 0.55s ease-in-out infinite alternate;
+        transform-origin: 140px 145px;
+      }
+      .star-anim-1 { animation: starFloat 2.4s ease-in-out infinite; transform-origin: 38px 45px; }
+      .star-anim-2 { animation: starFloat 2.8s ease-in-out infinite 0.7s; transform-origin: 242px 55px; }
+      .sparkle-1 { animation: sparkleShimmer 1.8s ease-in-out infinite 0.3s; transform-origin: 48px 120px; }
+      .sparkle-2 { animation: sparkleShimmer 2.1s ease-in-out infinite 1.1s; transform-origin: 235px 125px; }
     </style>
-    <filter id="soft-shadow" x="-10%" y="-10%" width="130%" height="130%">
-      <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#e8708f" flood-opacity="0.25"/>
-    </filter>
   </defs>
 
-  <!-- Sparkles / Confetti in background -->
-  <circle cx="45" cy="45" r="4" fill="#ffd166" class="sparkle-1" />
-  <circle cx="195" cy="55" r="3.5" fill="#ff6b8b" class="sparkle-2" />
-  <polygon points="50,110 53,115 58,116 54,120 55,125 50,122 45,125 46,120 42,116 47,115" fill="#06d6a0" class="sparkle-3" />
-  <polygon points="190,115 192,119 196,120 193,123 194,127 190,125 186,127 187,123 184,120 188,119" fill="#118ab2" class="sparkle-1" />
-  <circle cx="120" cy="182" r="45" fill="#f8b4c4" opacity="0.4" />
+  <!-- Ambient Golden Confetti & Magic Stars -->
+  <g class="star-anim-1">
+    <polygon points="38,36 41,43 48,44 43,49 44,56 38,52 32,56 33,49 28,44 35,43" fill="url(#goldGrad)"/>
+    <circle cx="38" cy="46" r="2" fill="#ffffff"/>
+  </g>
+  <g class="star-anim-2">
+    <polygon points="242,47 245,53 251,54 246,58 247,64 242,61 237,64 238,58 233,54 239,53" fill="#ff7597"/>
+    <circle cx="242" cy="55" r="2" fill="#ffffff"/>
+  </g>
+  <circle cx="50" cy="120" r="3.5" fill="#06d6a0" class="sparkle-1"/>
+  <circle cx="236" cy="125" r="4" fill="#3a86ff" class="sparkle-2"/>
+  <circle cx="70" cy="65" r="2.5" fill="#ffd166" class="sparkle-2"/>
+  <circle cx="215" cy="72" r="3" fill="#ff4d6d" class="sparkle-1"/>
 
-  <!-- The Jumping Bear Body Group -->
-  <g class="jumping-group" filter="url(#soft-shadow)">
-    <!-- Shadow beneath paws -->
-    <ellipse cx="120" cy="174" rx="44" ry="9" fill="#f09db0" opacity="0.35"/>
+  <!-- Dynamic Soft Ground Shadow -->
+  <ellipse cx="140" cy="218" rx="55" ry="11" fill="#e86b8b" class="ground-shadow-anim"/>
 
-    <!-- Bear Feet -->
-    <ellipse cx="102" cy="168" rx="14" ry="11" fill="#fff5f5" stroke="#f2c8d2" stroke-width="2"/>
-    <circle cx="102" cy="169" r="6" fill="#fec5d4"/>
-    <ellipse cx="138" cy="168" rx="14" ry="11" fill="#fff5f5" stroke="#f2c8d2" stroke-width="2"/>
-    <circle cx="138" cy="169" r="6" fill="#fec5d4"/>
+  <!-- Main Jumping Rig -->
+  <g class="bear-jumping-rig" filter="url(#premiumGlow)">
 
-    <!-- Bear Body -->
-    <ellipse cx="120" cy="138" rx="38" ry="34" fill="#ffffff" stroke="#f4ced6" stroke-width="2.5"/>
-    <ellipse cx="120" cy="142" rx="23" ry="20" fill="#fff0f3"/>
+    <!-- Feet with Soft Pink Paw Pads -->
+    <g id="feet-group">
+      <!-- Left Foot -->
+      <ellipse cx="114" cy="204" rx="17" ry="13" fill="url(#furGrad)" stroke="#f5c2ce" stroke-width="2"/>
+      <ellipse cx="114" cy="205" rx="8" ry="6" fill="url(#innerEarGrad)"/>
+      <circle cx="109" cy="198" r="2" fill="#ff7597"/>
+      <circle cx="114" cy="196" r="2" fill="#ff7597"/>
+      <circle cx="119" cy="198" r="2" fill="#ff7597"/>
 
-    <!-- Left Ear -->
-    <circle cx="88" cy="74" r="16" fill="#ffffff" stroke="#f4ced6" stroke-width="2.5"/>
-    <circle cx="88" cy="74" r="9" fill="#fec5d4"/>
-
-    <!-- Right Ear -->
-    <circle cx="152" cy="74" r="16" fill="#ffffff" stroke="#f4ced6" stroke-width="2.5"/>
-    <circle cx="152" cy="74" r="9" fill="#fec5d4"/>
-
-    <!-- Bear Head -->
-    <circle cx="120" cy="98" r="38" fill="#ffffff" stroke="#f4ced6" stroke-width="2.5"/>
-
-    <!-- Party Hat -->
-    <g class="hat-anim">
-      <!-- Hat Cone -->
-      <polygon points="120,44 102,74 138,74" fill="#ff477e"/>
-      <!-- Hat Stripes -->
-      <polygon points="120,44 112,60 128,60" fill="#ffd166"/>
-      <polygon points="120,44 116,52 124,52" fill="#06d6a0"/>
-      <!-- Hat Trim -->
-      <ellipse cx="120" cy="74" rx="19" ry="4" fill="#ffd166"/>
-      <!-- Hat Pom-Pom -->
-      <circle cx="120" cy="42" r="6.5" fill="#ffd166"/>
-      <circle cx="120" cy="42" r="3.5" fill="#fff9db"/>
+      <!-- Right Foot -->
+      <ellipse cx="166" cy="204" rx="17" ry="13" fill="url(#furGrad)" stroke="#f5c2ce" stroke-width="2"/>
+      <ellipse cx="166" cy="205" rx="8" ry="6" fill="url(#innerEarGrad)"/>
+      <circle cx="161" cy="198" r="2" fill="#ff7597"/>
+      <circle cx="166" cy="196" r="2" fill="#ff7597"/>
+      <circle cx="171" cy="198" r="2" fill="#ff7597"/>
     </g>
 
-    <!-- Eyes (Happy curved arches) -->
-    <path d="M 103 96 Q 109 91 113 96" fill="none" stroke="#4a2530" stroke-width="3" stroke-linecap="round"/>
-    <path d="M 127 96 Q 131 91 137 96" fill="none" stroke="#4a2530" stroke-width="3" stroke-linecap="round"/>
+    <!-- Bear Pear-Shaped Body -->
+    <ellipse cx="140" cy="166" rx="46" ry="40" fill="url(#furGrad)" stroke="#f2bdca" stroke-width="2.5"/>
+    <!-- Cute Plump Belly Patch -->
+    <ellipse cx="140" cy="170" rx="30" ry="25" fill="url(#bellyGrad)"/>
 
-    <!-- Blushing Cheeks -->
-    <ellipse cx="98" cy="106" rx="7" ry="4.5" fill="#ff99b3" opacity="0.8"/>
-    <ellipse cx="142" cy="106" rx="7" ry="4.5" fill="#ff99b3" opacity="0.8"/>
+    <!-- Left Ear with Animated Recoil -->
+    <g class="ear-l-anim">
+      <circle cx="98" cy="84" r="20" fill="url(#furGrad)" stroke="#f2bdca" stroke-width="2.5"/>
+      <circle cx="98" cy="84" r="11" fill="url(#innerEarGrad)"/>
+      <ellipse cx="96" cy="80" rx="4" ry="2" fill="#ffffff" opacity="0.6"/>
+    </g>
 
-    <!-- Snout & Nose -->
-    <ellipse cx="120" cy="105" rx="11" ry="8" fill="#fff0f3"/>
-    <ellipse cx="120" cy="102" rx="4.5" ry="3" fill="#662e3d"/>
-    <path d="M 120 105 Q 116 111 112 108" fill="none" stroke="#662e3d" stroke-width="1.8" stroke-linecap="round"/>
-    <path d="M 120 105 Q 124 111 128 108" fill="none" stroke="#662e3d" stroke-width="1.8" stroke-linecap="round"/>
+    <!-- Right Ear with Animated Recoil -->
+    <g class="ear-r-anim">
+      <circle cx="182" cy="84" r="20" fill="url(#furGrad)" stroke="#f2bdca" stroke-width="2.5"/>
+      <circle cx="182" cy="84" r="11" fill="url(#innerEarGrad)"/>
+      <ellipse cx="180" cy="80" rx="4" ry="2" fill="#ffffff" opacity="0.6"/>
+    </g>
 
-    <!-- Bear Paws holding Birthday Cupcake -->
+    <!-- Bear Head -->
+    <circle cx="140" cy="116" r="48" fill="url(#furGrad)" stroke="#f2bdca" stroke-width="2.5"/>
+    <!-- Head Ambient Soft Fur Highlight -->
+    <ellipse cx="140" cy="95" rx="28" ry="14" fill="#ffffff" opacity="0.45"/>
+
+    <!-- Party Hat with Pom-Pom -->
+    <g class="hat-anim">
+      <polygon points="140,46 116,84 164,84" fill="url(#hatGrad)"/>
+      <!-- Decorative Diagonal Hat Stripes -->
+      <polygon points="140,46 128,66 152,66" fill="url(#goldGrad)"/>
+      <polygon points="140,46 134,56 146,56" fill="#06d6a0"/>
+      <!-- Hat Ruffled Trim -->
+      <ellipse cx="140" cy="84" rx="25" ry="5" fill="url(#goldGrad)"/>
+      <!-- Soft Fluffy Pom-Pom with Glow -->
+      <circle cx="140" cy="44" r="9" fill="url(#goldGrad)"/>
+      <circle cx="140" cy="44" r="5" fill="#ffffff" opacity="0.85"/>
+    </g>
+
+    <!-- Facial Features -->
+    <g class="eye-blink-anim">
+      <!-- Left Eye: Large Kawaii Glossy Eye -->
+      <g transform="translate(118, 114)">
+        <ellipse cx="0" cy="0" rx="6.5" ry="8.5" fill="#2d131b"/>
+        <!-- Main Specular Light -->
+        <ellipse cx="-2" cy="-3" rx="2.8" ry="3.5" fill="#ffffff"/>
+        <!-- Secondary Twinkle Light -->
+        <circle cx="2.2" cy="3" r="1.3" fill="#ffffff"/>
+        <!-- Lower Iris Glow -->
+        <path d="M -4 3 Q 0 7 4 3" stroke="#8b3a55" stroke-width="1.2" fill="none"/>
+      </g>
+
+      <!-- Right Eye: Large Kawaii Glossy Eye -->
+      <g transform="translate(162, 114)">
+        <ellipse cx="0" cy="0" rx="6.5" ry="8.5" fill="#2d131b"/>
+        <!-- Main Specular Light -->
+        <ellipse cx="-2" cy="-3" rx="2.8" ry="3.5" fill="#ffffff"/>
+        <!-- Secondary Twinkle Light -->
+        <circle cx="2.2" cy="3" r="1.3" fill="#ffffff"/>
+        <!-- Lower Iris Glow -->
+        <path d="M -4 3 Q 0 7 4 3" stroke="#8b3a55" stroke-width="1.2" fill="none"/>
+      </g>
+    </g>
+
+    <!-- Blushing Rosy Cheeks -->
+    <circle cx="110" cy="126" r="13" fill="url(#blushGrad)"/>
+    <circle cx="170" cy="126" r="13" fill="url(#blushGrad)"/>
+    <circle cx="108" cy="123" r="2" fill="#ffffff" opacity="0.7"/>
+    <circle cx="172" cy="123" r="2" fill="#ffffff" opacity="0.7"/>
+
+    <!-- Snout & Truffle Nose -->
+    <ellipse cx="140" cy="126" rx="14" ry="10" fill="#ffffff" stroke="#fce4ec" stroke-width="1.5"/>
+    <ellipse cx="140" cy="122" rx="5.5" ry="3.8" fill="#441a28"/>
+    <ellipse cx="138.5" cy="120.8" rx="2" ry="1.2" fill="#ffffff" opacity="0.8"/>
+    <!-- Cute W-Mouth Smile -->
+    <path d="M 140 125.5 Q 134 133 129 129" fill="none" stroke="#441a28" stroke-width="2" stroke-linecap="round"/>
+    <path d="M 140 125.5 Q 146 133 151 129" fill="none" stroke="#441a28" stroke-width="2" stroke-linecap="round"/>
+
+    <!-- Paws & Glazed Birthday Cupcake -->
     <!-- Left Paw -->
-    <ellipse cx="96" cy="136" rx="10" ry="8" fill="#ffffff" stroke="#f4ced6" stroke-width="2"/>
+    <ellipse cx="112" cy="164" rx="12" ry="10" fill="url(#furGrad)" stroke="#f2bdca" stroke-width="2"/>
 
-    <!-- Birthday Cupcake in hands -->
-    <g transform="translate(108, 116)">
-      <!-- Cupcake Liner -->
-      <polygon points="4,18 7,32 19,32 22,18" fill="#48cae4" stroke="#0096c7" stroke-width="1"/>
-      <line x1="10" y1="18" x2="11" y2="32" stroke="#0096c7" stroke-width="0.8"/>
-      <line x1="16" y1="18" x2="15" y2="32" stroke="#0096c7" stroke-width="0.8"/>
-      <!-- Cupcake Frosting -->
-      <ellipse cx="13" cy="17" rx="12" ry="7" fill="#ffb4a2"/>
-      <circle cx="8" cy="16" r="4" fill="#ffb4a2"/>
-      <circle cx="13" cy="13" r="5" fill="#ffb4a2"/>
-      <circle cx="18" cy="16" r="4" fill="#ffb4a2"/>
-      <!-- Sprinkles -->
-      <circle cx="10" cy="15" r="1" fill="#ff006e"/>
-      <circle cx="15" cy="14" r="1" fill="#ffbe0b"/>
-      <circle cx="13" cy="18" r="1" fill="#3a86ff"/>
-      <!-- Birthday Candle -->
-      <rect x="11.5" y="4" width="3" height="9" rx="1" fill="#ffd166"/>
-      <line x1="13" y1="1" x2="13" y2="4" stroke="#4a2530" stroke-width="0.8"/>
-      <!-- Candle Flame -->
+    <!-- Birthday Cupcake Centerpiece -->
+    <g transform="translate(126, 142)">
+      <!-- Ribbed Cupcake Liner -->
+      <polygon points="4,24 8,40 20,40 24,24" fill="#48cae4" stroke="#0096c7" stroke-width="1.2"/>
+      <line x1="8" y1="24" x2="11" y2="40" stroke="#0077b6" stroke-width="1"/>
+      <line x1="14" y1="24" x2="14" y2="40" stroke="#0077b6" stroke-width="1"/>
+      <line x1="20" y1="24" x2="17" y2="40" stroke="#0077b6" stroke-width="1"/>
+
+      <!-- Swirled Strawberry Frosting -->
+      <ellipse cx="14" cy="22" rx="15" ry="9" fill="url(#frostingGrad)"/>
+      <circle cx="8" cy="21" r="5" fill="url(#frostingGrad)"/>
+      <circle cx="14" cy="16" r="6" fill="url(#frostingGrad)"/>
+      <circle cx="20" cy="21" r="5" fill="url(#frostingGrad)"/>
+
+      <!-- Sweet Rainbow Sprinkles -->
+      <rect x="9" y="19" width="3" height="1.5" rx="0.7" fill="#ff006e" transform="rotate(20 9 19)"/>
+      <rect x="15" y="17" width="3" height="1.5" rx="0.7" fill="#ffbe0b" transform="rotate(-30 15 17)"/>
+      <rect x="18" y="22" width="3" height="1.5" rx="0.7" fill="#3a86ff" transform="rotate(40 18 22)"/>
+
+      <!-- Striped Birthday Candle -->
+      <rect x="12" y="6" width="4" height="11" rx="1" fill="url(#goldGrad)"/>
+      <line x1="12" y1="9" x2="16" y2="9" stroke="#ff006e" stroke-width="1"/>
+      <line x1="12" y1="13" x2="16" y2="13" stroke="#06d6a0" stroke-width="1"/>
+      <line x1="14" y1="3" x2="14" y2="6" stroke="#2d131b" stroke-width="1.2"/>
+
+      <!-- Pulsating Animated Candle Flame with Luminous Halo -->
       <g class="flame-anim">
-        <ellipse cx="13" cy="-0.5" rx="3.5" ry="5.5" fill="#ff9e00"/>
-        <ellipse cx="13" cy="0.5" rx="2" ry="3.5" fill="#ffea00"/>
+        <circle cx="14" cy="1" r="10" fill="url(#flameGlow)" opacity="0.6"/>
+        <ellipse cx="14" cy="0" rx="4.5" ry="7" fill="#ff9e00"/>
+        <ellipse cx="14" cy="1" rx="2.5" ry="4.5" fill="#ffea00"/>
+        <circle cx="14" cy="2.5" r="1.5" fill="#ffffff"/>
       </g>
     </g>
 
     <!-- Right Paw -->
-    <ellipse cx="144" cy="136" rx="10" ry="8" fill="#ffffff" stroke="#f4ced6" stroke-width="2"/>
+    <ellipse cx="168" cy="164" rx="12" ry="10" fill="url(#furGrad)" stroke="#f2bdca" stroke-width="2"/>
+
   </g>
 </svg>

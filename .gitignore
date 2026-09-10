@@ -1,3 +1,5 @@
 .idea/
 .vscode/
-.env.exxxample/
+.env.example
+node_modules/
+package-lock.json
