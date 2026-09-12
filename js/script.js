@@ -369,6 +369,59 @@ document.addEventListener('DOMContentLoaded', () => {
     const preloaderStatus = document.getElementById('preloader-status');
     const preloaderBadgeText = document.getElementById('preloader-badge-text');
     const dropletIcon = document.getElementById('droplet-icon');
+    const preloaderSvgImg = document.getElementById('preloader-svg-img');
+
+    // --------------------------------------------------------------------------
+    // Centralized Device & Adaptive Performance Engine (Zero Mobile Heating & Freezing)
+    // --------------------------------------------------------------------------
+    const DeviceManager = {
+        isMobile: false,
+        isCoarsePointer: false,
+        isLowPower: false,
+        canTilt: false,
+        maxParticles: 2,
+        spawnIntervalMs: 3200,
+
+        detect() {
+            const ua = navigator.userAgent || '';
+            const isMobileUA = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|Silk/i.test(ua);
+            const hasTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+            const isSmallScreen = window.innerWidth <= 768;
+            const isCoarse = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
+            const canHover = window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+            const lowCpu = navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4;
+            const lowMemory = navigator.deviceMemory && navigator.deviceMemory <= 4;
+
+            this.isMobile = isMobileUA || isSmallScreen || (hasTouch && isCoarse);
+            this.isCoarsePointer = isCoarse || !canHover;
+            this.isLowPower = this.isMobile || lowCpu || lowMemory;
+            this.canTilt = !this.isMobile && canHover && !hasTouch;
+
+            if (this.isMobile) {
+                document.body.classList.add('is-mobile', 'mobile-throttled');
+                this.maxParticles = 2; // Strict mobile throttle: max 2 active floating particles
+                this.spawnIntervalMs = 3200; // Low-frequency spawn to preserve mobile battery
+            } else {
+                document.body.classList.add('is-desktop');
+                this.maxParticles = 8;
+                this.spawnIntervalMs = 850;
+            }
+
+            // Pause particle spawner when tab is hidden to save mobile battery and avoid background buildup
+            document.addEventListener('visibilitychange', () => {
+                if (document.hidden) {
+                    if (floatingInterval) {
+                        clearInterval(floatingInterval);
+                        floatingInterval = null;
+                    }
+                } else if (!isAccepted) {
+                    startEmojiSpawner();
+                }
+            });
+        }
+    };
+    DeviceManager.detect();
 
     // Birthday Music Elements
     const birthdayAudio = document.getElementById('birthday-audio');
@@ -1216,17 +1269,21 @@ document.addEventListener('DOMContentLoaded', () => {
             mainGif.src = currentSeason.bearNormal;
             mainGif.style.transform = '';
         }
+
+        // Reset zoomed-out card layout back to initial state
+        if (valentineCard) {
+            valentineCard.classList.remove('card-accepted');
+        }
+        document.body.classList.remove('state-accepted');
     }
 
     // --------------------------------------------------------------------------
     // 5. High-Performance Background Particles (Thrust & Season Customization)
     // --------------------------------------------------------------------------
-    // Detect mobile or touch device to throttle particle creation and prevent jitter
-    const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 
-                           window.innerWidth < 768 || 
-                           window.matchMedia('(pointer: coarse)').matches;
-    const maxActiveParticles = isMobileDevice ? 6 : 14;
-    const spawnIntervalMs = isMobileDevice ? 1300 : 700;
+    // Adaptively throttled via DeviceManager to prevent mobile overheating & frame freezes
+    const isMobileDevice = DeviceManager.isMobile;
+    const maxActiveParticles = DeviceManager.maxParticles;
+    const spawnIntervalMs = DeviceManager.spawnIntervalMs;
 
     function spawnFloatingParticle() {
         if (document.hidden || !floatingHeartsContainer) return;
@@ -1372,9 +1429,11 @@ document.addEventListener('DOMContentLoaded', () => {
         // 5. Update Bear Reaction Emotion based on dodge count
         updateBearEmotion(dodgeCount);
 
-        // Spawn a burst of celebratory particles around the card on dodge
-        for (let i = 0; i < 3; i++) {
-            setTimeout(spawnFloatingParticle, i * 80);
+        // Spawn a burst of celebratory particles around the card on dodge (only on desktop to save mobile CPU)
+        if (!DeviceManager.isMobile) {
+            for (let i = 0; i < 3; i++) {
+                setTimeout(spawnFloatingParticle, i * 80);
+            }
         }
     }
 
@@ -1393,6 +1452,18 @@ document.addEventListener('DOMContentLoaded', () => {
         const colors = customColors || currentSeason.confettiColors || ['#ff2e63', '#ffd166', '#06d6a0', '#ffffff'];
 
         if (typeof confetti === 'function') {
+            if (DeviceManager.isMobile) {
+                // Single lightweight burst on mobile - zero GPU overheating & zero frame drops
+                confetti({
+                    particleCount: 35,
+                    spread: 70,
+                    origin: { y: 0.6 },
+                    colors: colors,
+                    startVelocity: 32
+                });
+                return;
+            }
+
             confetti({
                 particleCount: 90,
                 spread: 100,
@@ -1568,16 +1639,27 @@ document.addEventListener('DOMContentLoaded', () => {
             successContainer.style.display = 'flex';
         }
 
-        // 8. Fire Confetti
+        // 8. Fluid Zoom-Out: scale card so all top controls, celebration header, keepsake card, and buttons fit cleanly
+        if (valentineCard) {
+            valentineCard.classList.add('card-accepted');
+            if (valentineCard.vanillaTilt) {
+                valentineCard.vanillaTilt.destroy();
+            }
+            valentineCard.scrollTop = 0;
+        }
+        document.body.classList.add('state-accepted');
+        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+
+        // 9. Fire Confetti (mobile throttled)
         launchCelebrationConfetti();
 
-        // 9. Extra celebratory particles shower (respecting mobile thrust cap)
-        const burstCount = isMobileDevice ? 6 : 14;
+        // 10. Extra celebratory particles shower (respecting mobile thrust cap)
+        const burstCount = DeviceManager.isMobile ? 2 : 10;
         for (let i = 0; i < burstCount; i++) {
-            setTimeout(spawnFloatingParticle, i * 110);
+            setTimeout(spawnFloatingParticle, i * 140);
         }
 
-        // 10. Play Birthday Celebration Music (Simi ft. Adekunle Gold & Deja - Happy Birthday)
+        // 11. Play Birthday Celebration Music (Simi ft. Adekunle Gold & Deja - Happy Birthday)
         playCelebrationMusic();
     }
 
@@ -1731,9 +1813,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let tiltInitialized = false;
     function initCardTilt() {
         if (tiltInitialized) return;
-        const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-        // Strictly enable only for desktop/laptops with fine cursor to keep mobile zero-cost & jitter-free
-        if (canHover && valentineCard && typeof VanillaTilt !== 'undefined') {
+        // Strictly enable only for desktop/laptops with fine cursor and non-touch to keep mobile zero-cost & jitter-free
+        if (DeviceManager.canTilt && valentineCard && typeof VanillaTilt !== 'undefined') {
             tiltInitialized = true;
             VanillaTilt.init(valentineCard, {
                 max: 18,

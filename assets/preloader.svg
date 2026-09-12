@@ -1,0 +1,184 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" width="100%" height="100%">
+  <defs>
+    <!-- Liquid Glass Outer Orb Gradients -->
+    <radialGradient id="glassSphere" cx="35%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95"/>
+      <stop offset="30%" stop-color="#ffe4ed" stop-opacity="0.75"/>
+      <stop offset="65%" stop-color="#ff758f" stop-opacity="0.35"/>
+      <stop offset="90%" stop-color="#ff0a54" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#c9184a" stop-opacity="0.7"/>
+    </radialGradient>
+
+    <!-- Glass Rim Specular Reflection -->
+    <linearGradient id="rimSpecular" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95"/>
+      <stop offset="25%" stop-color="#ffffff" stop-opacity="0.3"/>
+      <stop offset="50%" stop-color="#ffb3c6" stop-opacity="0.1"/>
+      <stop offset="75%" stop-color="#ffffff" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#ff4d6d" stop-opacity="0.7"/>
+    </linearGradient>
+
+    <!-- Core Faceted Heart Jewel Gradients -->
+    <linearGradient id="heartBody" x1="20%" y1="10%" x2="80%" y2="90%">
+      <stop offset="0%" stop-color="#ff758f"/>
+      <stop offset="35%" stop-color="#ff4d6d"/>
+      <stop offset="70%" stop-color="#ff0a54"/>
+      <stop offset="100%" stop-color="#a4133c"/>
+    </linearGradient>
+
+    <linearGradient id="heartFacetSheen" x1="0%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9"/>
+      <stop offset="45%" stop-color="#ffffff" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+
+    <!-- Golden Sparkle Glow -->
+    <radialGradient id="starGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="1"/>
+      <stop offset="35%" stop-color="#ffe066" stop-opacity="0.9"/>
+      <stop offset="70%" stop-color="#ff9e00" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#ff9e00" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Ambient Outer Halo -->
+    <filter id="liquidDropFilter" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+
+    <style>
+      /* Harmonic spring floating oscillation */
+      @keyframes preloaderOrbFloat {
+        0% { transform: translateY(0px) scale(1, 1); }
+        25% { transform: translateY(-5px) scale(0.98, 1.02); }
+        50% { transform: translateY(0px) scale(1.02, 0.98); }
+        75% { transform: translateY(4px) scale(0.99, 1.01); }
+        100% { transform: translateY(0px) scale(1, 1); }
+      }
+
+      /* Inner Heart Breathing Pulse */
+      @keyframes preloaderHeartPulse {
+        0% { transform: scale(1); }
+        14% { transform: scale(1.13); }
+        28% { transform: scale(0.97); }
+        42% { transform: scale(1.09); }
+        70% { transform: scale(1); }
+        100% { transform: scale(1); }
+      }
+
+      /* Continuous Specular Flare Rotation */
+      @keyframes orbitSparkle {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+
+      /* Shimmering Gleam */
+      @keyframes sparkleGlint {
+        0%, 100% { transform: scale(0.6) rotate(0deg); opacity: 0.35; }
+        50% { transform: scale(1.25) rotate(45deg); opacity: 1; }
+      }
+
+      .preloader-svg-orb {
+        transform-origin: 80px 80px;
+        animation: preloaderOrbFloat 3.8s ease-in-out infinite;
+      }
+
+      .preloader-svg-heart {
+        transform-origin: 80px 84px;
+        animation: preloaderHeartPulse 1.7s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+      }
+
+      .preloader-orbit {
+        transform-origin: 80px 80px;
+        animation: orbitSparkle 9s linear infinite;
+      }
+
+      .sparkle-1 {
+        transform-origin: 124px 44px;
+        animation: sparkleGlint 2.1s ease-in-out infinite;
+      }
+
+      .sparkle-2 {
+        transform-origin: 36px 116px;
+        animation: sparkleGlint 2.7s ease-in-out infinite 0.7s;
+      }
+
+      .sparkle-3 {
+        transform-origin: 118px 120px;
+        animation: sparkleGlint 2.4s ease-in-out infinite 1.2s;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .preloader-svg-orb,
+        .preloader-svg-heart,
+        .preloader-orbit,
+        .sparkle-1,
+        .sparkle-2,
+        .sparkle-3 {
+          animation: none !important;
+        }
+      }
+    </style>
+  </defs>
+
+  <!-- Ambient Glow Ring -->
+  <circle cx="80" cy="80" r="62" fill="url(#starGlow)" opacity="0.4" />
+
+  <!-- Main Floating Glass Container -->
+  <g class="preloader-svg-orb">
+    <!-- Liquid Droplet Shadow -->
+    <ellipse cx="80" cy="142" rx="42" ry="9" fill="#2b0914" opacity="0.16" filter="url(#liquidDropFilter)" />
+
+    <!-- Glass Outer Body -->
+    <circle cx="80" cy="80" r="56" fill="url(#glassSphere)" />
+    
+    <!-- Outer Rim Specular Bevel -->
+    <circle cx="80" cy="80" r="55" fill="none" stroke="url(#rimSpecular)" stroke-width="2.5" opacity="0.9" />
+
+    <!-- Internal Liquid Caustic Reflection Arc -->
+    <path d="M 38 78 A 44 44 0 0 0 122 78 A 41 39 0 0 1 38 78 Z" fill="#ffffff" opacity="0.22" />
+
+    <!-- Central Floating Gem Heart -->
+    <g class="preloader-svg-heart">
+      <!-- Heart Shadow -->
+      <path d="M 80 106 C 68 96 52 82 52 70 C 52 61 58 55 67 55 C 73 55 77 58 80 63 C 83 58 87 55 93 55 C 102 55 108 61 108 70 C 108 82 92 96 80 106 Z" fill="#590d22" opacity="0.32" transform="translate(0, 3)" />
+
+      <!-- Heart Main Body -->
+      <path d="M 80 106 C 68 96 52 82 52 70 C 52 61 58 55 67 55 C 73 55 77 58 80 63 C 83 58 87 55 93 55 C 102 55 108 61 108 70 C 108 82 92 96 80 106 Z" fill="url(#heartBody)" />
+
+      <!-- Heart Left Facet Sheen -->
+      <path d="M 80 63 C 77 58 73 55 67 55 C 58 55 52 61 52 70 C 52 77 59 86 67 94 C 72 84 76 72 80 63 Z" fill="url(#heartFacetSheen)" />
+
+      <!-- Heart Specular Gleam -->
+      <ellipse cx="65" cy="62" rx="4.5" ry="2.5" transform="rotate(-30 65 62)" fill="#ffffff" opacity="0.92" />
+      <circle cx="94" cy="63" r="1.8" fill="#ffffff" opacity="0.85" />
+    </g>
+
+    <!-- Top Specular Crescent on Outer Glass -->
+    <path d="M 45 48 C 55 35 75 30 95 34 C 88 38 70 38 56 46 C 51 49 47 48 45 48 Z" fill="#ffffff" opacity="0.88" />
+    <!-- Small secondary catch-light -->
+    <ellipse cx="114" cy="56" rx="4" ry="2.2" transform="rotate(35 114 56)" fill="#ffffff" opacity="0.75" />
+    <!-- Bottom Rim Refraction -->
+    <path d="M 52 122 C 68 132 92 132 108 122 C 96 126 84 126 72 125 C 62 124 55 123 52 122 Z" fill="#ffffff" opacity="0.45" />
+  </g>
+
+  <!-- Orbiting Constellation of Shimmering Sparkles -->
+  <g class="preloader-orbit">
+    <!-- Star Sparkle 1 (Top Right) -->
+    <g class="sparkle-1">
+      <path d="M 124 37 L 126 43 L 132 45 L 126 47 L 124 53 L 122 47 L 116 45 L 122 43 Z" fill="url(#starGlow)" />
+      <circle cx="124" cy="45" r="1.5" fill="#ffffff" />
+    </g>
+
+    <!-- Star Sparkle 2 (Bottom Left) -->
+    <g class="sparkle-2">
+      <path d="M 36 110 L 37.5 115 L 42.5 116.5 L 37.5 118 L 36 123 L 34.5 118 L 29.5 116.5 L 34.5 115 Z" fill="url(#starGlow)" />
+      <circle cx="36" cy="116.5" r="1.2" fill="#ffffff" />
+    </g>
+
+    <!-- Star Sparkle 3 (Bottom Right Micro-star) -->
+    <g class="sparkle-3">
+      <path d="M 118 116 L 119 119.5 L 122.5 120.5 L 119 121.5 L 118 125 L 117 121.5 L 113.5 120.5 L 117 119.5 Z" fill="#ffffff" opacity="0.9" />
+    </g>
+  </g>
+</svg>

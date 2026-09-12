@@ -2,9 +2,9 @@
 const PARTICLE_CONFIG = {
     // Particle Properties
     COUNT: {
-        DESKTOP: 150,
-        TABLET: 80,
-        MOBILE: 40
+        DESKTOP: 120,
+        TABLET: 45,
+        MOBILE: 16 // Throttled from 40 to 16 to keep mobile cool and silky smooth
     },
     COLORS: [
         'rgba(255, 46, 99, 0.8)',    // Primary pink
@@ -271,7 +271,10 @@ class AdvancedParticleSystem {
     }
 
     getParticleCount() {
-        if (window.innerWidth < 768) {
+        const ua = navigator.userAgent || '';
+        const isMobileUA = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile/i.test(ua);
+        const isCoarse = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
+        if (window.innerWidth < 768 || isMobileUA || isCoarse) {
             return PARTICLE_CONFIG.COUNT.MOBILE;
         } else if (window.innerWidth < 1024) {
             return PARTICLE_CONFIG.COUNT.TABLET;
