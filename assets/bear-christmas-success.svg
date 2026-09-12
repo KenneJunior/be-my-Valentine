@@ -41,53 +41,125 @@
       <stop offset="100%" stop-color="#0d4d1a"/>
     </linearGradient>
 
-    <filter id="premiumGlow" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#d90429" flood-opacity="0.22"/>
+    <linearGradient id="specularRim" x1="15%" y1="0%" x2="85%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95"/>
+      <stop offset="35%" stop-color="#ffffff" stop-opacity="0.45"/>
+      <stop offset="70%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+
+    <filter id="premiumGlow" x="-25%" y="-25%" width="150%" height="150%">
+      <feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#d90429" flood-opacity="0.25"/>
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#ff758f" flood-opacity="0.2"/>
     </filter>
 
     <style>
-      @keyframes victoryJump {
-        0%, 100% { transform: translateY(0px) rotate(0deg) scale(1, 1); }
-        25% { transform: translateY(-32px) rotate(-4deg) scale(0.96, 1.05); }
-        50% { transform: translateY(6px) rotate(0deg) scale(1.08, 0.92); }
-        75% { transform: translateY(-30px) rotate(4deg) scale(0.96, 1.05); }
+      /* Physically grounded spring-damper squash and stretch jump */
+      @keyframes victorySpringJump {
+        0% { transform: translateY(0px) scale(1, 1) rotate(0deg); }
+        9% { transform: translateY(12px) scale(1.16, 0.84) rotate(0deg); }
+        22% { transform: translateY(-18px) scale(0.88, 1.16) rotate(1deg); }
+        36% { transform: translateY(-46px) scale(0.92, 1.1) rotate(2deg); }
+        48% { transform: translateY(-49px) scale(1.03, 0.97) rotate(0.6deg); }
+        64% { transform: translateY(-14px) scale(0.89, 1.15) rotate(-0.8deg); }
+        74% { transform: translateY(14px) scale(1.26, 0.74) rotate(0deg); }
+        84% { transform: translateY(-11px) scale(0.93, 1.08) rotate(-0.5deg); }
+        92% { transform: translateY(3px) scale(1.04, 0.97) rotate(0.2deg); }
+        100% { transform: translateY(0px) scale(1, 1) rotate(0deg); }
       }
 
-      @keyframes groundShadow {
-        0%, 100% { transform: scale(1, 1); opacity: 0.35; }
-        25%, 75% { transform: scale(0.68, 0.6); opacity: 0.14; }
-        50% { transform: scale(1.22, 1.15); opacity: 0.48; }
+      @keyframes groundShadowSpring {
+        0% { transform: scale(1, 1); opacity: 0.38; }
+        9% { transform: scale(1.28, 1.22); opacity: 0.55; }
+        22% { transform: scale(0.74, 0.68); opacity: 0.20; }
+        36%, 48% { transform: scale(0.44, 0.40); opacity: 0.08; }
+        64% { transform: scale(0.80, 0.74); opacity: 0.22; }
+        74% { transform: scale(1.36, 1.30); opacity: 0.65; }
+        84% { transform: scale(0.86, 0.82); opacity: 0.26; }
+        92% { transform: scale(1.07, 1.05); opacity: 0.44; }
+        100% { transform: scale(1, 1); opacity: 0.38; }
+      }
+
+      @keyframes earFlopLeftSpring {
+        0% { transform: rotate(0deg) scale(1); }
+        9% { transform: rotate(10deg) scale(1.05, 0.95); }
+        22% { transform: rotate(-16deg) scale(0.93, 1.09); }
+        36% { transform: rotate(14deg) scale(1.04, 0.96); }
+        48% { transform: rotate(6deg) scale(1, 1); }
+        64% { transform: rotate(-14deg) scale(0.94, 1.07); }
+        74% { transform: rotate(20deg) scale(1.14, 0.85); }
+        84% { transform: rotate(-9deg) scale(0.95, 1.06); }
+        92% { transform: rotate(3deg) scale(1.02, 0.98); }
+        100% { transform: rotate(0deg) scale(1); }
+      }
+
+      @keyframes earFlopRightSpring {
+        0% { transform: rotate(0deg) scale(1); }
+        9% { transform: rotate(-10deg) scale(1.05, 0.95); }
+        22% { transform: rotate(16deg) scale(0.93, 1.09); }
+        36% { transform: rotate(-14deg) scale(1.04, 0.96); }
+        48% { transform: rotate(-6deg) scale(1, 1); }
+        64% { transform: rotate(14deg) scale(0.94, 1.07); }
+        74% { transform: rotate(-20deg) scale(1.14, 0.85); }
+        84% { transform: rotate(9deg) scale(0.95, 1.06); }
+        92% { transform: rotate(-3deg) scale(1.02, 0.98); }
+        100% { transform: rotate(0deg) scale(1); }
+      }
+
+      @keyframes hatTipSpring {
+        0%, 100% { transform: rotate(0deg); }
+        22% { transform: rotate(-14deg); }
+        48% { transform: rotate(18deg); }
+        74% { transform: rotate(-16deg); }
+        84% { transform: rotate(9deg); }
       }
 
       @keyframes starTwinkle {
-        0%, 100% { transform: scale(0.8) rotate(0deg); opacity: 0.4; }
-        50% { transform: scale(1.25) rotate(90deg); opacity: 1; }
+        0%, 100% { transform: scale(0.82) rotate(0deg); opacity: 0.5; filter: drop-shadow(0 0 4px rgba(255, 209, 102, 0.4)); }
+        50% { transform: scale(1.28) rotate(90deg); opacity: 1; filter: drop-shadow(0 0 12px rgba(255, 209, 102, 0.9)); }
       }
 
       @keyframes armWaveLeft {
-        0%, 100% { transform: rotate(-35deg); }
-        50% { transform: rotate(-48deg); }
+        0%, 100% { transform: rotate(-32deg); }
+        22% { transform: rotate(-22deg); }
+        48% { transform: rotate(-58deg); }
+        74% { transform: rotate(-24deg); }
+        84% { transform: rotate(-40deg); }
       }
 
       @keyframes armWaveRight {
-        0%, 100% { transform: rotate(35deg); }
-        50% { transform: rotate(48deg); }
+        0%, 100% { transform: rotate(32deg); }
+        22% { transform: rotate(22deg); }
+        48% { transform: rotate(58deg); }
+        74% { transform: rotate(24deg); }
+        84% { transform: rotate(40deg); }
       }
 
       .bear-victory-rig {
-        animation: victoryJump 1.05s cubic-bezier(0.28, 0.84, 0.38, 1) infinite;
+        animation: victorySpringJump 1.15s cubic-bezier(0.28, 0.84, 0.36, 1) infinite;
         transform-origin: 140px 210px;
       }
       .ground-shadow-anim {
-        animation: groundShadow 1.05s cubic-bezier(0.28, 0.84, 0.38, 1) infinite;
+        animation: groundShadowSpring 1.15s cubic-bezier(0.28, 0.84, 0.36, 1) infinite;
         transform-origin: 140px 218px;
       }
+      .ear-left-rig {
+        animation: earFlopLeftSpring 1.15s cubic-bezier(0.3, 0.8, 0.4, 1) infinite;
+        transform-origin: 98px 84px;
+      }
+      .ear-right-rig {
+        animation: earFlopRightSpring 1.15s cubic-bezier(0.3, 0.8, 0.4, 1) infinite;
+        transform-origin: 182px 84px;
+      }
+      .hat-tip-anim {
+        animation: hatTipSpring 1.15s ease-in-out infinite;
+        transform-origin: 184px 54px;
+      }
       .arm-left {
-        animation: armWaveLeft 1.05s ease-in-out infinite;
+        animation: armWaveLeft 1.15s ease-in-out infinite;
         transform-origin: 104px 145px;
       }
       .arm-right {
-        animation: armWaveRight 1.05s ease-in-out infinite;
+        animation: armWaveRight 1.15s ease-in-out infinite;
         transform-origin: 176px 145px;
       }
       .star-1 { animation: starTwinkle 1.6s ease-in-out infinite; transform-origin: 48px 45px; }
@@ -128,54 +200,88 @@
 
     <!-- Body -->
     <ellipse cx="140" cy="166" rx="46" ry="40" fill="url(#furGrad)" stroke="#f2bdca" stroke-width="2.5"/>
+    <!-- Body Left Rim Specular Lighting -->
+    <path d="M 99 150 C 95 160 97 175 106 188 C 103 176 102 163 105 152 Z" fill="url(#specularRim)" opacity="0.75"/>
     <ellipse cx="140" cy="170" rx="30" ry="25" fill="url(#bellyGrad)"/>
+    <!-- Belly Top Specular Gloss Arc -->
+    <ellipse cx="140" cy="153" rx="18" ry="4.5" fill="#ffffff" opacity="0.6"/>
 
     <!-- Arms UP with Joy -->
     <g class="arm-left">
       <ellipse cx="90" cy="132" rx="14" ry="9.5" fill="url(#furGrad)" stroke="#f2bdca" stroke-width="2.2"/>
       <circle cx="86" cy="132" r="4.5" fill="url(#innerEarGrad)"/>
+      <ellipse cx="91" cy="129" rx="6" ry="2.2" fill="#ffffff" opacity="0.65"/>
     </g>
     <g class="arm-right">
       <ellipse cx="190" cy="132" rx="14" ry="9.5" fill="url(#furGrad)" stroke="#f2bdca" stroke-width="2.2"/>
       <circle cx="194" cy="132" r="4.5" fill="url(#innerEarGrad)"/>
+      <ellipse cx="189" cy="129" rx="6" ry="2.2" fill="#ffffff" opacity="0.65"/>
     </g>
 
-    <!-- Ears -->
-    <circle cx="98" cy="84" r="20" fill="url(#furGrad)" stroke="#f2bdca" stroke-width="2.5"/>
-    <circle cx="98" cy="84" r="11" fill="url(#innerEarGrad)"/>
-    <ellipse cx="96" cy="80" rx="4" ry="2" fill="#ffffff" opacity="0.6"/>
+    <!-- Ears with Dynamic Spring Recoil -->
+    <g class="ear-left-rig">
+      <circle cx="98" cy="84" r="20" fill="url(#furGrad)" stroke="#f2bdca" stroke-width="2.5"/>
+      <circle cx="98" cy="84" r="11" fill="url(#innerEarGrad)"/>
+      <ellipse cx="96" cy="80" rx="5" ry="2.5" fill="#ffffff" opacity="0.7"/>
+      <!-- Ear Top Specular Crescent -->
+      <path d="M 85 75 C 91 67 106 67 113 74 C 107 70 93 70 85 75 Z" fill="url(#specularRim)" opacity="0.9"/>
+    </g>
 
-    <circle cx="182" cy="84" r="20" fill="url(#furGrad)" stroke="#f2bdca" stroke-width="2.5"/>
-    <circle cx="182" cy="84" r="11" fill="url(#innerEarGrad)"/>
-    <ellipse cx="180" cy="80" rx="4" ry="2" fill="#ffffff" opacity="0.6"/>
+    <g class="ear-right-rig">
+      <circle cx="182" cy="84" r="20" fill="url(#furGrad)" stroke="#f2bdca" stroke-width="2.5"/>
+      <circle cx="182" cy="84" r="11" fill="url(#innerEarGrad)"/>
+      <ellipse cx="180" cy="80" rx="5" ry="2.5" fill="#ffffff" opacity="0.7"/>
+      <!-- Ear Top Specular Crescent -->
+      <path d="M 169 75 C 175 67 190 67 197 74 C 191 70 177 70 169 75 Z" fill="url(#specularRim)" opacity="0.9"/>
+    </g>
 
     <!-- Head -->
     <circle cx="140" cy="116" r="48" fill="url(#furGrad)" stroke="#f2bdca" stroke-width="2.5"/>
     <ellipse cx="140" cy="95" rx="28" ry="14" fill="#ffffff" opacity="0.45"/>
+    <!-- Head Top-Left Specular Rim Light Crescent -->
+    <path d="M 100 96 C 110 76 138 71 162 76 C 145 78 122 83 110 99 C 104 107 100 117 98 126 C 96 115 97 104 100 96 Z" fill="url(#specularRim)" opacity="0.85"/>
 
-    <!-- Santa Hat -->
-    <path d="M 108 86 Q 140 40 184 54 Q 198 68 206 86 Q 172 74 108 86 Z" fill="url(#santaRed)"/>
-    <rect x="104" y="80" width="74" height="15" rx="7.5" fill="#ffffff" stroke="#f0d5dd" stroke-width="1.8"/>
-    <circle cx="206" cy="88" r="11" fill="#ffffff" stroke="#f0d5dd" stroke-width="1.8"/>
+    <!-- Santa Hat with Pom-pom Spring Inertia -->
+    <g>
+      <path d="M 108 86 Q 140 40 184 54 Q 198 68 206 86 Q 172 74 108 86 Z" fill="url(#santaRed)"/>
+      <path d="M 116 80 Q 140 48 174 58" fill="none" stroke="#ffffff" stroke-width="3" opacity="0.3" stroke-linecap="round"/>
+      <rect x="104" y="80" width="74" height="15" rx="7.5" fill="#ffffff" stroke="#f0d5dd" stroke-width="1.8"/>
+      <ellipse cx="141" cy="83" rx="28" ry="3.5" fill="#ffffff" opacity="0.9"/>
+      <g class="hat-tip-anim">
+        <circle cx="206" cy="88" r="11" fill="#ffffff" stroke="#f0d5dd" stroke-width="1.8"/>
+        <circle cx="204" cy="86" r="5" fill="#ffffff" opacity="0.95"/>
+        <circle cx="206" cy="88" r="8" fill="#fff5f7"/>
+      </g>
+    </g>
 
-    <!-- Scarf -->
+    <!-- Scarf with Specular Rim -->
     <path d="M 112 140 Q 140 152 168 140 Q 168 152 140 162 Q 112 152 112 140 Z" fill="url(#scarfGreen)"/>
+    <path d="M 116 141 Q 140 151 164 141" fill="none" stroke="#ffffff" stroke-width="1.2" opacity="0.5"/>
 
-    <!-- Happy Eyes -->
+    <!-- Happy Eyes with Twinkle Sparkles -->
     <path d="M 116 112 Q 124 104 132 112" fill="none" stroke="#2d131b" stroke-width="3.5" stroke-linecap="round"/>
     <path d="M 148 112 Q 156 104 164 112" fill="none" stroke="#2d131b" stroke-width="3.5" stroke-linecap="round"/>
+    <circle cx="124" cy="106" r="1.4" fill="#ffffff" opacity="0.9"/>
+    <circle cx="156" cy="106" r="1.4" fill="#ffffff" opacity="0.9"/>
 
-    <!-- Cheeks -->
+    <!-- Cheeks with Rosy Sparkles -->
     <circle cx="110" cy="122" r="14" fill="url(#blushGrad)"/>
     <circle cx="170" cy="122" r="14" fill="url(#blushGrad)"/>
+    <circle cx="108" cy="119" r="2.8" fill="#ffffff" opacity="0.85"/>
+    <circle cx="112" cy="121" r="1.2" fill="#ffffff" opacity="0.7"/>
+    <circle cx="172" cy="119" r="2.8" fill="#ffffff" opacity="0.85"/>
+    <circle cx="168" cy="121" r="1.2" fill="#ffffff" opacity="0.7"/>
 
-    <!-- Snout & Nose -->
+    <!-- Snout &amp; Truffle Nose with Specular Highlight -->
     <ellipse cx="140" cy="122" rx="14" ry="10" fill="#ffffff" stroke="#fce4ec" stroke-width="1.5"/>
     <ellipse cx="140" cy="118" rx="5.5" ry="3.8" fill="#441a28"/>
+    <ellipse cx="138.5" cy="116.5" rx="2.5" ry="1.3" fill="#ffffff" opacity="0.95"/>
+    <circle cx="141.5" cy="117.2" r="0.7" fill="#ffffff" opacity="0.75"/>
 
-    <!-- Big Open Smile -->
+    <!-- Big Open Smile with Gloss Tongue Sheen -->
     <path d="M 130 124 Q 140 138 150 124 Z" fill="#d90429" stroke="#441a28" stroke-width="2"/>
     <path d="M 134 130 Q 140 138 146 130 Z" fill="#ff758f"/>
+    <ellipse cx="140" cy="132" rx="3.5" ry="1.5" fill="#ffffff" opacity="0.65"/>
 
   </g>
 </svg>

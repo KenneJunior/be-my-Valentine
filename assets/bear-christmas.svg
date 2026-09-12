@@ -41,40 +41,105 @@
       <stop offset="100%" stop-color="#e09f3e"/>
     </linearGradient>
 
-    <filter id="premiumGlow" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#d90429" flood-opacity="0.2"/>
+    <linearGradient id="specularRim" x1="15%" y1="0%" x2="85%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95"/>
+      <stop offset="35%" stop-color="#ffffff" stop-opacity="0.45"/>
+      <stop offset="70%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+
+    <linearGradient id="candyGleam" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9"/>
+      <stop offset="50%" stop-color="#ffffff" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+
+    <radialGradient id="irisLight" cx="50%" cy="75%" r="50%">
+      <stop offset="0%" stop-color="#d90429" stop-opacity="0.8"/>
+      <stop offset="60%" stop-color="#590d22" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#2d131b" stop-opacity="0"/>
+    </radialGradient>
+
+    <filter id="premiumGlow" x="-25%" y="-25%" width="150%" height="150%">
+      <feDropShadow dx="0" dy="8" stdDeviation="9" flood-color="#d90429" flood-opacity="0.22"/>
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#ff758f" flood-opacity="0.18"/>
     </filter>
 
     <style>
-      @keyframes bearJump {
-        0%, 100% { transform: translateY(0px) scale(1, 1); }
-        25% { transform: translateY(-28px) scale(0.97, 1.05); }
-        50% { transform: translateY(-34px) scale(0.96, 1.06) rotate(1.5deg); }
-        75% { transform: translateY(6px) scale(1.08, 0.92) rotate(-0.5deg); }
-        88% { transform: translateY(-6px) scale(0.99, 1.01); }
+      /* Physically grounded spring-damper squash and stretch jump */
+      @keyframes bearSpringJump {
+        0% { transform: translateY(0px) scale(1, 1) rotate(0deg); }
+        9% { transform: translateY(11px) scale(1.15, 0.85) rotate(0deg); }
+        22% { transform: translateY(-16px) scale(0.88, 1.15) rotate(1deg); }
+        36% { transform: translateY(-44px) scale(0.93, 1.09) rotate(2deg); }
+        48% { transform: translateY(-47px) scale(1.02, 0.98) rotate(0.6deg); }
+        64% { transform: translateY(-12px) scale(0.89, 1.14) rotate(-0.8deg); }
+        74% { transform: translateY(13px) scale(1.24, 0.76) rotate(0deg); }
+        84% { transform: translateY(-10px) scale(0.93, 1.08) rotate(-0.5deg); }
+        92% { transform: translateY(3px) scale(1.04, 0.97) rotate(0.2deg); }
+        100% { transform: translateY(0px) scale(1, 1) rotate(0deg); }
       }
 
-      @keyframes groundShadow {
-        0%, 100% { transform: scale(1, 1); opacity: 0.35; }
-        25%, 50% { transform: scale(0.72, 0.65); opacity: 0.16; }
-        75% { transform: scale(1.2, 1.15); opacity: 0.48; }
+      @keyframes groundShadowSpring {
+        0% { transform: scale(1, 1); opacity: 0.38; }
+        9% { transform: scale(1.28, 1.22); opacity: 0.55; }
+        22% { transform: scale(0.74, 0.68); opacity: 0.20; }
+        36%, 48% { transform: scale(0.44, 0.40); opacity: 0.08; }
+        64% { transform: scale(0.80, 0.74); opacity: 0.22; }
+        74% { transform: scale(1.36, 1.30); opacity: 0.65; }
+        84% { transform: scale(0.86, 0.82); opacity: 0.26; }
+        92% { transform: scale(1.07, 1.05); opacity: 0.44; }
+        100% { transform: scale(1, 1); opacity: 0.38; }
+      }
+
+      @keyframes earLeftSpring {
+        0% { transform: rotate(0deg) scale(1); }
+        9% { transform: rotate(8deg) scale(1.05, 0.95); }
+        22% { transform: rotate(-14deg) scale(0.94, 1.08); }
+        36% { transform: rotate(12deg) scale(1.03, 0.97); }
+        48% { transform: rotate(5deg) scale(1, 1); }
+        64% { transform: rotate(-12deg) scale(0.95, 1.06); }
+        74% { transform: rotate(18deg) scale(1.12, 0.86); }
+        84% { transform: rotate(-8deg) scale(0.95, 1.06); }
+        92% { transform: rotate(3deg) scale(1.02, 0.98); }
+        100% { transform: rotate(0deg) scale(1); }
+      }
+
+      @keyframes earRightSpring {
+        0% { transform: rotate(0deg) scale(1); }
+        9% { transform: rotate(-8deg) scale(1.05, 0.95); }
+        22% { transform: rotate(14deg) scale(0.94, 1.08); }
+        36% { transform: rotate(-12deg) scale(1.03, 0.97); }
+        48% { transform: rotate(-5deg) scale(1, 1); }
+        64% { transform: rotate(12deg) scale(0.95, 1.06); }
+        74% { transform: rotate(-18deg) scale(1.12, 0.86); }
+        84% { transform: rotate(8deg) scale(0.95, 1.06); }
+        92% { transform: rotate(-3deg) scale(1.02, 0.98); }
+        100% { transform: rotate(0deg) scale(1); }
+      }
+
+      @keyframes hatTipSpring {
+        0%, 100% { transform: rotate(0deg); }
+        22% { transform: rotate(-12deg); }
+        48% { transform: rotate(16deg); }
+        74% { transform: rotate(-15deg); }
+        84% { transform: rotate(8deg); }
       }
 
       @keyframes snowDrift {
         0% { transform: translateY(-10px) translateX(0); opacity: 0; }
-        20% { opacity: 0.9; }
+        20% { opacity: 0.95; }
         80% { opacity: 0.85; }
         100% { transform: translateY(220px) translateX(20px); opacity: 0; }
       }
 
       @keyframes bellRing {
-        0%, 100% { transform: rotate(-10deg); }
-        50% { transform: rotate(12deg); }
+        0%, 100% { transform: rotate(-12deg); }
+        50% { transform: rotate(14deg); }
       }
 
       @keyframes scarfSway {
-        0%, 100% { transform: rotate(8deg); }
-        50% { transform: rotate(18deg); }
+        0%, 100% { transform: rotate(6deg); }
+        50% { transform: rotate(20deg); }
       }
 
       @keyframes eyeBlink {
@@ -83,12 +148,24 @@
       }
 
       .bear-jumping-rig {
-        animation: bearJump 1.25s cubic-bezier(0.3, 0.8, 0.4, 1) infinite;
+        animation: bearSpringJump 1.25s cubic-bezier(0.28, 0.84, 0.36, 1) infinite;
         transform-origin: 140px 210px;
       }
       .ground-shadow-anim {
-        animation: groundShadow 1.25s cubic-bezier(0.3, 0.8, 0.4, 1) infinite;
+        animation: groundShadowSpring 1.25s cubic-bezier(0.28, 0.84, 0.36, 1) infinite;
         transform-origin: 140px 218px;
+      }
+      .ear-l-anim {
+        animation: earLeftSpring 1.25s cubic-bezier(0.3, 0.8, 0.4, 1) infinite;
+        transform-origin: 98px 84px;
+      }
+      .ear-r-anim {
+        animation: earRightSpring 1.25s cubic-bezier(0.3, 0.8, 0.4, 1) infinite;
+        transform-origin: 182px 84px;
+      }
+      .hat-tip-anim {
+        animation: hatTipSpring 1.25s ease-in-out infinite;
+        transform-origin: 184px 54px;
       }
       .snow-1 { animation: snowDrift 3.5s linear infinite; }
       .snow-2 { animation: snowDrift 4.8s linear infinite 1.5s; }
@@ -141,33 +218,57 @@
 
     <!-- Body -->
     <ellipse cx="140" cy="166" rx="46" ry="40" fill="url(#furGrad)" stroke="#f2bdca" stroke-width="2.5"/>
+    <!-- Body Left Rim Specular Lighting -->
+    <path d="M 99 150 C 95 160 97 175 106 188 C 103 176 102 163 105 152 Z" fill="url(#specularRim)" opacity="0.75"/>
     <ellipse cx="140" cy="170" rx="30" ry="25" fill="url(#bellyGrad)"/>
+    <!-- Belly Top Specular Gloss Arc -->
+    <ellipse cx="140" cy="153" rx="18" ry="4.5" fill="#ffffff" opacity="0.6"/>
 
-    <!-- Ears -->
-    <circle cx="98" cy="84" r="20" fill="url(#furGrad)" stroke="#f2bdca" stroke-width="2.5"/>
-    <circle cx="98" cy="84" r="11" fill="url(#innerEarGrad)"/>
-    <ellipse cx="96" cy="80" rx="4" ry="2" fill="#ffffff" opacity="0.6"/>
+    <!-- Left Ear with Animated Recoil -->
+    <g class="ear-l-anim">
+      <circle cx="98" cy="84" r="20" fill="url(#furGrad)" stroke="#f2bdca" stroke-width="2.5"/>
+      <circle cx="98" cy="84" r="11" fill="url(#innerEarGrad)"/>
+      <ellipse cx="96" cy="80" rx="5" ry="2.5" fill="#ffffff" opacity="0.7"/>
+      <!-- Ear Top Specular Crescent -->
+      <path d="M 85 75 C 91 67 106 67 113 74 C 107 70 93 70 85 75 Z" fill="url(#specularRim)" opacity="0.9"/>
+    </g>
 
-    <circle cx="182" cy="84" r="20" fill="url(#furGrad)" stroke="#f2bdca" stroke-width="2.5"/>
-    <circle cx="182" cy="84" r="11" fill="url(#innerEarGrad)"/>
-    <ellipse cx="180" cy="80" rx="4" ry="2" fill="#ffffff" opacity="0.6"/>
+    <!-- Right Ear with Animated Recoil -->
+    <g class="ear-r-anim">
+      <circle cx="182" cy="84" r="20" fill="url(#furGrad)" stroke="#f2bdca" stroke-width="2.5"/>
+      <circle cx="182" cy="84" r="11" fill="url(#innerEarGrad)"/>
+      <ellipse cx="180" cy="80" rx="5" ry="2.5" fill="#ffffff" opacity="0.7"/>
+      <!-- Ear Top Specular Crescent -->
+      <path d="M 169 75 C 175 67 190 67 197 74 C 191 70 177 70 169 75 Z" fill="url(#specularRim)" opacity="0.9"/>
+    </g>
 
     <!-- Head -->
     <circle cx="140" cy="116" r="48" fill="url(#furGrad)" stroke="#f2bdca" stroke-width="2.5"/>
     <ellipse cx="140" cy="95" rx="28" ry="14" fill="#ffffff" opacity="0.45"/>
+    <!-- Head Top-Left Specular Rim Light Crescent -->
+    <path d="M 100 96 C 110 76 138 71 162 76 C 145 78 122 83 110 99 C 104 107 100 117 98 126 C 96 115 97 104 100 96 Z" fill="url(#specularRim)" opacity="0.85"/>
 
-    <!-- Santa Hat Drooping Sweetly to the Right -->
+    <!-- Santa Hat Drooping Sweetly to the Right with Velvet Sheen -->
     <g>
       <path d="M 108 86 Q 140 40 184 54 Q 198 68 206 86 Q 172 74 108 86 Z" fill="url(#santaRed)"/>
+      <!-- Velvet Sheen Highlight Arc -->
+      <path d="M 116 80 Q 140 48 174 58" fill="none" stroke="#ffffff" stroke-width="3" opacity="0.3" stroke-linecap="round"/>
       <!-- Fluffy White Fur Trim -->
       <rect x="104" y="80" width="74" height="15" rx="7.5" fill="#ffffff" stroke="#f0d5dd" stroke-width="1.8"/>
-      <!-- Soft White Pom-Pom -->
-      <circle cx="206" cy="88" r="11" fill="#ffffff" stroke="#f0d5dd" stroke-width="1.8"/>
-      <circle cx="206" cy="88" r="7" fill="#fff5f7"/>
+      <ellipse cx="141" cy="83" rx="28" ry="3.5" fill="#ffffff" opacity="0.9"/>
+
+      <!-- Soft White Pom-Pom with Spring Inertia -->
+      <g class="hat-tip-anim">
+        <circle cx="206" cy="88" r="11" fill="#ffffff" stroke="#f0d5dd" stroke-width="1.8"/>
+        <circle cx="204" cy="86" r="5" fill="#ffffff" opacity="0.95"/>
+        <circle cx="206" cy="88" r="8" fill="#fff5f7"/>
+      </g>
     </g>
 
     <!-- Warm Striped Scarf wrapped around neck -->
     <path d="M 112 140 Q 140 152 168 140 Q 168 152 140 162 Q 112 152 112 140 Z" fill="url(#scarfGreen)"/>
+    <!-- Scarf Specular Edge -->
+    <path d="M 116 141 Q 140 151 164 141" fill="none" stroke="#ffffff" stroke-width="1.2" opacity="0.5"/>
     <!-- Scarf Stripes -->
     <path d="M 124 145 Q 128 154 130 159" stroke="url(#santaRed)" stroke-width="4"/>
     <path d="M 150 145 Q 152 154 154 159" stroke="url(#santaRed)" stroke-width="4"/>
@@ -181,52 +282,75 @@
       <line x1="162" y1="178" x2="162" y2="182" stroke="url(#goldBell)" stroke-width="1.5"/>
     </g>
 
-    <!-- Eyes (Anime Glossy with Warm Expression) -->
+    <!-- Eyes (Anime Glossy with Subsurface Iris Rim and Specular Glints) -->
     <g class="eye-blink-anim">
       <g transform="translate(118, 114)">
-        <ellipse cx="0" cy="0" rx="6.5" ry="8.5" fill="#2d131b"/>
-        <ellipse cx="-2" cy="-3" rx="2.8" ry="3.5" fill="#ffffff"/>
-        <circle cx="2.2" cy="3" r="1.3" fill="#ffffff"/>
+        <ellipse cx="0" cy="0" rx="6.8" ry="8.8" fill="#200d14"/>
+        <ellipse cx="0" cy="3" rx="5" ry="3.5" fill="url(#irisLight)"/>
+        <!-- Primary Crisp Specular Reflection -->
+        <ellipse cx="-2.3" cy="-3.2" rx="3" ry="3.8" fill="#ffffff"/>
+        <!-- Secondary Twinkle Glint -->
+        <circle cx="2.6" cy="3.2" r="1.4" fill="#ffffff"/>
+        <!-- Micro Tertiary Specular Pin-point -->
+        <circle cx="-3" cy="1.5" r="0.8" fill="#ffffff" opacity="0.8"/>
+        <!-- Lower Iris Crescent Rim -->
+        <path d="M -4.5 3.5 Q 0 7.5 4.5 3.5" stroke="#ff758f" stroke-width="1.2" fill="none" opacity="0.85"/>
       </g>
       <g transform="translate(162, 114)">
-        <ellipse cx="0" cy="0" rx="6.5" ry="8.5" fill="#2d131b"/>
-        <ellipse cx="-2" cy="-3" rx="2.8" ry="3.5" fill="#ffffff"/>
-        <circle cx="2.2" cy="3" r="1.3" fill="#ffffff"/>
+        <ellipse cx="0" cy="0" rx="6.8" ry="8.8" fill="#200d14"/>
+        <ellipse cx="0" cy="3" rx="5" ry="3.5" fill="url(#irisLight)"/>
+        <!-- Primary Crisp Specular Reflection -->
+        <ellipse cx="-2.3" cy="-3.2" rx="3" ry="3.8" fill="#ffffff"/>
+        <!-- Secondary Twinkle Glint -->
+        <circle cx="2.6" cy="3.2" r="1.4" fill="#ffffff"/>
+        <!-- Micro Tertiary Specular Pin-point -->
+        <circle cx="-3" cy="1.5" r="0.8" fill="#ffffff" opacity="0.8"/>
+        <!-- Lower Iris Crescent Rim -->
+        <path d="M -4.5 3.5 Q 0 7.5 4.5 3.5" stroke="#ff758f" stroke-width="1.2" fill="none" opacity="0.85"/>
       </g>
     </g>
 
-    <!-- Rosy Winter Cheeks -->
+    <!-- Rosy Winter Cheeks with Sparkles -->
     <circle cx="110" cy="126" r="13" fill="url(#blushGrad)"/>
     <circle cx="170" cy="126" r="13" fill="url(#blushGrad)"/>
-    <circle cx="108" cy="123" r="2" fill="#ffffff" opacity="0.7"/>
-    <circle cx="172" cy="123" r="2" fill="#ffffff" opacity="0.7"/>
+    <ellipse cx="107" cy="123" rx="2.5" ry="1.5" fill="#ffffff" opacity="0.85"/>
+    <circle cx="111" cy="125" r="1" fill="#ffffff" opacity="0.6"/>
+    <ellipse cx="173" cy="123" rx="2.5" ry="1.5" fill="#ffffff" opacity="0.85"/>
+    <circle cx="169" cy="125" r="1" fill="#ffffff" opacity="0.6"/>
 
-    <!-- Snout & Nose -->
+    <!-- Snout &amp; Truffle Nose with High-Gloss Specular Pill -->
     <ellipse cx="140" cy="126" rx="14" ry="10" fill="#ffffff" stroke="#fce4ec" stroke-width="1.5"/>
-    <ellipse cx="140" cy="122" rx="5.5" ry="3.8" fill="#441a28"/>
-    <ellipse cx="138.5" cy="120.8" rx="2" ry="1.2" fill="#ffffff" opacity="0.8"/>
+    <ellipse cx="140" cy="122" rx="5.8" ry="3.8" fill="#3a1320"/>
+    <ellipse cx="138" cy="120.6" rx="2.4" ry="1.2" fill="#ffffff" opacity="0.95"/>
+    <circle cx="141.5" cy="121.2" r="0.7" fill="#ffffff" opacity="0.75"/>
     <path d="M 140 125.5 Q 134 133 129 129" fill="none" stroke="#441a28" stroke-width="2" stroke-linecap="round"/>
     <path d="M 140 125.5 Q 146 133 151 129" fill="none" stroke="#441a28" stroke-width="2" stroke-linecap="round"/>
 
-    <!-- Left Paw -->
+    <!-- Left Paw with Specular Pad Sheen -->
     <ellipse cx="112" cy="166" rx="12" ry="10" fill="url(#furGrad)" stroke="#f2bdca" stroke-width="2"/>
+    <ellipse cx="110" cy="163" rx="4.5" ry="2.2" fill="#ffffff" opacity="0.65"/>
 
-    <!-- Glossy Striped Holiday Candy Cane in Hands -->
+    <!-- Glossy Striped Holiday Candy Cane in Hands with Specular Highlight Strip -->
     <g transform="translate(162, 136) rotate(-18)">
       <!-- Candy Cane Base -->
       <path d="M 6 42 L 6 12 A 8 8 0 0 1 22 12 L 22 18" fill="none" stroke="url(#santaRed)" stroke-width="6.5" stroke-linecap="round"/>
       <path d="M 6 42 L 6 12 A 8 8 0 0 1 22 12 L 22 18" fill="none" stroke="#ffffff" stroke-width="5" stroke-linecap="round" stroke-dasharray="4,5"/>
+      <!-- Glass Specular Highlight Streak -->
+      <path d="M 4.5 40 L 4.5 12 A 6.5 6.5 0 0 1 17 7" fill="none" stroke="#ffffff" stroke-width="1.4" stroke-linecap="round" opacity="0.8"/>
     </g>
 
-    <!-- Golden Ringing Bell on Candy Cane -->
+    <!-- Golden Ringing Bell on Candy Cane with Crystalline Highlight -->
     <g class="bell-anim">
-      <ellipse cx="184" cy="170" rx="5" ry="6" fill="url(#goldBell)"/>
-      <circle cx="184" cy="175" r="2" fill="#e09f3e"/>
-      <ellipse cx="182" cy="168" rx="1.5" ry="3" fill="#ffffff" opacity="0.6"/>
+      <ellipse cx="184" cy="170" rx="5.5" ry="6.5" fill="url(#goldBell)"/>
+      <circle cx="184" cy="175" r="2.2" fill="#e09f3e"/>
+      <ellipse cx="182" cy="168" rx="2" ry="3.5" fill="#ffffff" opacity="0.8"/>
+      <!-- Bell Specular Star -->
+      <polygon points="182,166 183,167.5 185,168 183,168.5 182,170 181,168.5 179,168 181,167.5" fill="#ffffff" opacity="0.95"/>
     </g>
 
-    <!-- Right Paw holding cane -->
+    <!-- Right Paw holding cane with Specular Pad Sheen -->
     <ellipse cx="168" cy="166" rx="12" ry="10" fill="url(#furGrad)" stroke="#f2bdca" stroke-width="2"/>
+    <ellipse cx="166" cy="163" rx="4.5" ry="2.2" fill="#ffffff" opacity="0.65"/>
 
   </g>
 </svg>

@@ -1736,12 +1736,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if (canHover && valentineCard && typeof VanillaTilt !== 'undefined') {
             tiltInitialized = true;
             VanillaTilt.init(valentineCard, {
-                max: 8,
-                speed: 700,
-                perspective: 1100,
-                scale: 1.015,
+                max: 18,
+                speed: 650,
+                perspective: 850,
+                scale: 1.035,
                 glare: true,
-                "max-glare": 0.16,
+                "max-glare": 0.28,
                 gyroscope: false, // Turn off mobile sensor listening to prevent battery drain & jitter
                 reset: true,
                 easing: "cubic-bezier(.03,.98,.52,.99)"

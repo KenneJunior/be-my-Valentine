@@ -40,45 +40,116 @@
       <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
     </radialGradient>
 
-    <filter id="premiumGlow" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#ff2e63" flood-opacity="0.25"/>
+    <linearGradient id="specularRim" x1="15%" y1="0%" x2="85%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95"/>
+      <stop offset="35%" stop-color="#ffffff" stop-opacity="0.45"/>
+      <stop offset="70%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+
+    <linearGradient id="heartSheen" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9"/>
+      <stop offset="30%" stop-color="#ffffff" stop-opacity="0.4"/>
+      <stop offset="60%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+
+    <linearGradient id="specularGleam" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset="45%" stop-color="#ffffff" stop-opacity="0.1"/>
+      <stop offset="50%" stop-color="#ffffff" stop-opacity="0.85"/>
+      <stop offset="55%" stop-color="#ffffff" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+
+    <clipPath id="heartClip">
+      <path d="M 140,154 C 132,138 108,142 108,162 C 108,180 140,196 140,196 C 140,196 172,180 172,162 C 172,142 148,138 140,154 Z"/>
+    </clipPath>
+
+    <radialGradient id="irisLight" cx="50%" cy="75%" r="50%">
+      <stop offset="0%" stop-color="#ff2e63" stop-opacity="0.85"/>
+      <stop offset="60%" stop-color="#800f2f" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#2d131b" stop-opacity="0"/>
+    </radialGradient>
+
+    <filter id="premiumGlow" x="-25%" y="-25%" width="150%" height="150%">
+      <feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#ff0a54" flood-opacity="0.25"/>
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#ff758f" flood-opacity="0.2"/>
     </filter>
 
     <style>
-      @keyframes bearJump {
-        0%, 100% { transform: translateY(0px) scale(1, 1); }
-        25% { transform: translateY(-28px) scale(0.97, 1.05); }
-        50% { transform: translateY(-34px) scale(0.96, 1.06) rotate(1.5deg); }
-        75% { transform: translateY(6px) scale(1.08, 0.92) rotate(-0.5deg); }
-        88% { transform: translateY(-6px) scale(0.99, 1.01); }
+      /* Physically grounded spring-damper squash and stretch jump */
+      @keyframes bearSpringJump {
+        0% { transform: translateY(0px) scale(1, 1) rotate(0deg); }
+        9% { transform: translateY(11px) scale(1.15, 0.85) rotate(0deg); }
+        22% { transform: translateY(-16px) scale(0.88, 1.15) rotate(1deg); }
+        36% { transform: translateY(-44px) scale(0.93, 1.09) rotate(2deg); }
+        48% { transform: translateY(-47px) scale(1.02, 0.98) rotate(0.6deg); }
+        64% { transform: translateY(-12px) scale(0.89, 1.14) rotate(-0.8deg); }
+        74% { transform: translateY(13px) scale(1.24, 0.76) rotate(0deg); }
+        84% { transform: translateY(-10px) scale(0.93, 1.08) rotate(-0.5deg); }
+        92% { transform: translateY(3px) scale(1.04, 0.97) rotate(0.2deg); }
+        100% { transform: translateY(0px) scale(1, 1) rotate(0deg); }
       }
 
-      @keyframes groundShadow {
-        0%, 100% { transform: scale(1, 1); opacity: 0.35; }
-        25%, 50% { transform: scale(0.72, 0.65); opacity: 0.16; }
-        75% { transform: scale(1.2, 1.15); opacity: 0.48; }
+      @keyframes groundShadowSpring {
+        0% { transform: scale(1, 1); opacity: 0.38; }
+        9% { transform: scale(1.28, 1.22); opacity: 0.55; }
+        22% { transform: scale(0.74, 0.68); opacity: 0.20; }
+        36%, 48% { transform: scale(0.44, 0.40); opacity: 0.08; }
+        64% { transform: scale(0.80, 0.74); opacity: 0.22; }
+        74% { transform: scale(1.36, 1.30); opacity: 0.65; }
+        84% { transform: scale(0.86, 0.82); opacity: 0.26; }
+        92% { transform: scale(1.07, 1.05); opacity: 0.44; }
+        100% { transform: scale(1, 1); opacity: 0.38; }
       }
 
-      @keyframes heartBeat {
-        0%, 100% { transform: scale(1); filter: drop-shadow(0 0 6px rgba(255, 46, 99, 0.4)); }
-        20% { transform: scale(1.18); filter: drop-shadow(0 0 14px rgba(255, 46, 99, 0.8)); }
-        40% { transform: scale(1.05); filter: drop-shadow(0 0 8px rgba(255, 46, 99, 0.5)); }
-        60% { transform: scale(1.15); filter: drop-shadow(0 0 12px rgba(255, 46, 99, 0.7)); }
-        80% { transform: scale(1); }
+      @keyframes earLeftSpring {
+        0% { transform: rotate(0deg) scale(1); }
+        9% { transform: rotate(8deg) scale(1.05, 0.95); }
+        22% { transform: rotate(-14deg) scale(0.94, 1.08); }
+        36% { transform: rotate(12deg) scale(1.03, 0.97); }
+        48% { transform: rotate(5deg) scale(1, 1); }
+        64% { transform: rotate(-12deg) scale(0.95, 1.06); }
+        74% { transform: rotate(18deg) scale(1.12, 0.86); }
+        84% { transform: rotate(-8deg) scale(0.95, 1.06); }
+        92% { transform: rotate(3deg) scale(1.02, 0.98); }
+        100% { transform: rotate(0deg) scale(1); }
+      }
+
+      @keyframes earRightSpring {
+        0% { transform: rotate(0deg) scale(1); }
+        9% { transform: rotate(-8deg) scale(1.05, 0.95); }
+        22% { transform: rotate(14deg) scale(0.94, 1.08); }
+        36% { transform: rotate(-12deg) scale(1.03, 0.97); }
+        48% { transform: rotate(-5deg) scale(1, 1); }
+        64% { transform: rotate(12deg) scale(0.95, 1.06); }
+        74% { transform: rotate(-18deg) scale(1.12, 0.86); }
+        84% { transform: rotate(8deg) scale(0.95, 1.06); }
+        92% { transform: rotate(-3deg) scale(1.02, 0.98); }
+        100% { transform: rotate(0deg) scale(1); }
+      }
+
+      @keyframes heartSpringPulse {
+        0%, 100% { transform: scale(1); filter: drop-shadow(0 0 6px rgba(255, 46, 99, 0.45)); }
+        16% { transform: scale(1.18); filter: drop-shadow(0 0 16px rgba(255, 10, 84, 0.85)); }
+        28% { transform: scale(1.04); filter: drop-shadow(0 0 8px rgba(255, 46, 99, 0.5)); }
+        42% { transform: scale(1.14); filter: drop-shadow(0 0 14px rgba(255, 10, 84, 0.75)); }
+        56% { transform: scale(0.98); }
+        70% { transform: scale(1.02); }
+        82% { transform: scale(1); }
       }
 
       @keyframes heartFloatUp1 {
         0% { transform: translateY(0) translateX(0) scale(0.75); opacity: 0; }
         25% { opacity: 0.9; }
         75% { opacity: 0.85; }
-        100% { transform: translateY(-45px) translateX(-10px) scale(1.1); opacity: 0; }
+        100% { transform: translateY(-48px) translateX(-12px) scale(1.1); opacity: 0; }
       }
 
       @keyframes heartFloatUp2 {
         0% { transform: translateY(0) translateX(0) scale(0.7); opacity: 0; }
         30% { opacity: 0.9; }
         80% { opacity: 0.8; }
-        100% { transform: translateY(-50px) translateX(12px) scale(1.15); opacity: 0; }
+        100% { transform: translateY(-52px) translateX(14px) scale(1.15); opacity: 0; }
       }
 
       @keyframes eyeBlink {
@@ -86,23 +157,40 @@
         95% { transform: scaleY(0.08); }
       }
 
+      @keyframes rubySweep {
+        0% { transform: translateX(-60px) skewX(-25deg); opacity: 0; }
+        30%, 70% { opacity: 0.8; }
+        100% { transform: translateX(60px) skewX(-25deg); opacity: 0; }
+      }
+
       .bear-jumping-rig {
-        animation: bearJump 1.25s cubic-bezier(0.3, 0.8, 0.4, 1) infinite;
+        animation: bearSpringJump 1.25s cubic-bezier(0.28, 0.84, 0.36, 1) infinite;
         transform-origin: 140px 210px;
       }
       .ground-shadow-anim {
-        animation: groundShadow 1.25s cubic-bezier(0.3, 0.8, 0.4, 1) infinite;
+        animation: groundShadowSpring 1.25s cubic-bezier(0.28, 0.84, 0.36, 1) infinite;
         transform-origin: 140px 218px;
       }
       .heart-beat-anim {
-        animation: heartBeat 1.25s ease-in-out infinite;
+        animation: heartSpringPulse 1.25s ease-in-out infinite;
         transform-origin: 140px 170px;
+      }
+      .ear-l-anim {
+        animation: earLeftSpring 1.25s cubic-bezier(0.3, 0.8, 0.4, 1) infinite;
+        transform-origin: 98px 84px;
+      }
+      .ear-r-anim {
+        animation: earRightSpring 1.25s cubic-bezier(0.3, 0.8, 0.4, 1) infinite;
+        transform-origin: 182px 84px;
       }
       .float-heart-1 { animation: heartFloatUp1 2.6s ease-out infinite; transform-origin: 48px 75px; }
       .float-heart-2 { animation: heartFloatUp2 3s ease-out infinite 1.2s; transform-origin: 232px 70px; }
       .eye-blink-anim {
         animation: eyeBlink 3.6s ease-in-out infinite;
         transform-origin: 140px 115px;
+      }
+      .ruby-sweep-anim {
+        animation: rubySweep 3.2s ease-in-out infinite;
       }
     </style>
   </defs>
@@ -138,70 +226,122 @@
 
     <!-- Body -->
     <ellipse cx="140" cy="166" rx="46" ry="40" fill="url(#furGrad)" stroke="#f2bdca" stroke-width="2.5"/>
+    <!-- Body Left Rim Specular Lighting -->
+    <path d="M 99 150 C 95 160 97 175 106 188 C 103 176 102 163 105 152 Z" fill="url(#specularRim)" opacity="0.75"/>
     <ellipse cx="140" cy="170" rx="30" ry="25" fill="url(#bellyGrad)"/>
+    <!-- Belly Top Specular Gloss Arc -->
+    <ellipse cx="140" cy="153" rx="18" ry="4.5" fill="#ffffff" opacity="0.6"/>
 
-    <!-- Left Ear with Ribbon Bow -->
-    <circle cx="98" cy="84" r="20" fill="url(#furGrad)" stroke="#f2bdca" stroke-width="2.5"/>
-    <circle cx="98" cy="84" r="11" fill="url(#innerEarGrad)"/>
-    <ellipse cx="96" cy="80" rx="4" ry="2" fill="#ffffff" opacity="0.6"/>
+    <!-- Left Ear with Ribbon Bow &amp; Animated Recoil -->
+    <g class="ear-l-anim">
+      <circle cx="98" cy="84" r="20" fill="url(#furGrad)" stroke="#f2bdca" stroke-width="2.5"/>
+      <circle cx="98" cy="84" r="11" fill="url(#innerEarGrad)"/>
+      <ellipse cx="96" cy="80" rx="5" ry="2.5" fill="#ffffff" opacity="0.7"/>
+      <!-- Ear Top Specular Crescent -->
+      <path d="M 85 75 C 91 67 106 67 113 74 C 107 70 93 70 85 75 Z" fill="url(#specularRim)" opacity="0.9"/>
 
-    <!-- Cute Valentine Pink Ribbon Bow on Ear -->
-    <g transform="translate(82, 68)">
-      <polygon points="4,3 12,8 4,13" fill="url(#ribbonGrad)"/>
-      <polygon points="20,3 12,8 20,13" fill="url(#ribbonGrad)"/>
-      <circle cx="12" cy="8" r="3.5" fill="#ff2e63"/>
-      <circle cx="11" cy="7" r="1.2" fill="#ffffff"/>
+      <!-- Cute Valentine Pink Ribbon Bow on Ear with Glint -->
+      <g transform="translate(82, 68)">
+        <polygon points="4,3 12,8 4,13" fill="url(#ribbonGrad)"/>
+        <polygon points="20,3 12,8 20,13" fill="url(#ribbonGrad)"/>
+        <circle cx="12" cy="8" r="3.5" fill="#ff2e63"/>
+        <circle cx="11" cy="7" r="1.3" fill="#ffffff" opacity="0.95"/>
+        <!-- Bow Ribbon Sheen -->
+        <line x1="5" y1="4" x2="11" y2="7.5" stroke="#ffffff" stroke-width="0.8" opacity="0.7"/>
+      </g>
     </g>
 
-    <!-- Right Ear -->
-    <circle cx="182" cy="84" r="20" fill="url(#furGrad)" stroke="#f2bdca" stroke-width="2.5"/>
-    <circle cx="182" cy="84" r="11" fill="url(#innerEarGrad)"/>
-    <ellipse cx="180" cy="80" rx="4" ry="2" fill="#ffffff" opacity="0.6"/>
+    <!-- Right Ear with Animated Recoil -->
+    <g class="ear-r-anim">
+      <circle cx="182" cy="84" r="20" fill="url(#furGrad)" stroke="#f2bdca" stroke-width="2.5"/>
+      <circle cx="182" cy="84" r="11" fill="url(#innerEarGrad)"/>
+      <ellipse cx="180" cy="80" rx="5" ry="2.5" fill="#ffffff" opacity="0.7"/>
+      <!-- Ear Top Specular Crescent -->
+      <path d="M 169 75 C 175 67 190 67 197 74 C 191 70 177 70 169 75 Z" fill="url(#specularRim)" opacity="0.9"/>
+    </g>
 
     <!-- Head -->
     <circle cx="140" cy="116" r="48" fill="url(#furGrad)" stroke="#f2bdca" stroke-width="2.5"/>
     <ellipse cx="140" cy="95" rx="28" ry="14" fill="#ffffff" opacity="0.45"/>
+    <!-- Head Top-Left Specular Rim Light Crescent -->
+    <path d="M 100 96 C 110 76 138 71 162 76 C 145 78 122 83 110 99 C 104 107 100 117 98 126 C 96 115 97 104 100 96 Z" fill="url(#specularRim)" opacity="0.85"/>
 
-    <!-- Eyes (Loving Glossy Kawaii with Heart Twinkle) -->
+    <!-- Eyes (Loving Glossy Kawaii with Subsurface Iris Rim and Specular Double Glint) -->
     <g class="eye-blink-anim">
+      <!-- Left Eye -->
       <g transform="translate(118, 114)">
-        <ellipse cx="0" cy="0" rx="6.5" ry="8.5" fill="#2d131b"/>
-        <ellipse cx="-2" cy="-3" rx="2.8" ry="3.5" fill="#ffffff"/>
-        <circle cx="2.2" cy="3" r="1.3" fill="#ffffff"/>
+        <ellipse cx="0" cy="0" rx="6.8" ry="8.8" fill="#200d14"/>
+        <ellipse cx="0" cy="3" rx="5" ry="3.5" fill="url(#irisLight)"/>
+        <!-- Primary Crisp Specular Reflection -->
+        <ellipse cx="-2.3" cy="-3.2" rx="3" ry="3.8" fill="#ffffff"/>
+        <!-- Secondary Twinkle Glint -->
+        <circle cx="2.6" cy="3.2" r="1.4" fill="#ffffff"/>
+        <!-- Micro Tertiary Specular Pin-point -->
+        <circle cx="-3" cy="1.5" r="0.8" fill="#ffffff" opacity="0.8"/>
+        <!-- Lower Iris Crescent Rim -->
+        <path d="M -4.5 3.5 Q 0 7.5 4.5 3.5" stroke="#ff758f" stroke-width="1.2" fill="none" opacity="0.85"/>
       </g>
+      <!-- Right Eye -->
       <g transform="translate(162, 114)">
-        <ellipse cx="0" cy="0" rx="6.5" ry="8.5" fill="#2d131b"/>
-        <ellipse cx="-2" cy="-3" rx="2.8" ry="3.5" fill="#ffffff"/>
-        <circle cx="2.2" cy="3" r="1.3" fill="#ffffff"/>
+        <ellipse cx="0" cy="0" rx="6.8" ry="8.8" fill="#200d14"/>
+        <ellipse cx="0" cy="3" rx="5" ry="3.5" fill="url(#irisLight)"/>
+        <!-- Primary Crisp Specular Reflection -->
+        <ellipse cx="-2.3" cy="-3.2" rx="3" ry="3.8" fill="#ffffff"/>
+        <!-- Secondary Twinkle Glint -->
+        <circle cx="2.6" cy="3.2" r="1.4" fill="#ffffff"/>
+        <!-- Micro Tertiary Specular Pin-point -->
+        <circle cx="-3" cy="1.5" r="0.8" fill="#ffffff" opacity="0.8"/>
+        <!-- Lower Iris Crescent Rim -->
+        <path d="M -4.5 3.5 Q 0 7.5 4.5 3.5" stroke="#ff758f" stroke-width="1.2" fill="none" opacity="0.85"/>
       </g>
     </g>
 
-    <!-- Blushing Cheeks -->
+    <!-- Blushing Rosy Cheeks with Gloss Sparkles -->
     <circle cx="110" cy="126" r="13" fill="url(#blushGrad)"/>
     <circle cx="170" cy="126" r="13" fill="url(#blushGrad)"/>
-    <circle cx="108" cy="123" r="2" fill="#ffffff" opacity="0.7"/>
-    <circle cx="172" cy="123" r="2" fill="#ffffff" opacity="0.7"/>
+    <ellipse cx="107" cy="123" rx="2.5" ry="1.5" fill="#ffffff" opacity="0.85"/>
+    <circle cx="111" cy="125" r="1" fill="#ffffff" opacity="0.6"/>
+    <ellipse cx="173" cy="123" rx="2.5" ry="1.5" fill="#ffffff" opacity="0.85"/>
+    <circle cx="169" cy="125" r="1" fill="#ffffff" opacity="0.6"/>
 
-    <!-- Snout & Nose -->
+    <!-- Snout &amp; Truffle Nose with High-Gloss Specular Pill -->
     <ellipse cx="140" cy="126" rx="14" ry="10" fill="#ffffff" stroke="#fce4ec" stroke-width="1.5"/>
-    <ellipse cx="140" cy="122" rx="5.5" ry="3.8" fill="#441a28"/>
-    <ellipse cx="138.5" cy="120.8" rx="2" ry="1.2" fill="#ffffff" opacity="0.8"/>
+    <ellipse cx="140" cy="122" rx="5.8" ry="3.8" fill="#3a1320"/>
+    <ellipse cx="138" cy="120.6" rx="2.4" ry="1.2" fill="#ffffff" opacity="0.95"/>
+    <circle cx="141.5" cy="121.2" r="0.7" fill="#ffffff" opacity="0.75"/>
     <path d="M 140 125.5 Q 134 133 129 129" fill="none" stroke="#441a28" stroke-width="2" stroke-linecap="round"/>
     <path d="M 140 125.5 Q 146 133 151 129" fill="none" stroke="#441a28" stroke-width="2" stroke-linecap="round"/>
 
-    <!-- Big Pulsating Ruby Heart in Hands with Luminous Gloss -->
+    <!-- Big Pulsating Ruby Heart in Hands with Glass Sheen &amp; Sweeping Gleam -->
     <g class="heart-beat-anim">
-      <!-- Glow Filter Circle -->
-      <circle cx="140" cy="168" r="26" fill="url(#heartGlow)" opacity="0.55"/>
+      <!-- Ambient Radiant Glow -->
+      <circle cx="140" cy="168" r="28" fill="url(#heartGlow)" opacity="0.6"/>
       <!-- 3D Heart Shape -->
       <path d="M 140,154 C 132,138 108,142 108,162 C 108,180 140,196 140,196 C 140,196 172,180 172,162 C 172,142 148,138 140,154 Z" fill="url(#rubyHeart)"/>
-      <!-- Curving Gloss Highlight on Left Cusp -->
-      <ellipse cx="120" cy="154" rx="6" ry="3.5" fill="#ffffff" opacity="0.6" transform="rotate(-30 120 154)"/>
+
+      <!-- Inner Translucent Caustic Glow at Bottom Point -->
+      <path d="M 130 182 C 136 190 140 193 140 193 C 140 193 144 190 150 182" fill="none" stroke="#ff85a1" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+
+      <!-- Sweeping Light Gleam Beam clipped to Heart -->
+      <g clip-path="url(#heartClip)" opacity="0.65">
+        <rect x="100" y="130" width="18" height="75" fill="url(#specularGleam)" class="ruby-sweep-anim"/>
+      </g>
+
+      <!-- Curving Crystalline Gloss Highlight on Left Cusp -->
+      <path d="M 136 150 C 130 142 115 144 113 156 C 111 166 122 173 130 176 C 122 171 117 163 118 155 C 119 148 128 146 136 150 Z" fill="url(#heartSheen)" opacity="0.85"/>
+      <ellipse cx="120" cy="154" rx="6" ry="3.2" fill="#ffffff" opacity="0.75" transform="rotate(-30 120 154)"/>
+      <!-- Small Right Specular Gleam -->
+      <ellipse cx="160" cy="154" rx="3.5" ry="2" fill="#ffffff" opacity="0.5" transform="rotate(30 160 154)"/>
+      <!-- Specular Sparkle Star on Heart Top Left -->
+      <polygon points="122,149 123.5,152 126.5,153.5 123.5,155 122,158 120.5,155 117.5,153.5 120.5,152" fill="#ffffff" opacity="0.95"/>
     </g>
 
-    <!-- Bear Paws Hugging the Heart Lovingly -->
+    <!-- Bear Paws Hugging the Heart Lovingly with Specular Paw Sheen -->
     <ellipse cx="112" cy="172" rx="11" ry="9" fill="url(#furGrad)" stroke="#f2bdca" stroke-width="2"/>
+    <ellipse cx="110" cy="169" rx="4.5" ry="2.2" fill="#ffffff" opacity="0.65"/>
+
     <ellipse cx="168" cy="172" rx="11" ry="9" fill="url(#furGrad)" stroke="#f2bdca" stroke-width="2"/>
+    <ellipse cx="166" cy="169" rx="4.5" ry="2.2" fill="#ffffff" opacity="0.65"/>
 
   </g>
 </svg>
